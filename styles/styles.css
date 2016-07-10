@@ -1,0 +1,51 @@
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+body {
+  margin: 2em;
+}
+
+ /*
+  * See https://github.com/angular/angular.io/blob/master/public/docs/_examples/styles.css
+  * for the full set of master styles used by the documentation samples
+  */
+
+  .divLine
+  {
+    top: 0px;
+    margin:0px;  
+    padding: 0px 2px 2px 3px;    
+    border-width: 2px;
+    border-bottom: 2px white solid;
+    width: 100%;
+  }
+
+  .divLineTop
+  {
+    top: 0px;
+    margin:0px;  
+    padding: 0px 2px 2px 3px;    
+    border-width: 2px;
+    border-top: 2px black solid;
+    width: 100%;
+  }
+
+  .bottomBar {
+    position: fixed;
+    bottom: 0;
+    align:center;
+    width: 75%;
+}
+
+.row.no-gutter {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}

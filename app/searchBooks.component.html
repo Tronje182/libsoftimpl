@@ -1,0 +1,34 @@
+<table class="table table-striped table-hover table-condensed">
+    <thead>
+        <tr>
+            <td>
+                ISBN
+            </td>
+            <td>
+                Title
+            </td>
+            <td>
+                Author
+            </td>
+            <td>
+                Status
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of books" (click)="onSelect(book)" [class.info]="book === selectedBook">
+            <td>
+                {{book.bookInfo.isbn}} 
+            </td>
+            <td>
+                {{book.bookInfo.title}} 
+            </td>
+            <td>
+                {{book.bookInfo.author}} 
+            </td>
+            <td>
+                {{book.status}} 
+            </td>
+        </tr> 
+    </tbody>
+</table>
