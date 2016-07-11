@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { Router }            from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './authentication.service'
 
 @Component({
-  selector: 'my-default',
+  selector: 'login-form',
+  providers: [AuthenticationService],
   template: `
     <div>
         <h3>Welcome to Libsoft!</h3>
@@ -13,4 +14,17 @@ import { Router }            from '@angular/router';
   `
 })
 
-export class DefaultComponent { }
+export class DefaultComponent {
+
+    constructor(
+      private _service:AuthenticationService){}
+ 
+    ngOnInit(){
+        this._service.checkCredentials();
+        console.log("test");
+    }
+ 
+    logout() {
+        this._service.logout();
+    }
+ }

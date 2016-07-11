@@ -23,6 +23,7 @@ export class SearchBooksComponent {
 
   ngOnInit(){
     this.getLendings();
+    console.log("get lendings")
   }
 
   onSelect(book: Book){

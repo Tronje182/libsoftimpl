@@ -1,5 +1,6 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 
+import { LoginComponent } from './login.component';
 import { DefaultComponent } from './default.component';
 import { ContentComponent } from './content.component';
 import { LentBooksComponent } from './lentbooks.component';
@@ -22,6 +23,10 @@ export const routes: RouterConfig = [
   {
     path: 'searchBooks',
     component: SearchBooksComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
