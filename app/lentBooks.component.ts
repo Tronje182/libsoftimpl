@@ -4,24 +4,27 @@ import { Router } from '@angular/router';
 import { BookLending } from './data/bookLending'
 
 import { DataService } from './data.service';
+import { AuthenticationService } from './authentication.service'
 
 @Component({
   selector: 'my-lent-books',
   templateUrl: 'app/lentbooks.component.html',
-  providers: [DataService]
+  providers: [DataService,AuthenticationService]
 })
 
 export class LentBooksComponent {
   bookLendings: BookLending[];
   selectedLending: BookLending;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService,
+  private _service:AuthenticationService) {}
 
   getLendings(){
-    this.dataService.getLendings().then(bookLendings => this.bookLendings = bookLendings);
+    this.dataService.getLendings(this._service.getId()).then(bookLendings => this.bookLendings = bookLendings);    
   }
 
   ngOnInit(){
+    this._service.checkCredentials();
     this.getLendings();
   }
 

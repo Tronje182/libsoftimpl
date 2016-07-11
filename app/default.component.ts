@@ -5,12 +5,25 @@ import { AuthenticationService } from './authentication.service'
   selector: 'login-form',
   providers: [AuthenticationService],
   template: `
-    <div>
-        <h3>Welcome to Libsoft!</h3>
-    <div>
-    <div>
-        LibSoft is a software application for students and staff members of the library of the Paderborn University.
-    </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div name="content">
+                <div>
+                    <h3>Welcome to Libsoft, {{getName()}}!</h3>
+                <div>
+                <div>
+                    LibSoft is a software application for students and staff members of the library of the Paderborn University.
+                </div>
+                
+                <a (click)="logout()" href="#">Click Here to logout</a>
+            </div>
+          </div>
+        </div>
+        <div class="row bottomBar" style="height:10%">
+          <div name="action" class="divLineTop">
+            <my-actions></my-actions>
+          </div>
+        </div>
   `
 })
 
@@ -22,6 +35,10 @@ export class DefaultComponent {
     ngOnInit(){
         this._service.checkCredentials();
         console.log("test");
+    }
+
+    getName() {
+        return this._service.getName()
     }
  
     logout() {

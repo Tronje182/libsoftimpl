@@ -9,15 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var authentication_service_1 = require('./authentication.service');
 var NavigationComponent = (function () {
-    function NavigationComponent() {
+    function NavigationComponent(_service) {
+        this._service = _service;
     }
+    NavigationComponent.prototype.ngOnInit = function () {
+        this._service.checkCredentials();
+        console.log("test");
+    };
+    NavigationComponent.prototype.getName = function () {
+        return this._service.getName();
+    };
+    NavigationComponent.prototype.logout = function () {
+        this._service.logout();
+    };
     NavigationComponent = __decorate([
         core_1.Component({
             selector: 'my-navigation',
             template: "\n    <div id=\"sidebar-wrapper\">\n      <ul class=\"sidebar-nav\">\n        <li class=\"divLine\">\n          <a href=\"#\">Dashboard</a>\n        </li>\n        <li class=\"divLine\">\n          <a href=\"#\">Shortcuts</a>\n        </li>\n        <li class=\"divLine\">\n          <a href=\"#\">Overview</a>\n        </li>\n        <li class=\"divLine\">\n          <a href=\"#\">Events</a>\n        </li>\n        <li class=\"divLine\">\n          <a href=\"#\">About</a>\n        </li>\n        <li class=\"divLine\">\n          <a href=\"#\">Services</a>\n        </li>\n        <li>\n          <a href=\"#\">Contact</a>\n        </li>\n      </ul>\n    </div>\n  "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
     ], NavigationComponent);
     return NavigationComponent;
 }());

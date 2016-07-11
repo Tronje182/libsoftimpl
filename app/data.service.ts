@@ -7,15 +7,29 @@ import { BookLending } from './data/bookLending';
 
 import { BOOKS } from './data/mock-books'
 import { BOOKLENDINGS } from './data/mock-bookLendings'
+import { BOOKRESERVATIONS } from './data/mock-bookReservations'
+import { STUDENTS } from './data/mock-students'
 
 @Injectable()
 export class DataService {
-  getLendings() {
-    return Promise.resolve(BOOKLENDINGS);
+  getLendings(id: string) {
+    console.log(BOOKLENDINGS);
+    return Promise.resolve(BOOKLENDINGS.filter(l => l.student.id === id));
   }
 
   getBooks() {
     return Promise.resolve(BOOKS);
   }
 
+  getBookById(id:number){
+    return Promise.resolve(BOOKS.find(b => b.id == id));
+  }
+
+  getBookReservations(){
+    return Promise.resolve(BOOKRESERVATIONS);
+  }
+
+  getStudents() {
+    return Promise.resolve(STUDENTS);
+  }
 }

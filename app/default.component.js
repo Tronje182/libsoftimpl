@@ -9,15 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var authentication_service_1 = require('./authentication.service');
 var DefaultComponent = (function () {
-    function DefaultComponent() {
+    function DefaultComponent(_service) {
+        this._service = _service;
     }
+    DefaultComponent.prototype.ngOnInit = function () {
+        this._service.checkCredentials();
+        console.log("test");
+    };
+    DefaultComponent.prototype.getName = function () {
+        return this._service.getName();
+    };
+    DefaultComponent.prototype.logout = function () {
+        this._service.logout();
+    };
     DefaultComponent = __decorate([
         core_1.Component({
-            selector: 'my-default',
-            template: "\n    <div>\n        <h3>Welcome to Libsoft!</h3>\n    <div>\n    <div>\n        LibSoft is a software application for students and staff members of the library of the Paderborn University.\n    </div>\n  "
+            selector: 'login-form',
+            providers: [authentication_service_1.AuthenticationService],
+            template: "\n        <div class=\"row\">\n          <div class=\"col-md-12\">\n            <div name=\"content\">\n                <div>\n                    <h3>Welcome to Libsoft, {{getName()}}!</h3>\n                <div>\n                <div>\n                    LibSoft is a software application for students and staff members of the library of the Paderborn University.\n                </div>\n                \n                <a (click)=\"logout()\" href=\"#\">Click Here to logout</a>\n            </div>\n          </div>\n        </div>\n        <div class=\"row bottomBar\" style=\"height:10%\">\n          <div name=\"action\" class=\"divLineTop\">\n            <my-actions></my-actions>\n          </div>\n        </div>\n  "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
     ], DefaultComponent);
     return DefaultComponent;
 }());

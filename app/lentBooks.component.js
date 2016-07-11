@@ -10,15 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var data_service_1 = require('./data.service');
+var authentication_service_1 = require('./authentication.service');
 var LentBooksComponent = (function () {
-    function LentBooksComponent(dataService) {
+    function LentBooksComponent(dataService, _service) {
         this.dataService = dataService;
+        this._service = _service;
     }
     LentBooksComponent.prototype.getLendings = function () {
         var _this = this;
-        this.dataService.getLendings().then(function (bookLendings) { return _this.bookLendings = bookLendings; });
+        this.dataService.getLendings(this._service.getId()).then(function (bookLendings) { return _this.bookLendings = bookLendings; });
     };
     LentBooksComponent.prototype.ngOnInit = function () {
+        this._service.checkCredentials();
         this.getLendings();
     };
     LentBooksComponent.prototype.onSelect = function (bookLending) {
@@ -33,9 +36,9 @@ var LentBooksComponent = (function () {
         core_1.Component({
             selector: 'my-lent-books',
             templateUrl: 'app/lentbooks.component.html',
-            providers: [data_service_1.DataService]
+            providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService])
     ], LentBooksComponent);
     return LentBooksComponent;
 }());

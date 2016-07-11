@@ -10,16 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var login_component_1 = require('./login.component');
+var authentication_service_1 = require('./authentication.service');
 var ContentComponent = (function () {
-    function ContentComponent() {
+    function ContentComponent(_service) {
+        this._service = _service;
+        this.authService = _service;
     }
+    ContentComponent.prototype.ngOnInit = function () {
+        console.log("My-Content init");
+    };
+    ContentComponent.prototype.getName = function () {
+        return this._service.getName();
+    };
+    ContentComponent.prototype.logout = function () {
+        this._service.logout();
+    };
     ContentComponent = __decorate([
         core_1.Component({
             selector: 'my-content',
-            template: "\n    <router-outlet></router-outlet>\n  ",
-            directives: [router_1.ROUTER_DIRECTIVES]
+            providers: [authentication_service_1.AuthenticationService],
+            template: "\n      <div name=\"navbar\" class=\"col-md-2\" style=\" margin-right:0;width:16.66668%\">\n        <div id=\"sidebar-wrapper\">\n          <ul class=\"sidebar-nav\">\n            <li class=\"divLine\" *ngIf=\"authService.isStudent()\">\n              <a href=\"lentBooks\">Lent Books</a>\n            </li>\n            <li class=\"divLine\" *ngIf=\"authService.isStudent() || authService.isStaff()\">\n              <a href=\"searchBooks\">Search Books</a>\n            </li>\n            <li class=\"divLine\" *ngIf=\"authService.isStaff()\">\n              <a href=\"students\">Search Students</a>\n            </li>\n            <li class=\"divLine\" *ngIf=\"authService.isStaff()\">\n              <a href=\"\\reservations\">View Reservations</a>\n            </li>\n            <li class=\"divLine\" *ngIf=\"authService.isStaff()\">\n              <a href=\"lendingForm\">View Lending Form</a>\n            </li>\n          </ul>\n        </div>\n      </div>\n      <div class=\"col-md-10\" style=\"margin-left:0;width:83.33332%\">\n        <router-outlet></router-outlet>\n      </div>\n  ",
+            directives: [login_component_1.LoginComponent, router_1.ROUTER_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
     ], ContentComponent);
     return ContentComponent;
 }());

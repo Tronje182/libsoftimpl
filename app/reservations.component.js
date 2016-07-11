@@ -9,38 +9,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var data_service_1 = require('./data.service');
 var authentication_service_1 = require('./authentication.service');
-var SearchBooksComponent = (function () {
-    function SearchBooksComponent(dataService, _service) {
+var ReservationsComponent = (function () {
+    function ReservationsComponent(dataService, _service, router) {
         this.dataService = dataService;
         this._service = _service;
+        this.router = router;
     }
-    SearchBooksComponent.prototype.getLendings = function () {
+    ReservationsComponent.prototype.getReservations = function () {
         var _this = this;
-        this.dataService.getBooks().then(function (books) { return _this.books = books; });
+        this.dataService.getBookReservations().then(function (books) { return _this.books = books; });
     };
-    SearchBooksComponent.prototype.ngOnInit = function () {
+    ReservationsComponent.prototype.ngOnInit = function () {
         this._service.checkCredentials();
-        this.getLendings();
+        this.isDisabled = true;
+        this.getReservations();
     };
-    SearchBooksComponent.prototype.onSelect = function (book) {
+    ReservationsComponent.prototype.onSelect = function (book) {
         if (this.selectedBook == book) {
             this.selectedBook = undefined;
+            this.isDisabled = true;
         }
         else {
             this.selectedBook = book;
+            this.isDisabled = false;
         }
     };
-    SearchBooksComponent = __decorate([
+    ReservationsComponent.prototype.issueBook = function () {
+        this.router.navigate(['/lendingForm', { studentid: this.selectedBook.student.id, bookid: this.selectedBook.book.id }]);
+    };
+    ReservationsComponent = __decorate([
         core_1.Component({
-            selector: 'my-search-books',
-            templateUrl: 'app/searchBooks.component.html',
+            selector: 'bookreservations',
+            templateUrl: 'app/reservations.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService])
-    ], SearchBooksComponent);
-    return SearchBooksComponent;
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router])
+    ], ReservationsComponent);
+    return ReservationsComponent;
 }());
-exports.SearchBooksComponent = SearchBooksComponent;
-//# sourceMappingURL=searchbooks.component.js.map
+exports.ReservationsComponent = ReservationsComponent;
+//# sourceMappingURL=reservations.component.js.map

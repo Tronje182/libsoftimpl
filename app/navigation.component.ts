@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './authentication.service'
 
 @Component({
   selector: 'my-navigation',
@@ -31,4 +32,20 @@ import { Component } from '@angular/core';
   `
 })
 
-export class NavigationComponent { }
+export class NavigationComponent {
+    constructor(
+    private _service:AuthenticationService){}
+ 
+    ngOnInit(){
+        this._service.checkCredentials();
+        console.log("test");
+    }
+
+    getName() {
+        return this._service.getName()
+    }
+ 
+    logout() {
+        this._service.logout();
+    }
+ }

@@ -11,14 +11,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var mock_books_1 = require('./data/mock-books');
 var mock_bookLendings_1 = require('./data/mock-bookLendings');
+var mock_bookReservations_1 = require('./data/mock-bookReservations');
+var mock_students_1 = require('./data/mock-students');
 var DataService = (function () {
     function DataService() {
     }
-    DataService.prototype.getLendings = function () {
-        return Promise.resolve(mock_bookLendings_1.BOOKLENDINGS);
+    DataService.prototype.getLendings = function (id) {
+        console.log(mock_bookLendings_1.BOOKLENDINGS);
+        return Promise.resolve(mock_bookLendings_1.BOOKLENDINGS.filter(function (l) { return l.student.id === id; }));
     };
     DataService.prototype.getBooks = function () {
         return Promise.resolve(mock_books_1.BOOKS);
+    };
+    DataService.prototype.getBookById = function (id) {
+        return Promise.resolve(mock_books_1.BOOKS.find(function (b) { return b.id == id; }));
+    };
+    DataService.prototype.getBookReservations = function () {
+        return Promise.resolve(mock_bookReservations_1.BOOKRESERVATIONS);
+    };
+    DataService.prototype.getStudents = function () {
+        return Promise.resolve(mock_students_1.STUDENTS);
     };
     DataService = __decorate([
         core_1.Injectable(), 

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12">
+    <div name="content">
+      <form>
+        <div class="form-group">
+          <label for="bookInput">Book</label>
+          <input type="text" class="form-control" id="bookInput" [(ngModel)]="book" placeholder="ISBN">
+        </div>
+        <div class="form-group">
+          <label for="studentInput">Student</label>
+          <input type="text" class="form-control" id="studentInput" [(ngModel)]="student" placeholder="Student">
+        </div>
+        <div class="form-group">
+          <label for="untilInput">Until</label>
+          <input type="text" class="form-control" id="untilInput" [(ngModel)]="until">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row bottomBar" style="height:10%">
+  <div name="action" class="divLineTop">
+    <my-actions></my-actions>
+  </div>
+</div>

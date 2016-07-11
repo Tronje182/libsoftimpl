@@ -37,11 +37,14 @@ import {AuthenticationService, User} from './authentication.service'
  
 export class LoginComponent {
  
-    public user = new User('','',false,'');
+    public user = new User('','','','','','');
     public errorMsg = '';
+    public authService: AuthenticationService;
  
     constructor(
-        private _service:AuthenticationService) {}
+        private _service:AuthenticationService) {
+            this.authService = _service;
+        }
  
     login() {
         if(!this._service.login(this.user)){

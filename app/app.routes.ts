@@ -5,6 +5,9 @@ import { DefaultComponent } from './default.component';
 import { ContentComponent } from './content.component';
 import { LentBooksComponent } from './lentbooks.component';
 import { SearchBooksComponent } from './searchbooks.component';
+import { StudentsComponent } from './students.component';
+import { ReservationsComponent } from './reservations.component';
+import { LendingFormComponent } from './lendingform.component';
 
 export const routes: RouterConfig = [
   {
@@ -27,6 +30,18 @@ export const routes: RouterConfig = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'students',
+    component: StudentsComponent
+  },
+  {
+    path: 'reservations',
+    component: ReservationsComponent
+  },
+  {
+    path: 'lendingForm',
+    component: LendingFormComponent
   }
 ];
 

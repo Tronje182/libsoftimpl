@@ -5,13 +5,13 @@
             <thead>
                 <tr>
                     <td>
-                        ISBN
+                        ID
                     </td>
                     <td>
-                        Title
+                        Firstname
                     </td>
                     <td>
-                        Author
+                        Lastname
                     </td>
                     <td>
                         Status
@@ -19,18 +19,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let book of books" (click)="onSelect(book)" [class.info]="book === selectedBook">
+                <tr *ngFor="let student of students" (click)="onSelect(student)" [class.info]="student === selectedStudent">
                     <td>
-                        {{book.bookInfo.isbn}} 
+                        {{student.id}} 
                     </td>
                     <td>
-                        {{book.bookInfo.title}} 
+                        {{student.firstname}} 
                     </td>
                     <td>
-                        {{book.bookInfo.author}} 
+                        {{student.lastname}} 
                     </td>
                     <td>
-                        {{book.status}} 
+                        {{student.status}} 
                     </td>
                 </tr> 
             </tbody>
@@ -38,8 +38,8 @@
     </div>
   </div>
 </div>
-<div class="row bottomBar" style="height:10%">
-  <div name="action" class="divLineTop">
-    <my-actions></my-actions>
+<div class="row bottomBar" style="height:10%;">
+  <div name="action" class="divLineTop" style="padding-top:10px">
+    <a class="btn btn-default" [ngClass]="{disabled: isDisabled}" (click)="issueBook()" >Issue Book</a>
   </div>
 </div>

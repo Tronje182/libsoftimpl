@@ -14,23 +14,23 @@
                         Author
                     </td>
                     <td>
-                        Status
+                        Student
                     </td>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let book of books" (click)="onSelect(book)" [class.info]="book === selectedBook">
+                <tr *ngFor="let reservation of books" (click)="onSelect(reservation)" [class.info]="reservation === selectedBook">
                     <td>
-                        {{book.bookInfo.isbn}} 
+                        {{reservation.book.bookInfo.isbn}} 
                     </td>
                     <td>
-                        {{book.bookInfo.title}} 
+                        {{reservation.book.bookInfo.title}} 
                     </td>
                     <td>
-                        {{book.bookInfo.author}} 
+                        {{reservation.book.bookInfo.author}} 
                     </td>
                     <td>
-                        {{book.status}} 
+                        {{reservation.student.id}} 
                     </td>
                 </tr> 
             </tbody>
@@ -39,7 +39,7 @@
   </div>
 </div>
 <div class="row bottomBar" style="height:10%">
-  <div name="action" class="divLineTop">
-    <my-actions></my-actions>
+  <div name="action" class="divLineTop" style="padding-top:10px">
+    <a class="btn btn-default" [ngClass]="{disabled: isDisabled}" (click)="issueBook()" >Issue Book</a>
   </div>
 </div>
