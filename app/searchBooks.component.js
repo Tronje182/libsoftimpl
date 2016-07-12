@@ -25,16 +25,21 @@ var SearchBooksComponent = (function () {
     };
     SearchBooksComponent.prototype.ngOnInit = function () {
         this._service.checkCredentials();
-        this.isDisabled = true;
+        this.isDisabledIssueBook = true;
         this.getLendings();
     };
     SearchBooksComponent.prototype.onSelect = function (book) {
         if (this.selectedBook == book) {
             this.selectedBook = undefined;
-            this.isDisabled = true;
+            this.isDisabledIssueBook = true;
         }
         else {
-            this.isDisabled = false;
+            if (book.status == true) {
+                this.isDisabledIssueBook = false;
+            }
+            else {
+                this.isDisabledIssueBook = true;
+            }
             this.selectedBook = book;
         }
     };

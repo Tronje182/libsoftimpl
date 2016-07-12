@@ -40,6 +40,6 @@
 </div>
 <div class="row bottomBar" style="height:10%">
   <div name="action" class="divLineTop" style="padding-top:10px">
-    <a class="btn btn-default" [ngClass]="{disabled: isDisabled}" *ngIf="authService.isStaff()" (click)="issueBook()" >Issue Book</a>
+    <a class="btn btn-default" [ngClass]="{disabled: isDisabledIssueBook}" *ngIf="authService.isStaff()" (click)="issueBook()">Issue Book</a>
   </div>
 </div>

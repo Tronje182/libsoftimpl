@@ -15,7 +15,7 @@ import { AuthenticationService } from './authentication.service'
 export class SearchBooksComponent {
   books: Book[];
   selectedBook: Book;
-  isDisabled: boolean;
+  isDisabledIssueBook: boolean;
 
   public authService: AuthenticationService;
 
@@ -30,16 +30,20 @@ export class SearchBooksComponent {
 
   ngOnInit(){
     this._service.checkCredentials();
-    this.isDisabled = true;
+    this.isDisabledIssueBook = true;
     this.getLendings();
   }
 
   onSelect(book: Book){
     if(this.selectedBook == book){
       this.selectedBook = undefined;
-      this.isDisabled = true;
+      this.isDisabledIssueBook = true;
     }else{
-      this.isDisabled = false;
+      if(book.status == true){
+        this.isDisabledIssueBook = false;
+      }else{
+        this.isDisabledIssueBook = true;
+      }
       this.selectedBook = book;
     }
   }
