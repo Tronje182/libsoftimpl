@@ -8,6 +8,7 @@ import { SearchBooksComponent } from './searchbooks.component';
 import { StudentsComponent } from './students.component';
 import { ReservationsComponent } from './reservations.component';
 import { LendingFormComponent } from './lendingform.component';
+import { StudentDetailsComponent } from './studentdetails.component';
 
 export const routes: RouterConfig = [
   {
@@ -42,6 +43,10 @@ export const routes: RouterConfig = [
   {
     path: 'lendingForm',
     component: LendingFormComponent
+  },
+  {
+    path: 'studentDetails',
+    component: StudentDetailsComponent
   }
 ];
 

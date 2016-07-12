@@ -1,6 +1,8 @@
 export class Student {
-    id: string;
-    firstname: string;
-    lastname: string;
-    status: boolean;
+    constructor(
+        public id: string,
+        public firstname: string,
+        public lastname: string,
+        public status: boolean)
+        {};
 }

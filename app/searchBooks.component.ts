@@ -15,8 +15,14 @@ import { AuthenticationService } from './authentication.service'
 export class SearchBooksComponent {
   books: Book[];
   selectedBook: Book;
+  isDisabled: boolean;
 
-  constructor(private dataService: DataService,private _service:AuthenticationService) {}
+  public authService: AuthenticationService;
+
+  constructor(private dataService: DataService,private _service:AuthenticationService,
+    private router: Router) {
+    this.authService = _service;
+  }
 
   getLendings(){
     this.dataService.getBooks().then(books => this.books = books);
@@ -24,14 +30,21 @@ export class SearchBooksComponent {
 
   ngOnInit(){
     this._service.checkCredentials();
+    this.isDisabled = true;
     this.getLendings();
   }
 
   onSelect(book: Book){
     if(this.selectedBook == book){
       this.selectedBook = undefined;
+      this.isDisabled = true;
     }else{
+      this.isDisabled = false;
       this.selectedBook = book;
     }
+  }
+
+  issueBook(){
+    this.router.navigate(['/lendingForm', {bookid:this.selectedBook.id}]);
   }
 }

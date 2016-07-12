@@ -7,6 +7,7 @@ var searchbooks_component_1 = require('./searchbooks.component');
 var students_component_1 = require('./students.component');
 var reservations_component_1 = require('./reservations.component');
 var lendingform_component_1 = require('./lendingform.component');
+var studentdetails_component_1 = require('./studentdetails.component');
 exports.routes = [
     {
         path: '',
@@ -40,6 +41,10 @@ exports.routes = [
     {
         path: 'lendingForm',
         component: lendingform_component_1.LendingFormComponent
+    },
+    {
+        path: 'studentDetails',
+        component: studentdetails_component_1.StudentDetailsComponent
     }
 ];
 exports.APP_ROUTER_PROVIDERS = [

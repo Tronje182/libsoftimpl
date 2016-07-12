@@ -43,8 +43,8 @@ export class StudentsComponent {
     }
   }
 
-  issueBook(){
-      this.router.navigate(['/lendingForm', {studentid: this.selectedStudent.id, studentfirstname:this.selectedStudent.firstname, studentlastname:this.selectedStudent.lastname, studentstatus:this.selectedStudent.status}]);
+  viewDetails(){
+      this.router.navigate(['/studentDetails', {studentid: this.selectedStudent.id}]);
       console.log("issue book")
   }
 }

@@ -17,7 +17,6 @@ var DataService = (function () {
     function DataService() {
     }
     DataService.prototype.getLendings = function (id) {
-        console.log(mock_bookLendings_1.BOOKLENDINGS);
         return Promise.resolve(mock_bookLendings_1.BOOKLENDINGS.filter(function (l) { return l.student.id === id; }));
     };
     DataService.prototype.getBooks = function () {
@@ -31,6 +30,9 @@ var DataService = (function () {
     };
     DataService.prototype.getStudents = function () {
         return Promise.resolve(mock_students_1.STUDENTS);
+    };
+    DataService.prototype.getStudentById = function (id) {
+        return Promise.resolve(mock_students_1.STUDENTS.find(function (s) { return s.id === id; }));
     };
     DataService = __decorate([
         core_1.Injectable(), 

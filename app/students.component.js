@@ -37,8 +37,8 @@ var StudentsComponent = (function () {
             this.isDisabled = false;
         }
     };
-    StudentsComponent.prototype.issueBook = function () {
-        this.router.navigate(['/lendingForm', { studentid: this.selectedStudent.id, studentfirstname: this.selectedStudent.firstname, studentlastname: this.selectedStudent.lastname, studentstatus: this.selectedStudent.status }]);
+    StudentsComponent.prototype.viewDetails = function () {
+        this.router.navigate(['/studentDetails', { studentid: this.selectedStudent.id }]);
         console.log("issue book");
     };
     StudentsComponent = __decorate([

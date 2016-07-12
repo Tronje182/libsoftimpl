@@ -9,12 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var data_service_1 = require('./data.service');
 var authentication_service_1 = require('./authentication.service');
 var SearchBooksComponent = (function () {
-    function SearchBooksComponent(dataService, _service) {
+    function SearchBooksComponent(dataService, _service, router) {
         this.dataService = dataService;
         this._service = _service;
+        this.router = router;
+        this.authService = _service;
     }
     SearchBooksComponent.prototype.getLendings = function () {
         var _this = this;
@@ -22,15 +25,21 @@ var SearchBooksComponent = (function () {
     };
     SearchBooksComponent.prototype.ngOnInit = function () {
         this._service.checkCredentials();
+        this.isDisabled = true;
         this.getLendings();
     };
     SearchBooksComponent.prototype.onSelect = function (book) {
         if (this.selectedBook == book) {
             this.selectedBook = undefined;
+            this.isDisabled = true;
         }
         else {
+            this.isDisabled = false;
             this.selectedBook = book;
         }
+    };
+    SearchBooksComponent.prototype.issueBook = function () {
+        this.router.navigate(['/lendingForm', { bookid: this.selectedBook.id }]);
     };
     SearchBooksComponent = __decorate([
         core_1.Component({
@@ -38,7 +47,7 @@ var SearchBooksComponent = (function () {
             templateUrl: 'app/searchBooks.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router])
     ], SearchBooksComponent);
     return SearchBooksComponent;
 }());

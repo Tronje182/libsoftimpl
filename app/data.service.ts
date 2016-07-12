@@ -13,7 +13,6 @@ import { STUDENTS } from './data/mock-students'
 @Injectable()
 export class DataService {
   getLendings(id: string) {
-    console.log(BOOKLENDINGS);
     return Promise.resolve(BOOKLENDINGS.filter(l => l.student.id === id));
   }
 
@@ -31,5 +30,9 @@ export class DataService {
 
   getStudents() {
     return Promise.resolve(STUDENTS);
+  }
+
+  getStudentById(id:string){
+    return Promise.resolve(STUDENTS.find(s => s.id === id));
   }
 }
