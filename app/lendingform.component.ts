@@ -15,11 +15,12 @@ import { AuthenticationService } from './authentication.service'
 })
 
 export class LendingFormComponent {
-  book: String
-  student: String
-  until: String
+  book: string
+  student: string
+  until: string
   untilDate: Date
   bookLending: BookLending
+  bookObj: Book;
 
   private sub: any;
 
@@ -36,9 +37,12 @@ export class LendingFormComponent {
   ngOnInit(){
     this.sub = this.route.params.subscribe(params => {
       this.student = params['studentid'];
-      var bookObj: Book;
-      this.dataService.getBookById(params['bookid']).then(b => this.book = b.bookInfo.isbn);
+      this.dataService.getBookById(params['bookid']).then(b => this.bookObj = b).then(b => this.book = b.bookInfo.isbn);
     })
+  }
+
+  lendBook(){
+    this.dataService.lendBook(this.bookObj, this.student, this.untilDate);
   }
 
 }

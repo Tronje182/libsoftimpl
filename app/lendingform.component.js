@@ -25,9 +25,11 @@ var LendingFormComponent = (function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
             _this.student = params['studentid'];
-            var bookObj;
-            _this.dataService.getBookById(params['bookid']).then(function (b) { return _this.book = b.bookInfo.isbn; });
+            _this.dataService.getBookById(params['bookid']).then(function (b) { return _this.bookObj = b; }).then(function (b) { return _this.book = b.bookInfo.isbn; });
         });
+    };
+    LendingFormComponent.prototype.lendBook = function () {
+        this.dataService.lendBook(this.bookObj, this.student, this.untilDate);
     };
     LendingFormComponent = __decorate([
         core_1.Component({

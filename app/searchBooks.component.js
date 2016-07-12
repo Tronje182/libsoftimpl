@@ -26,25 +26,32 @@ var SearchBooksComponent = (function () {
     SearchBooksComponent.prototype.ngOnInit = function () {
         this._service.checkCredentials();
         this.isDisabledIssueBook = true;
+        this.isDisabledReturnBook = true;
         this.getLendings();
     };
     SearchBooksComponent.prototype.onSelect = function (book) {
         if (this.selectedBook == book) {
             this.selectedBook = undefined;
             this.isDisabledIssueBook = true;
+            this.isDisabledReturnBook = true;
         }
         else {
             if (book.status == true) {
                 this.isDisabledIssueBook = false;
+                this.isDisabledReturnBook = true;
             }
             else {
                 this.isDisabledIssueBook = true;
+                this.isDisabledReturnBook = false;
             }
             this.selectedBook = book;
         }
     };
     SearchBooksComponent.prototype.issueBook = function () {
         this.router.navigate(['/lendingForm', { bookid: this.selectedBook.id }]);
+    };
+    SearchBooksComponent.prototype.returnBook = function () {
+        this.dataService.returnBook(this.selectedBook.id);
     };
     SearchBooksComponent = __decorate([
         core_1.Component({

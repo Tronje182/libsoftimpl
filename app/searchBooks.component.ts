@@ -16,6 +16,7 @@ export class SearchBooksComponent {
   books: Book[];
   selectedBook: Book;
   isDisabledIssueBook: boolean;
+  isDisabledReturnBook: boolean;
 
   public authService: AuthenticationService;
 
@@ -31,6 +32,7 @@ export class SearchBooksComponent {
   ngOnInit(){
     this._service.checkCredentials();
     this.isDisabledIssueBook = true;
+    this.isDisabledReturnBook = true;
     this.getLendings();
   }
 
@@ -38,11 +40,14 @@ export class SearchBooksComponent {
     if(this.selectedBook == book){
       this.selectedBook = undefined;
       this.isDisabledIssueBook = true;
+      this.isDisabledReturnBook = true;
     }else{
       if(book.status == true){
         this.isDisabledIssueBook = false;
+        this.isDisabledReturnBook = true;
       }else{
         this.isDisabledIssueBook = true;
+        this.isDisabledReturnBook= false;
       }
       this.selectedBook = book;
     }
@@ -50,5 +55,9 @@ export class SearchBooksComponent {
 
   issueBook(){
     this.router.navigate(['/lendingForm', {bookid:this.selectedBook.id}]);
+  }
+
+  returnBook(){
+    this.dataService.returnBook(this.selectedBook.id);
   }
 }
