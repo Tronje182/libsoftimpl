@@ -67,16 +67,20 @@ var DataService = (function () {
         console.log(this.localGet("books"));
     };
     DataService.prototype.returnBook = function (id) {
-        var index = this.localGet("booklendings").indexOf(this.localGet("booklendings").find(function (bl) { return bl.book.id == id; }));
-        if (index > -1) {
-            this.localSplice("booklendings", index);
+        var bl;
+        var br;
+        bl = this.localGet("booklendings").find(function (bl) { return bl.book.id == id; });
+        if (bl != null) {
+            var index2 = this.indexOfLending(this.localGet("booklendings"), bl);
+            this.localSplice("booklendings", index2);
         }
-        else {
-            index = this.localGet("bookreservations").indexOf(this.localGet("bookreservations").find(function (bl) { return bl.book.id == id; }));
-            if (index > -1) {
-                this.localSplice("bookreservations", index);
-            }
+        br = this.localGet("bookreservations").find(function (bl) { return bl.book.id == id; });
+        if (br != null) {
+            var index2 = this.indexOfReservation(this.localGet("bookreservations"), br);
+            console.log("index2 " + index2);
+            this.localSplice("bookreservations", index2);
         }
+        this.updateBookStatus(id, true);
     };
     DataService.prototype.lendBook = function (bookObj, studentId, until) {
         var tempArr;
@@ -84,13 +88,12 @@ var DataService = (function () {
         var book;
         var br;
         book = this.getBookByIdSync(bookObj.id);
-        if (book.status == true || this.localGet("bookreservations").find(function (bl) { return bl.book.id == bookObj.id && bl.student.id === studentId; }) != null) {
+        if (book.status == true || this.localGet("bookreservations").find(function (bl) { return bl.book.id == bookObj.id && bl.student.id === studentId; }) == null) {
             tempArr = this.localGet("booklendings");
             student = this.getStudentByIdSync(studentId);
             tempArr.push(new bookLending_1.BookLending(bookObj, student, until));
             this.localSet("booklendings", tempArr);
             localStorage.getItem("bookreservations");
-            var index = this.localGet("bookreservations").indexOf(this.localGet("bookreservations").find(function (bl) { return bl.book.id == bookObj.id && bl.student.id === studentId; }));
             br = this.localGet("bookreservations").find(function (bl) { return bl.book.id == bookObj.id && bl.student.id === studentId; });
             if (br != null) {
                 var index2 = this.indexOfReservation(this.localGet("bookreservations"), br);
@@ -114,6 +117,17 @@ var DataService = (function () {
             tempBook = array[i];
             tempBook2 = item;
             if (tempBook.book.id == tempBook2.book.id && tempBook.student.id == tempBook2.student.id)
+                return i;
+        }
+        return -1;
+    };
+    DataService.prototype.indexOfLending = function (array, item) {
+        for (var i = 0; i < array.length; i++) {
+            var tempBook;
+            var tempBook2;
+            tempBook = array[i];
+            tempBook2 = item;
+            if (tempBook.book.id == tempBook2.book.id)
                 return i;
         }
         return -1;

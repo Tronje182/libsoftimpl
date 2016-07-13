@@ -21,7 +21,7 @@ var SearchBooksComponent = (function () {
     }
     SearchBooksComponent.prototype.getLendings = function () {
         var _this = this;
-        this.dataService.getBooks().then(function (books) { return _this.books = books; });
+        this.dataService.getBooks().then(function (books) { return _this.books = books; }).then(function (b) { return console.log(b); });
     };
     SearchBooksComponent.prototype.ngOnInit = function () {
         this._service.checkCredentials();
@@ -52,6 +52,7 @@ var SearchBooksComponent = (function () {
     };
     SearchBooksComponent.prototype.returnBook = function () {
         this.dataService.returnBook(this.selectedBook.id);
+        this.getLendings();
     };
     SearchBooksComponent = __decorate([
         core_1.Component({

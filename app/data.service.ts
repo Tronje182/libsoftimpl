@@ -79,15 +79,25 @@ export class DataService {
   }
 
   returnBook(id:number){
-    var index = this.localGet("booklendings").indexOf(this.localGet("booklendings").find(bl => bl.book.id == id));
-    if (index > -1){
-      this.localSplice("booklendings", index);
-    }else{
-      index = this.localGet("bookreservations").indexOf(this.localGet("bookreservations").find(bl => bl.book.id == id));
-      if(index > -1){
-        this.localSplice("bookreservations", index);
-      }
+    var bl: BookLending;
+    var br: BookReservation;
+    
+    bl = this.localGet("booklendings").find(bl => bl.book.id == id);
+    if(bl!=null){
+      var index2 = this.indexOfLending(this.localGet("booklendings"),bl);
+      
+      this.localSplice("booklendings", index2);
     }
+
+    br = this.localGet("bookreservations").find(bl => bl.book.id == id);
+    if(br!=null){
+      var index2 = this.indexOfReservation(this.localGet("bookreservations"),br);
+      console.log("index2 " + index2);
+      
+      this.localSplice("bookreservations", index2);
+    }
+
+    this.updateBookStatus(id, true);
   }
 
   lendBook(bookObj:Book, studentId: string, until: Date){
@@ -98,7 +108,7 @@ export class DataService {
 
     book = this.getBookByIdSync(bookObj.id);
 
-    if(book.status==true || this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId) != null)
+    if(book.status==true || this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId) == null)
     {
       tempArr = this.localGet("booklendings");
       student = this.getStudentByIdSync(studentId);
@@ -107,7 +117,6 @@ export class DataService {
       
       localStorage.getItem("bookreservations");
 
-      var index = this.localGet("bookreservations").indexOf(this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId));
       br = this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId);
       if(br!=null){
         var index2 = this.indexOfReservation(this.localGet("bookreservations"),br);
@@ -135,6 +144,17 @@ export class DataService {
       tempBook = array[i];
       tempBook2 = item;
       if (tempBook.book.id == tempBook2.book.id && tempBook.student.id == tempBook2.student.id) return i;
+    }
+    return -1;
+  }
+
+  indexOfLending(array, item) {
+    for (var i = 0; i < array.length; i++) {
+      var tempBook: BookLending;
+      var tempBook2: BookLending;
+      tempBook = array[i];
+      tempBook2 = item;
+      if (tempBook.book.id == tempBook2.book.id) return i;
     }
     return -1;
   }

@@ -26,7 +26,7 @@ export class SearchBooksComponent {
   }
 
   getLendings(){
-    this.dataService.getBooks().then(books => this.books = books);
+    this.dataService.getBooks().then(books => this.books = books).then(b => console.log(b));
   }
 
   ngOnInit(){
@@ -59,5 +59,6 @@ export class SearchBooksComponent {
 
   returnBook(){
     this.dataService.returnBook(this.selectedBook.id);
+    this.getLendings();
   }
 }

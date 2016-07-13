@@ -43,6 +43,8 @@ export class LendingFormComponent {
 
   lendBook(){
     this.dataService.lendBook(this.bookObj, this.student, this.untilDate);
+    this.book = "";
+    this.student = "";
   }
 
 }
