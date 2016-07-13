@@ -11,7 +11,7 @@ import { AuthenticationService } from './authentication.service'
   selector: 'my-content',
   providers: [AuthenticationService],
   template: `
-      <div name="navbar" class="col-md-2" style=" margin-right:0;width:16.66668%">
+      <div id="navbar" class="col-md-2">
         <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
             <li class="divLine" *ngIf="authService.isStudent()">

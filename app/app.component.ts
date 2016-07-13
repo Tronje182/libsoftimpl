@@ -8,9 +8,9 @@ import {AuthenticationService} from './authentication.service'
   selector: 'my-app',
   providers: [AuthenticationService],
   template: `
-      <div class="container-fluid">
-      <div id="headerBar" class="row divLine" style="background-color:lightgray;">
-        <div>
+      <div class="container">
+      <div id="headerBar" class="row divLine" style="margin-right:0px;padding-left:0px;padding-right:0px;">
+        <div class="col-md-12" style="width:100%; padding-left:0;padding-right:0px; background-color:lightgray;">
         	<a href="\" class="btn btn-link"><h1>LibSoft</h1></a>
         </div>
         <div>
