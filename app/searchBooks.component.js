@@ -54,6 +54,10 @@ var SearchBooksComponent = (function () {
         this.dataService.returnBook(this.selectedBook.id);
         this.getLendings();
     };
+    SearchBooksComponent.prototype.reserveBook = function () {
+        this.dataService.reserveBook(this.selectedBook.id, this.authService.getId());
+        this.getLendings();
+    };
     SearchBooksComponent = __decorate([
         core_1.Component({
             selector: 'my-search-books',

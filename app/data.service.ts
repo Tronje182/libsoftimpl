@@ -26,6 +26,8 @@ export class DataService {
       }
     }
 
+// Get / Set operations
+
   localGet(key: string){
     return JSON.parse(localStorage.getItem(key));
   }
@@ -70,12 +72,23 @@ export class DataService {
     return STUDENTS.find(s => s.id === id);
   }
 
-  updateBookStatus(id:number, status:boolean){
-    var books: Book[];
-    books = this.getBooksSync();
-    books[id-1].status = status;
-    this.localSet("books", books);
-    console.log(this.localGet("books"));
+// Actions
+
+  reserveBook(bookId: number, studentId: string){
+    var bookObj: Book;
+    var studentObj: Student;
+    var br: BookReservation;
+    var brs: BookReservation[];
+
+    bookObj = this.getBookByIdSync(bookId);
+    studentObj = this.getStudentByIdSync(studentId);
+
+    br = {book:bookObj, student: studentObj};
+    brs = this.localGet("bookreservations");
+    brs.push(br);
+    this.localSet("bookreservations", brs);
+
+    this.updateBookStatus(bookId, false);
   }
 
   returnBook(id:number){
@@ -127,6 +140,16 @@ export class DataService {
 
       this.updateBookStatus(bookObj.id, false);
     }
+  }
+
+// Helper methods
+
+  updateBookStatus(id:number, status:boolean){
+    var books: Book[];
+    books = this.getBooksSync();
+    books[id-1].status = status;
+    this.localSet("books", books);
+    console.log(this.localGet("books"));
   }
 
   localSplice(key:string, index: number){

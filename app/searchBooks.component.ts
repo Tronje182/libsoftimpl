@@ -61,4 +61,9 @@ export class SearchBooksComponent {
     this.dataService.returnBook(this.selectedBook.id);
     this.getLendings();
   }
+
+  reserveBook(){
+    this.dataService.reserveBook(this.selectedBook.id, this.authService.getId());
+    this.getLendings();
+  }
 }
