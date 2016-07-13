@@ -50,6 +50,10 @@ export class DataService {
     return Promise.resolve(BOOKS.find(b => b.id == id));
   }
 
+  getBookByIdSync(id:number){
+    return BOOKS.find(b => b.id == id);
+  }
+
   getBookReservations(){
     return Promise.resolve(this.localGet("bookreservations"));
   }
@@ -71,6 +75,7 @@ export class DataService {
     books = this.getBooksSync();
     books[id-1].status = status;
     this.localSet("books", books);
+    console.log(this.localGet("books"));
   }
 
   returnBook(id:number){
@@ -88,24 +93,31 @@ export class DataService {
   lendBook(bookObj:Book, studentId: string, until: Date){
     var tempArr: BookLending[];
     var student: Student;
+    var book: Book;
     var br: BookReservation;
 
-    tempArr = this.localGet("booklendings");
-    student = this.getStudentByIdSync(studentId);
-    tempArr.push(new BookLending(bookObj,student,until));
-    this.localSet("booklendings", tempArr);
-    
-    localStorage.getItem("bookreservations");
+    book = this.getBookByIdSync(bookObj.id);
 
-    var index = this.localGet("bookreservations").indexOf(this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId));
-    br = this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId);
-    var index2 = this.indexOfReservation(this.localGet("bookreservations"),br);
-    console.log("index2 " + index2);
-    
-    this.localSplice("bookreservations", index2);
+    if(book.status==true || this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId) != null)
+    {
+      tempArr = this.localGet("booklendings");
+      student = this.getStudentByIdSync(studentId);
+      tempArr.push(new BookLending(bookObj,student,until));
+      this.localSet("booklendings", tempArr);
+      
+      localStorage.getItem("bookreservations");
 
-    this.updateBookStatus(bookObj.id, false);
+      var index = this.localGet("bookreservations").indexOf(this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId));
+      br = this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId);
+      if(br!=null){
+        var index2 = this.indexOfReservation(this.localGet("bookreservations"),br);
+        console.log("index2 " + index2);
+        
+        this.localSplice("bookreservations", index2);
+      }
 
+      this.updateBookStatus(bookObj.id, false);
+    }
   }
 
   localSplice(key:string, index: number){
