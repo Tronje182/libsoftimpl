@@ -4,6 +4,7 @@ import { ContentComponent } from './content.component';
 
 import {AuthenticationService} from './authentication.service'
 
+
 @Component({
   selector: 'my-app',
   providers: [AuthenticationService],

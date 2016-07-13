@@ -7,6 +7,8 @@ import { ActionComponent } from './action.component';
 
 import { AuthenticationService } from './authentication.service'
 
+import {CORE_DIRECTIVES} from '@angular/common';
+
 @Component({
   selector: 'my-content',
   providers: [AuthenticationService],
@@ -15,24 +17,32 @@ import { AuthenticationService } from './authentication.service'
         <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
             <li class="divLine" *ngIf="authService.isStudent()">
-              <a href="\lentBooks">Lent Books</a>
+              <a *isDesktop href="\lentBooks">Lent Books</a>
+              <a *isMobile href="\mobile\lentBooks">Lent Books</a>
             </li>
             <li class="divLine" *ngIf="authService.isStudent() || authService.isStaff()">
-              <a href="\searchBooks">Search Books</a>
+              <a *isDesktop href="\searchBooks">Search Books</a>
+              <a *isMobile href="\mobile\searchBooks">Search Books</a>
             </li>
             <li class="divLine" *ngIf="authService.isStaff()">
-              <a href="\students">Search Students</a>
+              <a *isDesktop href="\students">Search Students</a>
+              <a *isMobile href="\mobile\students">Search Students</a>
             </li>
             <li class="divLine" *ngIf="authService.isStaff()">
-              <a href="\\reservations">View Reservations</a>
+              <a *isDesktop href="\\reservations">View Reservations</a>
+              <a *isMobile href="\mobile\\reservations">View Reservations</a>
             </li>
             <li class="divLine" *ngIf="authService.isStaff()">
-              <a href="\lendingForm">View Lending Form</a>
+              <a *isDesktop href="\lendingForm">View Lending Form</a>
+              <a *isMobile href="\mobile\lendingForm">View Lending Form</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="col-md-10" style="margin-left:0;width:83.33332%">
+      
+        <p *isDesktop>I'll show you if I'm a iPhone device.</p>
+        <p *isMobile>I'll show you if I'm a iPhone device.</p>
         <router-outlet></router-outlet>
       </div>
   `,
