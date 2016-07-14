@@ -118,21 +118,21 @@ export class DataService {
     var student: Student;
     var book: Book;
     var br: BookReservation;
+    var bookreservations: BookReservation[];
 
     book = this.getBookByIdSync(bookObj.id);
+    bookreservations = this.localGet("bookreservations");
 
-    if(book.status==true || this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId) == null)
+    if(book.status==true || bookreservations.find(bl => bl.book.id == bookObj.id && bl.student.id === studentId) != null)
     {
       tempArr = this.localGet("booklendings");
       student = this.getStudentByIdSync(studentId);
       tempArr.push(new BookLending(bookObj,student,until));
       this.localSet("booklendings", tempArr);
-      
-      localStorage.getItem("bookreservations");
 
-      br = this.localGet("bookreservations").find(bl => bl.book.id == bookObj.id && bl.student.id === studentId);
+      br = bookreservations.find(bl => bl.book.id == bookObj.id && bl.student.id === studentId);
       if(br!=null){
-        var index2 = this.indexOfReservation(this.localGet("bookreservations"),br);
+        var index2 = this.indexOfReservation(bookreservations,br);
         console.log("index2 " + index2);
         
         this.localSplice("bookreservations", index2);

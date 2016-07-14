@@ -95,16 +95,17 @@ var DataService = (function () {
         var student;
         var book;
         var br;
+        var bookreservations;
         book = this.getBookByIdSync(bookObj.id);
-        if (book.status == true || this.localGet("bookreservations").find(function (bl) { return bl.book.id == bookObj.id && bl.student.id === studentId; }) == null) {
+        bookreservations = this.localGet("bookreservations");
+        if (book.status == true || bookreservations.find(function (bl) { return bl.book.id == bookObj.id && bl.student.id === studentId; }) != null) {
             tempArr = this.localGet("booklendings");
             student = this.getStudentByIdSync(studentId);
             tempArr.push(new bookLending_1.BookLending(bookObj, student, until));
             this.localSet("booklendings", tempArr);
-            localStorage.getItem("bookreservations");
-            br = this.localGet("bookreservations").find(function (bl) { return bl.book.id == bookObj.id && bl.student.id === studentId; });
+            br = bookreservations.find(function (bl) { return bl.book.id == bookObj.id && bl.student.id === studentId; });
             if (br != null) {
-                var index2 = this.indexOfReservation(this.localGet("bookreservations"), br);
+                var index2 = this.indexOfReservation(bookreservations, br);
                 console.log("index2 " + index2);
                 this.localSplice("bookreservations", index2);
             }
