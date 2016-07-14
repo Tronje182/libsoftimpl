@@ -9,7 +9,9 @@ import {provide, PLATFORM_DIRECTIVES} from '@angular/core';
 import { ResponsiveState, ResponsiveConfig, RESPONSIVE_DIRECTIVES } from 'responsive-directives-angular2';
 
 
-bootstrap(AppComponent);
+bootstrap(AppComponent,[ResponsiveState,
+    provide(PLATFORM_DIRECTIVES, { useValue: [RESPONSIVE_DIRECTIVES], multi: true})
+);
 
 bootstrap(ContentComponent, [
     APP_ROUTER_PROVIDERS,
