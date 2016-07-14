@@ -1,14 +1,15 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 
-import { LoginComponent } from './login.component';
-import { DefaultComponent } from './default.component';
-import { ContentComponent } from './content.component';
-import { LentBooksComponent } from './lentbooks.component';
-import { SearchBooksComponent } from './searchbooks.component';
-import { StudentsComponent } from './students.component';
-import { ReservationsComponent } from './reservations.component';
-import { LendingFormComponent } from './lendingform.component';
-import { StudentDetailsComponent } from './studentdetails.component';
+import { ContentComponent } from './common/content.component';
+
+import { LoginComponent } from './desktopViews/login.component';
+import { DefaultComponent } from './desktopViews/default.component';
+import { LentBooksComponent } from './desktopViews/lentbooks.component';
+import { SearchBooksComponent } from './desktopViews/searchbooks.component';
+import { StudentsComponent } from './desktopViews/students.component';
+import { ReservationsComponent } from './desktopViews/reservations.component';
+import { LendingFormComponent } from './desktopViews/lendingform.component';
+import { StudentDetailsComponent } from './desktopViews/studentdetails.component';
 
 export const routes: RouterConfig = [
   {

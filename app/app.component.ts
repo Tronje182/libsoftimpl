@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { ContentComponent } from './content.component';
+import { ContentComponent } from './common/content.component';
 
-import {AuthenticationService} from './authentication.service'
+import {AuthenticationService} from './services/authentication.service'
 
 
 @Component({

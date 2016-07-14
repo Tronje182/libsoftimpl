@@ -1,13 +1,13 @@
 "use strict";
 var router_1 = require('@angular/router');
-var login_component_1 = require('./login.component');
-var default_component_1 = require('./default.component');
-var lentbooks_component_1 = require('./lentbooks.component');
-var searchbooks_component_1 = require('./searchbooks.component');
-var students_component_1 = require('./students.component');
-var reservations_component_1 = require('./reservations.component');
-var lendingform_component_1 = require('./lendingform.component');
-var studentdetails_component_1 = require('./studentdetails.component');
+var login_component_1 = require('./desktopViews/login.component');
+var default_component_1 = require('./desktopViews/default.component');
+var lentbooks_component_1 = require('./desktopViews/lentbooks.component');
+var searchbooks_component_1 = require('./desktopViews/searchbooks.component');
+var students_component_1 = require('./desktopViews/students.component');
+var reservations_component_1 = require('./desktopViews/reservations.component');
+var lendingform_component_1 = require('./desktopViews/lendingform.component');
+var studentdetails_component_1 = require('./desktopViews/studentdetails.component');
 exports.routes = [
     {
         path: '',
