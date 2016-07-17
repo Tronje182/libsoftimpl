@@ -28,7 +28,7 @@ var ReservationsComponent = (function () {
         this.getReservations();
     };
     ReservationsComponent.prototype.onSelect = function (book) {
-        if (this.selectedBook == book) {
+        if (this.selectedBook === book) {
             this.selectedBook = undefined;
             this.isDisabled = true;
         }
@@ -42,7 +42,7 @@ var ReservationsComponent = (function () {
     };
     ReservationsComponent = __decorate([
         core_1.Component({
-            selector: 'bookreservations',
+            selector: 'book-reservations',
             templateUrl: 'app/desktopViews/reservations.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 

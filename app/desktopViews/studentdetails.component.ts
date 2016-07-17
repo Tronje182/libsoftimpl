@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { Book } from '../data/book'
-import { Student } from '../data/student'
-import { BookLending } from '../data/bookLending'
+import { Student } from '../data/student';
+import { BookLending } from '../data/bookLending';
 
 import { DataService } from '../services/data.service';
-import { AuthenticationService } from '../services/authentication.service'
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
-  selector: 'studentdetails',
+  selector: 'student-details',
   templateUrl: 'app/desktopViews/studentDetails.component.html',
   providers: [DataService,AuthenticationService]
 })
 
 export class StudentDetailsComponent {
-  book: string
-  studentId: string
-  student: Student
-  until: string
-  untilDate: Date
-  bookLendings: BookLending[]
+  book: string;
+  studentId: string;
+  student: Student;
+  until: string;
+  untilDate: Date;
+  bookLendings: BookLending[];
 
   private sub: any;
 
@@ -29,7 +28,7 @@ export class StudentDetailsComponent {
     private _service:AuthenticationService,
     private route: ActivatedRoute
   ) {
-      this.student = new Student("","","",false);
+      this.student = new Student('','','',false);
   }
 
   ngOnInit(){

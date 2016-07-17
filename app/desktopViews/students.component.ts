@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Student } from '../data/student'
+import { Student } from '../data/student';
 
 import { DataService } from '../services/data.service';
-import { AuthenticationService } from '../services/authentication.service'
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'students',
@@ -34,7 +34,7 @@ export class StudentsComponent {
   }
 
   onSelect(student: Student){
-    if(this.selectedStudent == student){
+    if(this.selectedStudent === student){
       this.selectedStudent = undefined;
       this.isDisabled = true;
     }else{
@@ -45,6 +45,6 @@ export class StudentsComponent {
 
   viewDetails(){
       this.router.navigate(['/studentDetails', {studentid: this.selectedStudent.id}]);
-      console.log("issue book")
+      console.log('issue book');
   }
 }

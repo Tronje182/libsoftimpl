@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { BookReservation } from '../data/bookReservation'
+import { BookReservation } from '../data/bookReservation';
 
 import { DataService } from '../services/data.service';
-import { AuthenticationService } from '../services/authentication.service'
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
-  selector: 'bookreservations',
+  selector: 'book-reservations',
   templateUrl: 'app/desktopViews/reservations.component.html',
   providers: [DataService,AuthenticationService]
 })
@@ -33,7 +33,7 @@ export class ReservationsComponent {
   }
 
   onSelect(book: BookReservation){
-    if(this.selectedBook == book){
+    if(this.selectedBook === book){
       this.selectedBook = undefined;
       this.isDisabled = true;
     }else{

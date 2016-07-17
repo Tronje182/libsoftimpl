@@ -28,7 +28,7 @@ var StudentsComponent = (function () {
         this.getStudents();
     };
     StudentsComponent.prototype.onSelect = function (student) {
-        if (this.selectedStudent == student) {
+        if (this.selectedStudent === student) {
             this.selectedStudent = undefined;
             this.isDisabled = true;
         }
@@ -39,7 +39,7 @@ var StudentsComponent = (function () {
     };
     StudentsComponent.prototype.viewDetails = function () {
         this.router.navigate(['/studentDetails', { studentid: this.selectedStudent.id }]);
-        console.log("issue book");
+        console.log('issue book');
     };
     StudentsComponent = __decorate([
         core_1.Component({

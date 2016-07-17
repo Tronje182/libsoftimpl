@@ -18,7 +18,7 @@ var StudentDetailsComponent = (function () {
         this.dataService = dataService;
         this._service = _service;
         this.route = route;
-        this.student = new student_1.Student("", "", "", false);
+        this.student = new student_1.Student('', '', '', false);
     }
     StudentDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -30,7 +30,7 @@ var StudentDetailsComponent = (function () {
     };
     StudentDetailsComponent = __decorate([
         core_1.Component({
-            selector: 'studentdetails',
+            selector: 'student-details',
             templateUrl: 'app/desktopViews/studentDetails.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 

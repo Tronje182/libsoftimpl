@@ -1,7 +1,5 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 
-import { ContentComponent } from './common/content.component';
-
 import { LoginComponent } from './desktopViews/login.component';
 import { DefaultComponent } from './desktopViews/default.component';
 import { LentBooksComponent } from './desktopViews/lentbooks.component';

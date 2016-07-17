@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { BookLending } from '../data/bookLending'
+import { BookLending } from '../data/bookLending';
 
 import { DataService } from '../services/data.service';
-import { AuthenticationService } from '../services/authentication.service'
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
-  selector: 'my-lent-books',
+  selector: 'lent-books',
   templateUrl: 'app/desktopViews/lentbooks.component.html',
   providers: [DataService,AuthenticationService]
 })
@@ -20,7 +19,7 @@ export class LentBooksComponent {
   private _service:AuthenticationService) {}
 
   getLendings(){
-    this.dataService.getLendings(this._service.getId()).then(bookLendings => this.bookLendings = bookLendings);    
+    this.dataService.getLendings(this._service.getId()).then(bookLendings => this.bookLendings = bookLendings);
   }
 
   ngOnInit(){
@@ -29,7 +28,7 @@ export class LentBooksComponent {
   }
 
   onSelect(bookLending: BookLending){
-    if(this.selectedLending == bookLending){
+    if(this.selectedLending === bookLending){
       this.selectedLending = undefined;
     }else{
       this.selectedLending = bookLending;

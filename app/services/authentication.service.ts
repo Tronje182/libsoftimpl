@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
- 
+
 export class User {
   constructor(
     public email: string,
@@ -16,11 +16,11 @@ var users = [
   new User('hstahl','hstahl','student', '6701277', 'Hagen', 'Stahl'),
   new User('rich','rich','student', '1231233', 'Richard', 'Roe')
 ];
- 
+
 @Injectable()
 export class AuthenticationService {
-  
-  public isLoggedIn: boolean
+
+  public isLoggedIn: boolean;
 
   constructor(
     private _router: Router){
@@ -28,43 +28,43 @@ export class AuthenticationService {
     }
 
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
     this.isLoggedIn = false;
     this._router.navigate(['login']);
   }
- 
+
   login(user){
     var authenticatedUser = users.find(u => u.email === user.email);
     if (authenticatedUser && authenticatedUser.password === user.password){
-      localStorage.setItem("user", JSON.stringify(authenticatedUser));
-      this._router.navigate(['default']); 
-      this.isLoggedIn = true;     
+      localStorage.setItem('user', JSON.stringify(authenticatedUser));
+      this._router.navigate(['default']);
+      this.isLoggedIn = true;
       return true;
     }
     return false;
- 
+
   }
 
   getName(){
-    if (localStorage.getItem("user") != null){
-        return JSON.parse(localStorage.getItem("user")).firstname + " " + JSON.parse(localStorage.getItem("user")).lastname;
+    if (localStorage.getItem('user') !== null){
+        return JSON.parse(localStorage.getItem("user")).firstname + " " + JSON.parse(localStorage.getItem('user')).lastname;
     }
   }
 
   getId(){
-    if (localStorage.getItem("user") != null){
+    if (localStorage.getItem('user') !== null){
         return JSON.parse(localStorage.getItem("user")).id;
     }
   }
- 
-   checkCredentials(){
-    if (localStorage.getItem("user") === null){
+
+  checkCredentials(){
+    if (localStorage.getItem('user') === null){
         this._router.navigate(['login']);
     }
-  } 
+  }
 
   isStaff(){
-    if (localStorage.getItem("user") != null && JSON.parse(localStorage.getItem("user")).role === "staff"){
+    if (localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem("user")).role === 'staff'){
       return true;
     }else{
       return false;
@@ -72,7 +72,7 @@ export class AuthenticationService {
   }
 
   isStudent(){
-    if (localStorage.getItem("user") != null && JSON.parse(localStorage.getItem("user")).role === "student"){
+    if (localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem('user')).role === 'student'){
       return true;
     }else{
       return false;

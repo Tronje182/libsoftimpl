@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service'
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'login-form',
@@ -29,18 +29,17 @@ import { AuthenticationService } from '../services/authentication.service'
 
 export class DefaultComponent {
 
-    constructor(
-      private _service:AuthenticationService){}
- 
+    constructor(private _service : AuthenticationService){}
+
     ngOnInit(){
         this._service.checkCredentials();
-        console.log("test");
+        console.log('test');
     }
 
     getName() {
-        return this._service.getName()
+        return this._service.getName();
     }
- 
+
     logout() {
         this._service.logout();
     }

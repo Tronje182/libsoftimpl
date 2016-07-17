@@ -16,7 +16,7 @@ var DefaultComponent = (function () {
     }
     DefaultComponent.prototype.ngOnInit = function () {
         this._service.checkCredentials();
-        console.log("test");
+        console.log('test');
     };
     DefaultComponent.prototype.getName = function () {
         return this._service.getName();

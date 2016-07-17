@@ -1,6 +1,6 @@
-import {Component, ElementRef} from '@angular/core';
-import {AuthenticationService, User} from '../services/authentication.service'
- 
+import {Component} from '@angular/core';
+import {AuthenticationService, User} from '../services/authentication.service';
+
 @Component({
     selector: 'login-form',
     providers: [AuthenticationService],
@@ -34,18 +34,18 @@ import {AuthenticationService, User} from '../services/authentication.service'
         </div>
     	`
 })
- 
+
 export class LoginComponent {
- 
+
     public user = new User('','','','','','');
     public errorMsg = '';
     public authService: AuthenticationService;
- 
+
     constructor(
         private _service:AuthenticationService) {
             this.authService = _service;
         }
- 
+
     login() {
         if(!this._service.login(this.user)){
             this.errorMsg = 'Failed to login';

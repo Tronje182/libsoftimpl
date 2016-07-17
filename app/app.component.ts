@@ -1,12 +1,9 @@
 import { ROUTER_DIRECTIVES }  from '@angular/router';
 import { Component } from '@angular/core';
 
-import { ContentComponent } from './common/content.component';
-import { MobileContentComponent } from './common/mobile.content.component';
-
 import { LoginComponent } from './desktopViews/login.component';
 
-import {AuthenticationService} from './services/authentication.service'
+import {AuthenticationService} from './services/authentication.service';
 
 
 @Component({
@@ -99,11 +96,10 @@ import {AuthenticationService} from './services/authentication.service'
   directives: [LoginComponent, ROUTER_DIRECTIVES]
 })
 
-export class AppComponent { 
+export class AppComponent {
     public authService: AuthenticationService;
 
-    constructor(
-      private _service:AuthenticationService){
+    constructor( private _service: AuthenticationService ){
           this.authService = _service;
       }
 }

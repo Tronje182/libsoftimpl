@@ -30,13 +30,13 @@ var SearchBooksComponent = (function () {
         this.getLendings();
     };
     SearchBooksComponent.prototype.onSelect = function (book) {
-        if (this.selectedBook == book) {
+        if (this.selectedBook === book) {
             this.selectedBook = undefined;
             this.isDisabledIssueBook = true;
             this.isDisabledReturnBook = true;
         }
         else {
-            if (book.status == true) {
+            if (book.status === true) {
                 this.isDisabledIssueBook = false;
                 this.isDisabledReturnBook = true;
             }

@@ -30,8 +30,8 @@ var MobileLendingFormComponent = (function () {
     };
     MobileLendingFormComponent.prototype.lendBook = function () {
         this.dataService.lendBook(this.bookObj, this.student, this.untilDate);
-        this.book = "";
-        this.student = "";
+        this.book = '';
+        this.student = '';
     };
     MobileLendingFormComponent = __decorate([
         core_1.Component({

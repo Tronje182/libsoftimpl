@@ -30,12 +30,12 @@ var LendingFormComponent = (function () {
     };
     LendingFormComponent.prototype.lendBook = function () {
         this.dataService.lendBook(this.bookObj, this.student, this.untilDate);
-        this.book = "";
-        this.student = "";
+        this.book = '';
+        this.student = '';
     };
     LendingFormComponent = __decorate([
         core_1.Component({
-            selector: 'lendingform',
+            selector: 'lending-form',
             templateUrl: 'app/desktopViews/lendingform.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 

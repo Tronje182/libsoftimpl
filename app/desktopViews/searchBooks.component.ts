@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Book } from '../data/book'
+import { Book } from '../data/book';
 
 import { DataService } from '../services/data.service';
-import { AuthenticationService } from '../services/authentication.service'
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'my-search-books',
@@ -37,12 +37,12 @@ export class SearchBooksComponent {
   }
 
   onSelect(book: Book){
-    if(this.selectedBook == book){
+    if(this.selectedBook === book){
       this.selectedBook = undefined;
       this.isDisabledIssueBook = true;
       this.isDisabledReturnBook = true;
     }else{
-      if(book.status == true){
+      if(book.status === true){
         this.isDisabledIssueBook = false;
         this.isDisabledReturnBook = true;
       }else{

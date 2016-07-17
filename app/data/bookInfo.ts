@@ -3,5 +3,5 @@ export class BookInfo {
     public isbn: string,
     public title: string,
     public author: string)
-    {};  
+    {};
 }

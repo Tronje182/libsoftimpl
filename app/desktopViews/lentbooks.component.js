@@ -25,7 +25,7 @@ var LentBooksComponent = (function () {
         this.getLendings();
     };
     LentBooksComponent.prototype.onSelect = function (bookLending) {
-        if (this.selectedLending == bookLending) {
+        if (this.selectedLending === bookLending) {
             this.selectedLending = undefined;
         }
         else {
@@ -34,7 +34,7 @@ var LentBooksComponent = (function () {
     };
     LentBooksComponent = __decorate([
         core_1.Component({
-            selector: 'my-lent-books',
+            selector: 'lent-books',
             templateUrl: 'app/desktopViews/lentbooks.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 
