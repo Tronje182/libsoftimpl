@@ -1,7 +1,9 @@
 import { BookInfo } from './bookInfo'
 
 export class Book {
-    id: number;
-    status: boolean;
-    bookInfo: BookInfo;
+    constructor(
+        public id: number,
+        public status: boolean,
+        public bookInfo: BookInfo)
+        {};    
 }

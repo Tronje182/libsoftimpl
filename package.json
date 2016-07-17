@@ -28,7 +28,8 @@
     "responsive-directives-angular2": "^0.3.0",
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.27",
-    "zone.js": "^0.6.12"
+    "zone.js": "^0.6.12",
+    "jquery": "2.2.4"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",

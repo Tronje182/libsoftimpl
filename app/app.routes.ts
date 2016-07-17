@@ -11,6 +11,16 @@ import { ReservationsComponent } from './desktopViews/reservations.component';
 import { LendingFormComponent } from './desktopViews/lendingform.component';
 import { StudentDetailsComponent } from './desktopViews/studentdetails.component';
 
+import { MobileLentBooksComponent } from './mobileViews/mobilelentbooks.component';
+import { MobileLentBooksDetailsComponent } from './mobileViews/mobilelentbooks.details.component';
+import { MobileSearchBooksComponent } from './mobileViews/mobileSearchbooks.component';
+import { MobileSearchBooksDetailsComponent } from './mobileViews/mobilesearchbooks.details.component';
+import { MobileStudentsComponent } from './mobileViews/mobileStudents.component';
+import { MobileStudentDetailsComponent } from './mobileViews/mobileStudents.details.component';
+import { MobileReservationsComponent } from './mobileViews/mobilereservations.component';
+import { MobileReservationsDetailsComponent } from './mobileViews/mobileReservations.details.component';
+import { MobileLendingFormComponent } from './mobileViews/mobileLendingForm.component';
+
 export const routes: RouterConfig = [
   {
     path: '',
@@ -48,6 +58,42 @@ export const routes: RouterConfig = [
   {
     path: 'studentDetails',
     component: StudentDetailsComponent
+  },
+  {
+    path: 'mobile/lentBooks',
+    component: MobileLentBooksComponent
+  },
+  {
+    path: 'mobile/lentBooks/details',
+    component: MobileLentBooksDetailsComponent
+  },
+  {
+    path: 'mobile/searchBooks',
+    component: MobileSearchBooksComponent
+  },
+  {
+    path: 'mobile/searchBooks/details',
+    component: MobileSearchBooksDetailsComponent
+  },
+  {
+    path: 'mobile/students',
+    component: MobileStudentsComponent
+  },
+  {
+    path: 'mobile/students/details',
+    component: MobileStudentDetailsComponent
+  },
+  {
+    path: 'mobile/reservations',
+    component: MobileReservationsComponent
+  },
+  {
+    path: 'mobile/reservations/details',
+    component: MobileReservationsDetailsComponent
+  },
+  {
+    path: 'mobile/lendingForm',
+    component: MobileLendingFormComponent
   }
 ];
 

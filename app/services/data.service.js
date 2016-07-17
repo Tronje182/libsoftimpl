@@ -43,10 +43,10 @@ var DataService = (function () {
         return this.localGet("books");
     };
     DataService.prototype.getBookById = function (id) {
-        return Promise.resolve(mock_books_1.BOOKS.find(function (b) { return b.id == id; }));
+        return Promise.resolve(this.getBooksSync().find(function (b) { return b.id == id; }));
     };
     DataService.prototype.getBookByIdSync = function (id) {
-        return mock_books_1.BOOKS.find(function (b) { return b.id == id; });
+        return this.getBooksSync().find(function (b) { return b.id == id; });
     };
     DataService.prototype.getBookReservations = function () {
         return Promise.resolve(this.localGet("bookreservations"));

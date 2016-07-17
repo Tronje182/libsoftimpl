@@ -1,5 +1,7 @@
 export class BookInfo {
-    isbn: string;
-    title: string;
-    author: string;
+    constructor(
+    public isbn: string,
+    public title: string,
+    public author: string)
+    {};  
 }

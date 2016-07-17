@@ -9,7 +9,7 @@ import { AuthenticationService } from '../services/authentication.service'
 import {CORE_DIRECTIVES} from '@angular/common';
 
 @Component({
-  selector: 'my-content',
+  selector: 'my-desktop-content',
   providers: [AuthenticationService],
   template: `
       <div id="navbar" class="col-md-2">

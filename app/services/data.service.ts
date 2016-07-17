@@ -49,11 +49,11 @@ export class DataService {
   }
 
   getBookById(id:number){
-    return Promise.resolve(BOOKS.find(b => b.id == id));
+    return Promise.resolve(this.getBooksSync().find(b => b.id == id));
   }
 
   getBookByIdSync(id:number){
-    return BOOKS.find(b => b.id == id);
+    return this.getBooksSync().find(b => b.id == id);
   }
 
   getBookReservations(){
