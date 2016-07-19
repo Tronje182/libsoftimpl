@@ -34,6 +34,8 @@ export class LendingFormComponent {
   }
 
   ngOnInit() {
+    this._service.checkStaffPrivileges();
+
     this.sub = this.route.params.subscribe(params => {
       this.student = params['studentid'];
       this.dataService.getBookById(params['bookid']).then(b => this.bookObj = b).then(b => this.book = b.bookInfo.isbn);

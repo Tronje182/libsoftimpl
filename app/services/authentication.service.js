@@ -62,6 +62,16 @@ var AuthenticationService = (function () {
             this._router.navigate(['login']);
         }
     };
+    AuthenticationService.prototype.checkStaffPrivileges = function () {
+        if (localStorage.getItem('user') === null) {
+            this._router.navigate(['login']);
+        }
+        else {
+            if (localStorage.getItem('user').role !== "staff") {
+                this._router.navigate(['default']);
+            }
+        }
+    };
     AuthenticationService.prototype.isStaff = function () {
         if (localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem("user")).role === 'staff') {
             return true;
