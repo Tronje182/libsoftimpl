@@ -27,7 +27,8 @@ export class ReservationsComponent {
   }
 
   ngOnInit(){
-    this._service.checkCredentials();
+    this._service.checkStaffPrivileges();
+
     this.isDisabled = true;
     this.getReservations();
   }

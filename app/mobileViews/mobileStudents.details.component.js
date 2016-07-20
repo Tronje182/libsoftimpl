@@ -22,6 +22,7 @@ var MobileStudentDetailsComponent = (function () {
     }
     MobileStudentDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this._service.checkStaffPrivileges();
         this.sub = this.route.params.subscribe(function (params) {
             _this.studentId = params['studentId'];
             _this.dataService.getStudentById(_this.studentId).then(function (s) { return _this.student = s; });

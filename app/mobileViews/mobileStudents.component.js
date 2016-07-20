@@ -23,7 +23,7 @@ var MobileStudentsComponent = (function () {
         this.dataService.getStudents().then(function (students) { return _this.students = students; });
     };
     MobileStudentsComponent.prototype.ngOnInit = function () {
-        this._service.checkCredentials();
+        this._service.checkStaffPrivileges();
         this.getStudents();
     };
     MobileStudentsComponent.prototype.onSelect = function (student) {

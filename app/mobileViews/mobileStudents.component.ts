@@ -27,7 +27,8 @@ export class MobileStudentsComponent {
   }
 
   ngOnInit(){
-    this._service.checkCredentials();
+    this._service.checkStaffPrivileges();
+
     this.getStudents();
   }
 

@@ -33,6 +33,8 @@ export class MobileStudentDetailsComponent {
   }
 
   ngOnInit(){
+    this._service.checkStaffPrivileges();
+
     this.sub = this.route.params.subscribe(params => {
       this.studentId = params['studentId'];
       this.dataService.getStudentById(this.studentId).then(s => this.student = s);

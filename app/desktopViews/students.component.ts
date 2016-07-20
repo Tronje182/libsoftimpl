@@ -28,7 +28,8 @@ export class StudentsComponent {
   }
 
   ngOnInit(){
-    this._service.checkCredentials();
+    this._service.checkStaffPrivileges();
+
     this.isDisabled = true;
     this.getStudents();
   }

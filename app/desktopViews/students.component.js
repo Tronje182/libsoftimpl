@@ -23,7 +23,7 @@ var StudentsComponent = (function () {
         this.dataService.getStudents().then(function (students) { return _this.students = students; });
     };
     StudentsComponent.prototype.ngOnInit = function () {
-        this._service.checkCredentials();
+        this._service.checkStaffPrivileges();
         this.isDisabled = true;
         this.getStudents();
     };

@@ -23,6 +23,7 @@ var MobileLendingFormComponent = (function () {
     }
     MobileLendingFormComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this._service.checkStaffPrivileges();
         this.sub = this.route.params.subscribe(function (params) {
             _this.student = params['studentid'];
             _this.dataService.getBookById(params['bookid']).then(function (b) { return _this.bookObj = b; }).then(function (b) { return _this.book = b.bookInfo.isbn; });

@@ -31,6 +31,8 @@ export class MobileReservationsDetailsComponent {
   }
 
   ngOnInit(){
+    this._service.checkStaffPrivileges();
+
     this.sub = this.route.params.subscribe(params => {
       var studentid = params['studentid'];
       var bookid = params['bookid'];

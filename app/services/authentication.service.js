@@ -63,11 +63,13 @@ var AuthenticationService = (function () {
         }
     };
     AuthenticationService.prototype.checkStaffPrivileges = function () {
-        if (localStorage.getItem('user') === null) {
+        var user;
+        user = JSON.parse(localStorage.getItem('user'));
+        if (user === null) {
             this._router.navigate(['login']);
         }
         else {
-            if (localStorage.getItem('user').role !== "staff") {
+            if (user.role !== "staff") {
                 this._router.navigate(['default']);
             }
         }

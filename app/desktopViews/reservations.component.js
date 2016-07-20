@@ -23,7 +23,7 @@ var ReservationsComponent = (function () {
         this.dataService.getBookReservations().then(function (books) { return _this.books = books; });
     };
     ReservationsComponent.prototype.ngOnInit = function () {
-        this._service.checkCredentials();
+        this._service.checkStaffPrivileges();
         this.isDisabled = true;
         this.getReservations();
     };

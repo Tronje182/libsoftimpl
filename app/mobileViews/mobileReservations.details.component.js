@@ -26,6 +26,7 @@ var MobileReservationsDetailsComponent = (function () {
     }
     MobileReservationsDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this._service.checkStaffPrivileges();
         this.sub = this.route.params.subscribe(function (params) {
             var studentid = params['studentid'];
             var bookid = params['bookid'];

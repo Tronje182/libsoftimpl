@@ -25,7 +25,8 @@ export class MobileReservationsComponent {
   }
 
   ngOnInit(){
-    this._service.checkCredentials();
+    this._service.checkStaffPrivileges();
+
     this.getReservations();
   }
 
