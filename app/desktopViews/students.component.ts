@@ -3,19 +3,23 @@ import { Router } from '@angular/router';
 
 import { Student } from '../data/student';
 
+import { StudentsPipe } from '../helper/myfilter.pipe';
+
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'students',
   templateUrl: 'app/desktopViews/students.component.html',
-  providers: [DataService,AuthenticationService]
+  providers: [DataService,AuthenticationService],
+  pipes: [StudentsPipe]
 })
 
 export class StudentsComponent {
   students: Student[];
   selectedStudent: Student;
   isDisabled: boolean;
+  filterBy: string;
 
   constructor(
     private dataService: DataService,
