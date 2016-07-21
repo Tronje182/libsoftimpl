@@ -44,3 +44,18 @@ export class BooksPipe implements PipeTransform {
         }    
     }
 }
+
+@Pipe({name: 'lentBooksFilter'})
+export class LentBooksPipe implements PipeTransform {
+    transform(items: any[], filterBy: any): any {
+        // filter items array, items which match and return true will be kept, false will be filtered out
+        if(items !== undefined)
+        {
+            if(filterBy === undefined){
+                return items;
+            }else{
+                return items.filter(item => item.book.bookInfo.isbn.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1 || item.book.bookInfo.title.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1 || item.book.bookInfo.author.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1 || item.student.id.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1);
+            }
+        }    
+    }
+}

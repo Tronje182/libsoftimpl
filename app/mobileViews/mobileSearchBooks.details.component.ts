@@ -22,6 +22,7 @@ export class MobileSearchBooksDetailsComponent {
 
   constructor(private dataService: DataService,private _service:AuthenticationService,
     private route: ActivatedRoute, private router: Router) {
+    this.selectedBook = new Book(-1,false,new BookInfo('','',''));
     this.authService = _service;
   }
 
@@ -32,8 +33,6 @@ export class MobileSearchBooksDetailsComponent {
   }
 
   updateDetails(){
-    this.selectedBook = new Book(-1,false,new BookInfo('','',''));
-
     this.sub = this.route.params.subscribe(params => {
         this.dataService.getBookById(params['bookId']).then(b => this.selectedBook = b);
     })

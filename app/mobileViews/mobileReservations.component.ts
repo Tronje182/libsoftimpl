@@ -3,17 +3,21 @@ import { Router } from '@angular/router';
 
 import { BookReservation } from '../data/bookReservation'
 
+import { ReservationsPipe } from '../helper/myfilter.pipe';
+
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service'
 
 @Component({
   selector: 'bookreservations',
   templateUrl: 'app/mobileViews/reservations.component.html',
-  providers: [DataService,AuthenticationService]
+  providers: [DataService,AuthenticationService],
+  pipes:[ReservationsPipe]
 })
 
 export class MobileReservationsComponent {
   books: BookReservation[];
+  filterBy: string;
 
   constructor(
     private dataService: DataService,

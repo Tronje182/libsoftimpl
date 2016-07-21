@@ -3,18 +3,22 @@ import { Router } from '@angular/router';
 
 import { BookLending } from '../data/bookLending'
 
+import { LentBooksPipe } from '../helper/myfilter.pipe';
+
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service'
 
 @Component({
   selector: 'my-lent-books',
   templateUrl: 'app/mobileViews/lentbooks.component.html',
-  providers: [DataService,AuthenticationService]
+  providers: [DataService,AuthenticationService],
+  pipes: [LentBooksPipe]
 })
 
 export class MobileLentBooksComponent {
   bookLendings: BookLending[];
   selectedLending: BookLending;
+  filterBy: string;
 
   constructor(private dataService: DataService,
   private _service:AuthenticationService,private router: Router) {}

@@ -10,7 +10,7 @@ import {AuthenticationService} from './services/authentication.service';
   selector: 'my-app',
   providers: [AuthenticationService],
   template: `
-    <div *isDesktop id="desktopViewContainter" class="container">
+    <div *isMobile id="desktopViewContainter" class="container">
       <div id="headerBar" class="row divLine" style="margin-right:0px;padding-left:0px;padding-right:0px;">
         <div class="col-md-12" style="width:100%; padding-left:0;padding-right:0px; background-color:lightgray;">
           <a href="\" class="btn btn-link"><h1>LibSoft</h1></a>
@@ -53,7 +53,7 @@ import {AuthenticationService} from './services/authentication.service';
       </div>
     </div>
 
-    <div *isMobile id="mobileViewContainter" class="container">
+    <div *isDesktop id="mobileViewContainter" class="container">
 
       <nav class="navbar navbar-default navbar-custom ">
         <div class="container-fluid">
@@ -80,7 +80,7 @@ import {AuthenticationService} from './services/authentication.service';
                 <a href="\mobile\\reservations">View Reservations</a>
               </li>
               <li class="divLine" *ngIf="authService.isStaff()">
-                <a href="\mobile\lendingForm">View Lending Form</a>
+                <a href="\mobile\\lendingForm">View Lending Form</a>
               </li>
             </ul>
           </div>

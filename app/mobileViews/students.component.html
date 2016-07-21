@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-md-12">
     <div name="content">
+        <div class="input-group" style="margin-bottom:5px;">
+            <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="filterBy">
+            <span class="input-group-addon glyphicon glyphicon-search" style="top:0;" aria-hidden="true"></span>
+        </div>  
         <table class="table table-striped table-hover table-condensed">
             <thead>
                 <tr>
@@ -19,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let student of students" (click)="onSelect(student)" [class.info]="student === selectedStudent">
+                <tr *ngFor="#student of students | studentsFilter: filterBy" (click)="onSelect(student)" [class.info]="student === selectedStudent">
                     <td>
                         {{student.id}} 
                     </td>

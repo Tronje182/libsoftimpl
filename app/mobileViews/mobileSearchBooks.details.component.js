@@ -20,6 +20,7 @@ var MobileSearchBooksDetailsComponent = (function () {
         this._service = _service;
         this.route = route;
         this.router = router;
+        this.selectedBook = new book_1.Book(-1, false, new bookInfo_1.BookInfo('', '', ''));
         this.authService = _service;
     }
     MobileSearchBooksDetailsComponent.prototype.ngOnInit = function () {
@@ -28,7 +29,6 @@ var MobileSearchBooksDetailsComponent = (function () {
     };
     MobileSearchBooksDetailsComponent.prototype.updateDetails = function () {
         var _this = this;
-        this.selectedBook = new book_1.Book(-1, false, new bookInfo_1.BookInfo('', '', ''));
         this.sub = this.route.params.subscribe(function (params) {
             _this.dataService.getBookById(params['bookId']).then(function (b) { return _this.selectedBook = b; });
         });

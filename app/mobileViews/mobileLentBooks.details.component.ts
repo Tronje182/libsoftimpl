@@ -17,7 +17,7 @@ import { AuthenticationService } from '../services/authentication.service'
 export class MobileLentBooksDetailsComponent {
   selectedBook: Book;
   selectedStudent: Student;
-  selectedUntil: Date
+  selectedUntil: Date;
 
   private sub: any;
 

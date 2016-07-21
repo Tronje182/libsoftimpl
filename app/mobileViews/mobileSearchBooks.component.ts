@@ -3,17 +3,21 @@ import { Router } from '@angular/router';
 
 import { Book } from '../data/book'
 
+import { BooksPipe } from '../helper/myfilter.pipe';
+
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service'
 
 @Component({
   selector: 'my-search-books',
   templateUrl: 'app/mobileViews/searchBooks.component.html',
-  providers: [DataService,AuthenticationService]
+  providers: [DataService,AuthenticationService],
+  pipes:[BooksPipe]
 })
 
 export class MobileSearchBooksComponent {
   books: Book[];
+  filterBy: string;
 
   public authService: AuthenticationService;
 

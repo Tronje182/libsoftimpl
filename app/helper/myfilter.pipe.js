@@ -72,4 +72,25 @@ var BooksPipe = (function () {
     return BooksPipe;
 }());
 exports.BooksPipe = BooksPipe;
+var LentBooksPipe = (function () {
+    function LentBooksPipe() {
+    }
+    LentBooksPipe.prototype.transform = function (items, filterBy) {
+        // filter items array, items which match and return true will be kept, false will be filtered out
+        if (items !== undefined) {
+            if (filterBy === undefined) {
+                return items;
+            }
+            else {
+                return items.filter(function (item) { return item.book.bookInfo.isbn.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1 || item.book.bookInfo.title.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1 || item.book.bookInfo.author.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1 || item.student.id.toLowerCase().indexOf(filterBy.toLowerCase()) !== -1; });
+            }
+        }
+    };
+    LentBooksPipe = __decorate([
+        core_1.Pipe({ name: 'lentBooksFilter' }), 
+        __metadata('design:paramtypes', [])
+    ], LentBooksPipe);
+    return LentBooksPipe;
+}());
+exports.LentBooksPipe = LentBooksPipe;
 //# sourceMappingURL=myfilter.pipe.js.map

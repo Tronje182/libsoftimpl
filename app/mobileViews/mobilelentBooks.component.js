@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var myfilter_pipe_1 = require('../helper/myfilter.pipe');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
 var MobileLentBooksComponent = (function () {
@@ -33,7 +34,8 @@ var MobileLentBooksComponent = (function () {
         core_1.Component({
             selector: 'my-lent-books',
             templateUrl: 'app/mobileViews/lentbooks.component.html',
-            providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
+            providers: [data_service_1.DataService, authentication_service_1.AuthenticationService],
+            pipes: [myfilter_pipe_1.LentBooksPipe]
         }), 
         __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router])
     ], MobileLentBooksComponent);

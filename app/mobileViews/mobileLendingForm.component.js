@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var book_1 = require('../data/book');
+var bookInfo_1 = require('../data/bookInfo');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
 var MobileLendingFormComponent = (function () {
@@ -17,6 +19,7 @@ var MobileLendingFormComponent = (function () {
         this.dataService = dataService;
         this._service = _service;
         this.route = route;
+        this.bookObj = new book_1.Book(-1, false, new bookInfo_1.BookInfo('', '', ''));
         this.untilDate = new Date();
         this.untilDate.setDate(this.untilDate.getDate() + 30);
         this.until = this.untilDate.getDate() + '.' + (this.untilDate.getMonth() + 1) + '.' + this.untilDate.getFullYear();
@@ -26,7 +29,9 @@ var MobileLendingFormComponent = (function () {
         this._service.checkStaffPrivileges();
         this.sub = this.route.params.subscribe(function (params) {
             _this.student = params['studentid'];
-            _this.dataService.getBookById(params['bookid']).then(function (b) { return _this.bookObj = b; }).then(function (b) { return _this.book = b.bookInfo.isbn; });
+            if (params['bookid'] != undefined) {
+                _this.dataService.getBookById(params['bookid']).then(function (b) { return _this.bookObj = b; }).then(function (b) { return _this.book = b.bookInfo.isbn; });
+            }
         });
     };
     MobileLendingFormComponent.prototype.lendBook = function () {
