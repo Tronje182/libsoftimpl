@@ -10,7 +10,7 @@ import {AuthenticationService} from './services/authentication.service';
   selector: 'my-app',
   providers: [AuthenticationService],
   template: `
-    <div *isMobile id="desktopViewContainter" class="container">
+    <div *isDesktop id="desktopViewContainter" class="container">
       <div id="headerBar" class="row divLine" style="margin-right:0px;padding-left:0px;padding-right:0px;">
         <div class="col-md-12" style="width:100%; padding-left:0;padding-right:0px; background-color:lightgray;">
           <a href="\" class="btn btn-link"><h1>LibSoft</h1></a>
@@ -25,23 +25,18 @@ import {AuthenticationService} from './services/authentication.service';
             <ul class="sidebar-nav">
               <li class="divLine" *ngIf="authService.isStudent()">
                 <a *isDesktop href="\lentBooks">Lent Books</a>
-                <a *isMobile href="\mobile\lentBooks">Lent Books</a>
               </li>
               <li class="divLine" *ngIf="authService.isStudent() || authService.isStaff()">
                 <a *isDesktop href="\searchBooks">Search Books</a>
-                <a *isMobile href="\mobile\searchBooks">Search Books</a>
               </li>
               <li class="divLine" *ngIf="authService.isStaff()">
                 <a *isDesktop href="\students">Search Students</a>
-                <a *isMobile href="\mobile\students">Search Students</a>
               </li>
               <li class="divLine" *ngIf="authService.isStaff()">
                 <a *isDesktop href="\\reservations">View Reservations</a>
-                <a *isMobile href="\mobile\\reservations">View Reservations</a>
               </li>
               <li class="divLine" *ngIf="authService.isStaff()">
                 <a *isDesktop href="\lendingForm">View Lending Form</a>
-                <a *isMobile href="\mobile\lendingForm">View Lending Form</a>
               </li>
             </ul>
           </div>
@@ -53,7 +48,7 @@ import {AuthenticationService} from './services/authentication.service';
       </div>
     </div>
 
-    <div *isDesktop id="mobileViewContainter" class="container">
+    <div *isMobile id="mobileViewContainter" class="container">
 
       <nav class="navbar navbar-default navbar-custom ">
         <div class="container-fluid">
