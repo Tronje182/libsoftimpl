@@ -9,16 +9,6 @@ import { ReservationsComponent } from './desktopViews/reservations.component';
 import { LendingFormComponent } from './desktopViews/lendingform.component';
 import { StudentDetailsComponent } from './desktopViews/studentdetails.component';
 
-import { MobileLentBooksComponent } from './mobileViews/mobilelentbooks.component';
-import { MobileLentBooksDetailsComponent } from './mobileViews/mobilelentbooks.details.component';
-import { MobileSearchBooksComponent } from './mobileViews/mobileSearchbooks.component';
-import { MobileSearchBooksDetailsComponent } from './mobileViews/mobilesearchbooks.details.component';
-import { MobileStudentsComponent } from './mobileViews/mobileStudents.component';
-import { MobileStudentDetailsComponent } from './mobileViews/mobileStudents.details.component';
-import { MobileReservationsComponent } from './mobileViews/mobilereservations.component';
-import { MobileReservationsDetailsComponent } from './mobileViews/mobileReservations.details.component';
-import { MobileLendingFormComponent } from './mobileViews/mobileLendingForm.component';
-
 export const routes: RouterConfig = [
   {
     path: '',
