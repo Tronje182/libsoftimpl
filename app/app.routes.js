@@ -8,15 +8,6 @@ var students_component_1 = require('./desktopViews/students.component');
 var reservations_component_1 = require('./desktopViews/reservations.component');
 var lendingform_component_1 = require('./desktopViews/lendingform.component');
 var studentdetails_component_1 = require('./desktopViews/studentdetails.component');
-var mobilelentbooks_component_1 = require('./mobileViews/mobilelentbooks.component');
-var mobilelentbooks_details_component_1 = require('./mobileViews/mobilelentbooks.details.component');
-var mobileSearchbooks_component_1 = require('./mobileViews/mobileSearchbooks.component');
-var mobilesearchbooks_details_component_1 = require('./mobileViews/mobilesearchbooks.details.component');
-var mobileStudents_component_1 = require('./mobileViews/mobileStudents.component');
-var mobileStudents_details_component_1 = require('./mobileViews/mobileStudents.details.component');
-var mobilereservations_component_1 = require('./mobileViews/mobilereservations.component');
-var mobileReservations_details_component_1 = require('./mobileViews/mobileReservations.details.component');
-var mobileLendingForm_component_1 = require('./mobileViews/mobileLendingForm.component');
 exports.routes = [
     {
         path: '',
@@ -54,42 +45,6 @@ exports.routes = [
     {
         path: 'studentDetails',
         component: studentdetails_component_1.StudentDetailsComponent
-    },
-    {
-        path: 'mobile/lentBooks',
-        component: mobilelentbooks_component_1.MobileLentBooksComponent
-    },
-    {
-        path: 'mobile/lentBooks/details',
-        component: mobilelentbooks_details_component_1.MobileLentBooksDetailsComponent
-    },
-    {
-        path: 'mobile/searchBooks',
-        component: mobileSearchbooks_component_1.MobileSearchBooksComponent
-    },
-    {
-        path: 'mobile/searchBooks/details',
-        component: mobilesearchbooks_details_component_1.MobileSearchBooksDetailsComponent
-    },
-    {
-        path: 'mobile/students',
-        component: mobileStudents_component_1.MobileStudentsComponent
-    },
-    {
-        path: 'mobile/students/details',
-        component: mobileStudents_details_component_1.MobileStudentDetailsComponent
-    },
-    {
-        path: 'mobile/reservations',
-        component: mobilereservations_component_1.MobileReservationsComponent
-    },
-    {
-        path: 'mobile/reservations/details',
-        component: mobileReservations_details_component_1.MobileReservationsDetailsComponent
-    },
-    {
-        path: 'mobile/lendingForm',
-        component: mobileLendingForm_component_1.MobileLendingFormComponent
     }
 ];
 exports.APP_ROUTER_PROVIDERS = [

@@ -56,42 +56,6 @@ export const routes: RouterConfig = [
   {
     path: 'studentDetails',
     component: StudentDetailsComponent
-  },
-  {
-    path: 'mobile/lentBooks',
-    component: MobileLentBooksComponent
-  },
-  {
-    path: 'mobile/lentBooks/details',
-    component: MobileLentBooksDetailsComponent
-  },
-  {
-    path: 'mobile/searchBooks',
-    component: MobileSearchBooksComponent
-  },
-  {
-    path: 'mobile/searchBooks/details',
-    component: MobileSearchBooksDetailsComponent
-  },
-  {
-    path: 'mobile/students',
-    component: MobileStudentsComponent
-  },
-  {
-    path: 'mobile/students/details',
-    component: MobileStudentDetailsComponent
-  },
-  {
-    path: 'mobile/reservations',
-    component: MobileReservationsComponent
-  },
-  {
-    path: 'mobile/reservations/details',
-    component: MobileReservationsDetailsComponent
-  },
-  {
-    path: 'mobile/lendingForm',
-    component: MobileLendingFormComponent
   }
 ];
 
