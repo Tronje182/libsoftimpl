@@ -5,15 +5,14 @@ import { NgClass } from '@angular/common';
 import { LoginComponent } from './desktopViews/login.component';
 
 import {AuthenticationService} from './services/authentication.service';
+import {NoolsService} from './services/nools.service';
 
 import { Profile } from './helper/profile'
 import { DisplayProperties } from './helper/displayProperties'
 
-declare var nools: any;
-
 @Component({
   selector: 'my-app',
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, NoolsService],
   template: `
     <div id="desktopViewContainter" class="container"> <!-- headerBarClass: row divLine -->
       <div id="headerBar" [ngClass]="profile.displayProperties.headerBarClass" style="margin-right:0px;padding-left:0px;padding-right:0px;">
@@ -72,56 +71,15 @@ export class AppComponent {
 
     public profile = new Profile();
 
-    
-          public interval3Id = setInterval(
-           console.log(this.profile)
-          ,8000);
-
-    constructor( private _service: AuthenticationService ){
+    constructor( private _service: AuthenticationService, private flow: NoolsService ){
           this.authService = _service;
     }
-
-    public flow = nools.flow("ProfileEvaluation", function (flow) {
-      console.log("flow");
-
-      flow.rule("Platform Mobile", [Profile, "m", "m.getPlatformType() =~ /desktop/"], function (facts) {
-          console.log(facts.m);
-          facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
-
-          facts.m.displayProperties.headerBarClass = 'row divLine';
-          facts.m.displayProperties.routerOutletClass = 'col-md-10';
-
-          facts.m.displayProperties.navbarContainerClass = 'sidebar-navbar col-md-2';
-          facts.m.displayProperties.navbarWrapperClass = 'sidebar-wrapper';
-          facts.m.displayProperties.navbarHeaderClass = 'hideElement';
-          facts.m.displayProperties.navbarCollapseClass = '';
-          facts.m.displayProperties.navbarItemListClass = 'sidebar-nav';
-          this.modify(facts.m);
-          this.halt();
-      });
-
-      flow.rule("Platform Mobile", [Profile, "m", "m.getPlatformType() =~ /mobile/"], function (facts) {
-          console.log(facts.m);
-          facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
-
-          facts.m.displayProperties.headerBarClass = 'hideElement';
-          facts.m.displayProperties.routerOutletClass = 'col-md-12';
-
-          facts.m.displayProperties.navbarContainerClass = 'navbar navbar-default navbar-custom';
-          facts.m.displayProperties.navbarWrapperClass = 'container-fluid';
-          facts.m.displayProperties.navbarHeaderClass = 'navbar-header';
-          facts.m.displayProperties.navbarCollapseClass = 'navbar-collapse collapse';
-          facts.m.displayProperties.navbarItemListClass = 'nav navbar-nav';
-          this.modify(facts.m);
-          this.halt();
-      });
-    });
  
     ngOnInit() {
         
         var session = this.flow.getSession();
 
-        this.profile.setPlatformType('mobile');
+        this.profile.setPlatformType('desktop');
         this.profile.setUserProfile('student');
 
         session.assert(this.profile);
