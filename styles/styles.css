@@ -12,6 +12,11 @@ body {
   * for the full set of master styles used by the documentation samples
   */
 
+.hideElement
+{
+  display:none;
+}
+
   .divLine
   {
     top: 0px;

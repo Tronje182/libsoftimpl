@@ -10,12 +10,12 @@
 
 /* Toggle Styles */
 
-#navbar {
+.sidebar-navbar {
     padding-left:0px;
     padding-right:0px;
 }
 
-#sidebar-wrapper {
+.sidebar-wrapper {
     width: 100%;
     height: 100%;
     background: lightgray;
