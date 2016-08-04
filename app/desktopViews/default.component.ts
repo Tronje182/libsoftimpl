@@ -19,11 +19,6 @@ import { AuthenticationService } from '../services/authentication.service';
             </div>
           </div>
         </div>
-        <div class="row bottomBar" style="height:10%">
-          <div name="action" class="divLineTop">
-            <my-actions></my-actions>
-          </div>
-        </div>
   `
 })
 

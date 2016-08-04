@@ -12,7 +12,7 @@ import { DisplayProperties } from './helper/displayProperties'
 
 @Component({
   selector: 'my-app',
-  providers: [AuthenticationService, NoolsService],
+  providers: [AuthenticationService],
   template: `
     <div id="desktopViewContainter" class="container"> <!-- headerBarClass: row divLine -->
       <div id="headerBar" [ngClass]="profile.displayProperties.headerBarClass" style="margin-right:0px;padding-left:0px;padding-right:0px;">
@@ -79,7 +79,7 @@ export class AppComponent {
         
         var session = this.flow.getSession();
 
-        this.profile.setPlatformType('desktop');
+        this.profile.setPlatformType('mobile');
         this.profile.setUserProfile('student');
 
         session.assert(this.profile);

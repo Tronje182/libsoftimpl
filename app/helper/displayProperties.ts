@@ -17,6 +17,9 @@ export class DisplayProperties {
     public navbarCollapseClass: string;
     public navbarItemListClass: string;
 
+    //search
+    public searchInputGroupClass: string;
+
     constructor()
     {
         this.type = '';
@@ -35,6 +38,9 @@ export class DisplayProperties {
         this.navbarHeaderClass = '';
         this.navbarCollapseClass = '';
         this.navbarItemListClass = '';
+
+        //search
+        this.searchInputGroupClass = '';
     };
 
     public setType(v: string){

@@ -11,10 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
+var nools_service_1 = require('../services/nools.service');
+var profile_1 = require('../helper/profile');
 var LentBooksComponent = (function () {
-    function LentBooksComponent(dataService, _service) {
+    function LentBooksComponent(dataService, _service, flow) {
         this.dataService = dataService;
         this._service = _service;
+        this.flow = flow;
+        this.profile = new profile_1.Profile();
     }
     LentBooksComponent.prototype.getLendings = function () {
         var _this = this;
@@ -23,6 +27,20 @@ var LentBooksComponent = (function () {
     LentBooksComponent.prototype.ngOnInit = function () {
         this._service.checkCredentials();
         this.getLendings();
+        var session = this.flow.getSession();
+        this.profile.setPlatformType('mobile');
+        this.profile.setUserProfile('student');
+        session.assert(this.profile);
+        //now fire the rules
+        session.match(function (err) {
+            if (err) {
+                console.error(err.stack);
+            }
+            else {
+                console.log("done");
+                console.log(this.profile);
+            }
+        });
     };
     LentBooksComponent.prototype.onSelect = function (bookLending) {
         if (this.selectedLending === bookLending) {
@@ -38,7 +56,7 @@ var LentBooksComponent = (function () {
             templateUrl: 'app/desktopViews/lentbooks.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, nools_service_1.NoolsService])
     ], LentBooksComponent);
     return LentBooksComponent;
 }());

@@ -14,6 +14,8 @@ var DisplayProperties = (function () {
         this.navbarHeaderClass = '';
         this.navbarCollapseClass = '';
         this.navbarItemListClass = '';
+        //search
+        this.searchInputGroupClass = '';
     }
     ;
     DisplayProperties.prototype.setType = function (v) {

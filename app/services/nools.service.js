@@ -13,7 +13,6 @@ var profile_1 = require('../helper/profile');
 var NoolsService = (function () {
     function NoolsService() {
         this.flow = nools.flow("ProfileEvaluation", function (flow) {
-            console.log("flow");
             flow.rule("Platform Desktop", [profile_1.Profile, "m", "m.getPlatformType() =~ /desktop/"], function (facts) {
                 console.log(facts.m);
                 facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
@@ -24,6 +23,7 @@ var NoolsService = (function () {
                 facts.m.displayProperties.navbarHeaderClass = 'hideElement';
                 facts.m.displayProperties.navbarCollapseClass = '';
                 facts.m.displayProperties.navbarItemListClass = 'sidebar-nav';
+                facts.m.displayProperties.searchInputGroupClass = 'input-group col-md-6 col-md-offset-6';
                 this.modify(facts.m);
                 this.halt();
             });
@@ -37,6 +37,7 @@ var NoolsService = (function () {
                 facts.m.displayProperties.navbarHeaderClass = 'navbar-header';
                 facts.m.displayProperties.navbarCollapseClass = 'navbar-collapse collapse';
                 facts.m.displayProperties.navbarItemListClass = 'nav navbar-nav';
+                facts.m.displayProperties.searchInputGroupClass = 'input-group';
                 this.modify(facts.m);
                 this.halt();
             });
