@@ -13,8 +13,14 @@ var profile_1 = require('../helper/profile');
 var ProfileService = (function () {
     function ProfileService() {
         this.profile = new profile_1.Profile();
-        this.profile.setPlatformType('mobile');
         this.profile.setUserProfile('student');
+        this.md = new MobileDetect(window.navigator.userAgent);
+        if (this.md.mobile() == null) {
+            this.profile.setPlatformType("desktop");
+        }
+        else {
+            this.profile.setPlatformType("mobile");
+        }
     }
     ProfileService.prototype.getProfile = function () {
         return this.profile;

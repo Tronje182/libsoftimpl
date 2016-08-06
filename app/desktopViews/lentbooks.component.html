@@ -34,7 +34,7 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="selectedLending" [ngClass]="profile.getProfile().displayProperties.hideOnDesktop">
+    <div *ngIf="profile.getProfile().displayProperties.isMobile && selectedLending" [ngClass]="profile.getProfile().displayProperties.hideOnDesktop">
         <div style="margin-bottom:5px">
             <button type="button" class="btn btn-default" (click)="unselectLending()"> 
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back
