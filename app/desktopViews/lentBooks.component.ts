@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 import { BookLending } from '../data/bookLending';
 
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { NoolsService } from '../services/nools.service';
-
-import { Profile } from '../helper/profile'
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'lent-books',
   templateUrl: 'app/desktopViews/lentbooks.component.html',
-  providers: [DataService,AuthenticationService]
+  providers: [DataService,AuthenticationService],
+  directives: [NgClass]
 })
 
 export class LentBooksComponent {
   bookLendings: BookLending[];
   selectedLending: BookLending;
 
-  public profile = new Profile();
-
   constructor(private dataService: DataService,
   private _service:AuthenticationService,
-  private flow: NoolsService) {}
+  private flow: NoolsService,
+  private profile: ProfileService) {}
 
   getLendings(){
     this.dataService.getLendings(this._service.getId()).then(bookLendings => this.bookLendings = bookLendings);
@@ -32,24 +32,18 @@ export class LentBooksComponent {
     this._service.checkCredentials();
     this.getLendings();
 
-     var session = this.flow.getSession();
+    var session = this.flow.getSession();
+    session.assert(this.profile.getProfile());
 
-      this.profile.setPlatformType('mobile');
-      this.profile.setUserProfile('student');
-
-      session.assert(this.profile);
-
-
-      //now fire the rules
-      session.match(function(err){
-          if(err){
-              console.error(err.stack);
-          }else{
-              console.log("done");
-              console.log(this.profile);
-              
-          }
-      })  
+    //now fire the rules
+    session.match(function(err){
+        if(err){
+            console.error(err.stack);
+        }else{
+            console.log("done");
+            
+        }
+    })  
   }
 
   onSelect(bookLending: BookLending){
@@ -58,5 +52,9 @@ export class LentBooksComponent {
     }else{
       this.selectedLending = bookLending;
     }
+  }
+
+  unselectLending(){
+    this.selectedLending = undefined;
   }
 }

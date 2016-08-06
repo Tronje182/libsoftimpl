@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 import { BookReservation } from '../data/bookReservation';
 
@@ -7,12 +8,15 @@ import { ReservationsPipe } from '../helper/myfilter.pipe';
 
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { NoolsService } from '../services/nools.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'book-reservations',
   templateUrl: 'app/desktopViews/reservations.component.html',
   providers: [DataService,AuthenticationService],
-  pipes:[ReservationsPipe]
+  pipes:[ReservationsPipe],
+  directives: [NgClass]
 })
 
 export class ReservationsComponent {
@@ -24,7 +28,9 @@ export class ReservationsComponent {
   constructor(
     private dataService: DataService,
     private _service:AuthenticationService,
-    private router: Router) {}
+    private router: Router,
+    private profile: ProfileService,
+    private flow: NoolsService) {}
 
   getReservations(){
     this.dataService.getBookReservations().then(books => this.books = books);
@@ -35,6 +41,19 @@ export class ReservationsComponent {
 
     this.isDisabled = true;
     this.getReservations();
+
+    var session = this.flow.getSession();
+    session.assert(this.profile.getProfile());
+
+    //now fire the rules
+    session.match(function(err){
+        if(err){
+            console.error(err.stack);
+        }else{
+            console.log("done");
+            
+        }
+    })      
   }
 
   onSelect(book: BookReservation){
@@ -45,6 +64,11 @@ export class ReservationsComponent {
       this.selectedBook = book;
       this.isDisabled = false;
     }
+  }
+
+  unselectReservation(){
+    this.selectedBook = undefined;
+    this.isDisabled = true;
   }
 
   issueBook(){

@@ -6,16 +6,15 @@ import { LoginComponent } from './desktopViews/login.component';
 
 import {AuthenticationService} from './services/authentication.service';
 import {NoolsService} from './services/nools.service';
+import { ProfileService } from './services/profile.service';
 
-import { Profile } from './helper/profile'
-import { DisplayProperties } from './helper/displayProperties'
 
 @Component({
   selector: 'my-app',
   providers: [AuthenticationService],
   template: `
     <div id="desktopViewContainter" class="container"> <!-- headerBarClass: row divLine -->
-      <div id="headerBar" [ngClass]="profile.displayProperties.headerBarClass" style="margin-right:0px;padding-left:0px;padding-right:0px;">
+      <div id="headerBar" [ngClass]="profile.getProfile().displayProperties.headerBarClass" style="margin-right:0px;padding-left:0px;padding-right:0px;">
         <div class="col-md-12" style="width:100%; padding-left:0;padding-right:0px; background-color:lightgray;">
           <a href="\" class="btn btn-link"><img src="./app/ressources/images/logo_transparent.png" alt="LibSoft" height="115" width="175"></a>
         </div>
@@ -24,9 +23,9 @@ import { DisplayProperties } from './helper/displayProperties'
       </div>
       <div class="row">
 
-        <nav [ngClass]="profile.displayProperties.navbarContainerClass"> <!-- sidebar-navbar col-md-2 | navbar navbar-default navbar-custom -->
-          <div [ngClass]="profile.displayProperties.navbarWrapperClass"> <!-- sidebar-wrapper | container-fluid -->
-            <div [ngClass]="profile.displayProperties.navbarHeaderClass"> <!-- hide this | navbar-header -->
+        <nav [ngClass]="profile.getProfile().displayProperties.navbarContainerClass"> 
+          <div [ngClass]="profile.getProfile().displayProperties.navbarWrapperClass"> 
+            <div [ngClass]="profile.getProfile().displayProperties.navbarHeaderClass"> 
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-nav"> <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -34,8 +33,8 @@ import { DisplayProperties } from './helper/displayProperties'
               <a href="\" class="navbar-brand">LibSoft</a>
             </div>
 
-            <div [ngClass]="profile.displayProperties.navbarCollapseClass" id="bs-nav"> <!-- nothing | navbar-collapse collapse -->
-              <ul [ngClass]="profile.displayProperties.navbarItemListClass">        <!-- sidebar-nav | nav navbar-nav -->
+            <div [ngClass]="profile.getProfile().displayProperties.navbarCollapseClass" id="bs-nav">
+              <ul [ngClass]="profile.getProfile().displayProperties.navbarItemListClass">
                 <li class="divLine" *ngIf="authService.isStudent()">
                   <a href="\lentBooks">Lent Books</a>
                 </li>
@@ -56,7 +55,7 @@ import { DisplayProperties } from './helper/displayProperties'
           </div>
         </nav>
 
-        <div [ngClass]="profile.displayProperties.routerOutletClass" style="margin-left:0;padding-right:0px;width:83.33332%">
+        <div [ngClass]="profile.getProfile().displayProperties.routerOutletClass" style="margin-left:0;padding-right:0px;width:83.33332%">
           <router-outlet></router-outlet>
         </div>
 
@@ -69,31 +68,26 @@ import { DisplayProperties } from './helper/displayProperties'
 export class AppComponent {
     public authService: AuthenticationService;
 
-    public profile = new Profile();
 
-    constructor( private _service: AuthenticationService, private flow: NoolsService ){
+    constructor( private _service: AuthenticationService, 
+    private flow: NoolsService,
+    private profile: ProfileService ){
           this.authService = _service;
     }
  
     ngOnInit() {
-        
-        var session = this.flow.getSession();
+      var session = this.flow.getSession();
+      session.assert(this.profile.getProfile());
 
-        this.profile.setPlatformType('mobile');
-        this.profile.setUserProfile('student');
-
-        session.assert(this.profile);
-
-
-        //now fire the rules
-        session.match(function(err){
-            if(err){
-                console.error(err.stack);
-            }else{
-                console.log("done");
-                console.log(this.profile);
-                
-            }
-        })  
+      //now fire the rules
+      session.match(function(err){
+          if(err){
+              console.error(err.stack);
+          }else{
+              console.log("done");
+              console.log(this.profile);
+              
+          }
+      })  
     }
 }

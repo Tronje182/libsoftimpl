@@ -6,6 +6,8 @@ export class DisplayProperties {
     //General Layout
     public headerBarClass: string;
     public routerOutletClass: string;
+    public hideOnMobile: string;
+    public hideOnDesktop: string;
 
     //tables
     public tableClass: string;
@@ -20,6 +22,9 @@ export class DisplayProperties {
     //search
     public searchInputGroupClass: string;
 
+    //boolean
+    public isMobile: boolean;
+
     constructor()
     {
         this.type = '';
@@ -28,6 +33,8 @@ export class DisplayProperties {
         //General Layout
         this.headerBarClass = '';
         this.routerOutletClass = '';
+        this.hideOnMobile = '';
+        this.hideOnDesktop = '';
 
         //tables
         this.tableClass = ''

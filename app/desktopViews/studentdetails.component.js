@@ -10,14 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var common_1 = require('@angular/common');
 var student_1 = require('../data/student');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
+var nools_service_1 = require('../services/nools.service');
+var profile_service_1 = require('../services/profile.service');
 var StudentDetailsComponent = (function () {
-    function StudentDetailsComponent(dataService, _service, route) {
+    function StudentDetailsComponent(dataService, _service, route, profile, flow) {
         this.dataService = dataService;
         this._service = _service;
         this.route = route;
+        this.profile = profile;
+        this.flow = flow;
         this.student = new student_1.Student('', '', '', false);
     }
     StudentDetailsComponent.prototype.ngOnInit = function () {
@@ -28,14 +33,26 @@ var StudentDetailsComponent = (function () {
             _this.dataService.getStudentById(_this.studentId).then(function (s) { return _this.student = s; });
             _this.dataService.getLendings(_this.studentId).then(function (l) { return _this.bookLendings = l; });
         });
+        var session = this.flow.getSession();
+        session.assert(this.profile.getProfile());
+        //now fire the rules
+        session.match(function (err) {
+            if (err) {
+                console.error(err.stack);
+            }
+            else {
+                console.log("done");
+            }
+        });
     };
     StudentDetailsComponent = __decorate([
         core_1.Component({
             selector: 'student-details',
             templateUrl: 'app/desktopViews/studentDetails.component.html',
-            providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
+            providers: [data_service_1.DataService, authentication_service_1.AuthenticationService],
+            directives: [common_1.NgClass]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.ActivatedRoute, profile_service_1.ProfileService, nools_service_1.NoolsService])
     ], StudentDetailsComponent);
     return StudentDetailsComponent;
 }());

@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import { Profile } from '../helper/profile'
 import { DisplayProperties } from '../helper/displayProperties'
 
+
 declare var nools: any;
 
 @Injectable()
@@ -18,6 +19,7 @@ export class NoolsService {
 
                 facts.m.displayProperties.headerBarClass = 'row divLine';
                 facts.m.displayProperties.routerOutletClass = 'col-md-10';
+                facts.m.displayProperties.hideOnMobile = '';
 
                 facts.m.displayProperties.navbarContainerClass = 'sidebar-navbar col-md-2';
                 facts.m.displayProperties.navbarWrapperClass = 'sidebar-wrapper';
@@ -26,6 +28,8 @@ export class NoolsService {
                 facts.m.displayProperties.navbarItemListClass = 'sidebar-nav';
 
                 facts.m.displayProperties.searchInputGroupClass = 'input-group col-md-6 col-md-offset-6'
+
+                facts.m.displayProperties.isMobile = false;
 
                 this.modify(facts.m);
                 this.halt();
@@ -37,6 +41,7 @@ export class NoolsService {
 
                 facts.m.displayProperties.headerBarClass = 'hideElement';
                 facts.m.displayProperties.routerOutletClass = 'col-md-12';
+                facts.m.displayProperties.hideOnMobile = 'hideElement';
 
                 facts.m.displayProperties.navbarContainerClass = 'navbar navbar-default navbar-custom';
                 facts.m.displayProperties.navbarWrapperClass = 'container-fluid';
@@ -45,6 +50,8 @@ export class NoolsService {
                 facts.m.displayProperties.navbarItemListClass = 'nav navbar-nav';
 
                 facts.m.displayProperties.searchInputGroupClass = 'input-group'
+
+                facts.m.displayProperties.isMobile = true;
 
                 this.modify(facts.m);
                 this.halt();

@@ -6,6 +6,8 @@ var DisplayProperties = (function () {
         //General Layout
         this.headerBarClass = '';
         this.routerOutletClass = '';
+        this.hideOnMobile = '';
+        this.hideOnDesktop = '';
         //tables
         this.tableClass = '';
         //navigation

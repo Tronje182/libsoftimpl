@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
-    <div name="content">
-        <div class="input-group col-md-6 col-md-offset-6" style="margin-bottom:5px;">
+    <div name="content" *ngIf="!profile.getProfile().displayProperties.isMobile || (profile.getProfile().displayProperties.isMobile && !selectedStudent)">
+        <div [ngClass]="profile.getProfile().displayProperties.searchInputGroupClass" style="margin-bottom:5px;">
             <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="filterBy">
             <span class="input-group-addon glyphicon glyphicon-search" style="top:0;" aria-hidden="true"></span>
         </div>     
@@ -11,13 +11,13 @@
                     <th>
                         ID
                     </th>
-                    <th>
+                    <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         Firstname
                     </th>
                     <th>
                         Lastname
                     </th>
-                    <th>
+                    <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         Status
                     </th>
                 </tr>
@@ -27,13 +27,13 @@
                     <td>
                         {{student.id}} 
                     </td>
-                    <td>
+                    <td [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         {{student.firstname}} 
                     </td>
                     <td>
                         {{student.lastname}} 
                     </td>
-                    <td>
+                    <td [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         {{student.status}} 
                     </td>
                 </tr> 
@@ -44,6 +44,8 @@
 </div>
 <div class="row bottomBar" style="height:10%;">
   <div name="action" class="divLineTop" style="padding-top:10px">
-    <a class="btn btn-default" [ngClass]="{disabled: isDisabled}" (click)="viewDetails()" >View Details</a>
+      <div [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
+        <a class="btn btn-default" [ngClass]="{disabled: isDisabled}" (click)="viewDetails()" >View Details</a>
+      </div>
   </div>
 </div>

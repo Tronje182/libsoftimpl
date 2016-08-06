@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
-    <div name="content">
-        <div class="input-group col-md-6 col-md-offset-6" style="margin-bottom:5px;">
+    <div name="content" *ngIf="!profile.getProfile().displayProperties.isMobile || (profile.getProfile().displayProperties.isMobile && !selectedBook)">
+        <div [ngClass]="profile.getProfile().displayProperties.searchInputGroupClass" style="margin-bottom:5px;">
             <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="filterBy">
             <span class="input-group-addon glyphicon glyphicon-search" style="top:0;" aria-hidden="true"></span>
         </div>  
@@ -11,10 +11,10 @@
                     <th>
                         ISBN
                     </th>
-                    <th>
+                    <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         Title
                     </th>
-                    <th>
+                    <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         Author
                     </th>
                     <th>
@@ -27,10 +27,10 @@
                     <td>
                         {{reservation.book.bookInfo.isbn}} 
                     </td>
-                    <td>
+                    <td [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         {{reservation.book.bookInfo.title}} 
                     </td>
-                    <td>
+                    <td [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         {{reservation.book.bookInfo.author}} 
                     </td>
                     <td>
@@ -39,6 +39,57 @@
                 </tr> 
             </tbody>
         </table>
+    </div>
+    <div *ngIf="selectedBook" [ngClass]="profile.getProfile().displayProperties.hideOnDesktop">
+        <div style="margin-bottom:5px">
+            <button type="button" class="btn btn-default" (click)="unselectReservation()"> 
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back
+            </button>          
+        </div>
+        <div>
+            <table class="table table-bordered table-condensed">
+                <tr>
+                    <th style="background-color:#EEE">
+                        ISBN
+                    </th>
+                    <td>
+                        {{selectedBook.book.bookInfo.isbn}}
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#EEE">
+                        Title
+                    </th>
+                    <td>
+                        {{selectedBook.book.bookInfo.title}} 
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#EEE">
+                        Author
+                    </th>
+                    <td>
+                        {{selectedBook.book.bookInfo.author}} 
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#EEE">
+                        Student ID
+                    </th>
+                    <td>
+                        {{selectedBook.student.id}}
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#EEE">
+                        Student
+                    </th>
+                    <td>
+                        {{selectedBook.student.firstname}} {{selectedBook.student.lastname}} 
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
   </div>
 </div>

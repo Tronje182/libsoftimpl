@@ -42,10 +42,10 @@
                     <th>
                         ISBN
                     </th>
-                    <th>
+                    <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         Author
                     </th>
-                    <th>
+                    <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         Title
                     </th>
                     <th>
@@ -58,10 +58,10 @@
                     <td>
                         {{lending.book.bookInfo.isbn}}
                     </td>
-                    <td>
+                    <td [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         {{lending.book.bookInfo.author}}
                     </td>
-                    <td>
+                    <td [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         {{lending.book.bookInfo.title}}
                     </td>
                     <td>

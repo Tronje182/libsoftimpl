@@ -8,11 +8,13 @@ import {provide, PLATFORM_DIRECTIVES} from '@angular/core';
 import { ResponsiveState, ResponsiveConfig, RESPONSIVE_DIRECTIVES } from 'responsive-directives-angular2';
 
 import { NoolsService } from './services/nools.service';
+import { ProfileService } from './services/profile.service';
 
 bootstrap(AppComponent,[
     APP_ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
     ResponsiveState,
     NoolsService,
+    ProfileService,
     provide(PLATFORM_DIRECTIVES, { useValue: [RESPONSIVE_DIRECTIVES], multi: true})
 ]);

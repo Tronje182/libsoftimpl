@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 import { Student } from '../data/student';
 import { BookLending } from '../data/bookLending';
 
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { NoolsService } from '../services/nools.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'student-details',
   templateUrl: 'app/desktopViews/studentDetails.component.html',
-  providers: [DataService,AuthenticationService]
+  providers: [DataService,AuthenticationService],
+  directives: [NgClass]
 })
 
 export class StudentDetailsComponent {
@@ -26,7 +30,9 @@ export class StudentDetailsComponent {
   constructor(
     private dataService: DataService,
     private _service:AuthenticationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private profile: ProfileService,
+    private flow: NoolsService
   ) {
       this.student = new Student('','','',false);
   }
@@ -39,5 +45,18 @@ export class StudentDetailsComponent {
       this.dataService.getStudentById(this.studentId).then(s => this.student = s);
       this.dataService.getLendings(this.studentId).then(l => this.bookLendings = l);
     })
+
+    var session = this.flow.getSession();
+    session.assert(this.profile.getProfile());
+
+    //now fire the rules
+    session.match(function(err){
+        if(err){
+            console.error(err.stack);
+        }else{
+            console.log("done");
+            
+        }
+    }) 
   }
 }

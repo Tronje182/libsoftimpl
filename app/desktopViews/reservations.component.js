@@ -10,14 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var common_1 = require('@angular/common');
 var myfilter_pipe_1 = require('../helper/myfilter.pipe');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
+var nools_service_1 = require('../services/nools.service');
+var profile_service_1 = require('../services/profile.service');
 var ReservationsComponent = (function () {
-    function ReservationsComponent(dataService, _service, router) {
+    function ReservationsComponent(dataService, _service, router, profile, flow) {
         this.dataService = dataService;
         this._service = _service;
         this.router = router;
+        this.profile = profile;
+        this.flow = flow;
     }
     ReservationsComponent.prototype.getReservations = function () {
         var _this = this;
@@ -27,6 +32,17 @@ var ReservationsComponent = (function () {
         this._service.checkStaffPrivileges();
         this.isDisabled = true;
         this.getReservations();
+        var session = this.flow.getSession();
+        session.assert(this.profile.getProfile());
+        //now fire the rules
+        session.match(function (err) {
+            if (err) {
+                console.error(err.stack);
+            }
+            else {
+                console.log("done");
+            }
+        });
     };
     ReservationsComponent.prototype.onSelect = function (book) {
         if (this.selectedBook === book) {
@@ -38,6 +54,10 @@ var ReservationsComponent = (function () {
             this.isDisabled = false;
         }
     };
+    ReservationsComponent.prototype.unselectReservation = function () {
+        this.selectedBook = undefined;
+        this.isDisabled = true;
+    };
     ReservationsComponent.prototype.issueBook = function () {
         this.router.navigate(['/lendingForm', { studentid: this.selectedBook.student.id, bookid: this.selectedBook.book.id }]);
     };
@@ -46,9 +66,10 @@ var ReservationsComponent = (function () {
             selector: 'book-reservations',
             templateUrl: 'app/desktopViews/reservations.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService],
-            pipes: [myfilter_pipe_1.ReservationsPipe]
+            pipes: [myfilter_pipe_1.ReservationsPipe],
+            directives: [common_1.NgClass]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService, nools_service_1.NoolsService])
     ], ReservationsComponent);
     return ReservationsComponent;
 }());

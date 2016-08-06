@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
-    <div name="content">
-        <div [ngClass]="profile.displayProperties.searchInputGroupClass" style="margin-bottom:5px;">
+    <div name="content" *ngIf="!profile.getProfile().displayProperties.isMobile || (profile.getProfile().displayProperties.isMobile && !selectedLending)">
+        <div [ngClass]="profile.getProfile().displayProperties.searchInputGroupClass" style="margin-bottom:5px;">
             <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="filterBy">
             <span class="input-group-addon glyphicon glyphicon-search" style="top:0;" aria-hidden="true"></span>
         </div>  
@@ -14,7 +14,7 @@
                     <th>
                         Book
                     </th>
-                    <th style="display:none">
+                    <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         Until
                     </th>
                 </tr>
@@ -27,12 +27,55 @@
                     <td>
                         {{lending.book.bookInfo.isbn}}
                     </td>
-                    <td style="display:none">
+                    <td [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
                         {{lending.until}}
                     </td>
                 </tr> 
             </tbody>
         </table>
+    </div>
+    <div *ngIf="selectedLending" [ngClass]="profile.getProfile().displayProperties.hideOnDesktop">
+        <div style="margin-bottom:5px">
+            <button type="button" class="btn btn-default" (click)="unselectLending()"> 
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back
+            </button>          
+        </div>
+        <div>
+            <table class="table table-bordered table-condensed">
+                <tr>
+                    <th style="background-color:#EEE">
+                        ISBN
+                    </th>
+                    <td>
+                        {{selectedLending.book.bookInfo.isbn}}
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#EEE">
+                        Title
+                    </th>
+                    <td>
+                        {{selectedLending.book.bookInfo.title}} 
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#EEE">
+                        Author
+                    </th>
+                    <td>
+                        {{selectedLending.book.bookInfo.author}} 
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color:#EEE">
+                        Until
+                    </th>
+                    <td>
+                        {{selectedLending.until}}
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
   </div>
 </div>
