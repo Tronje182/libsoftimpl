@@ -14,13 +14,13 @@ import { STUDENTS } from '../data/mock-students';
 export class DataService {
 
   constructor(){
-      if(localStorage.getItem('booklendings') === null){
+      if(localStorage.getItem('booklendings') == null){
         localStorage.setItem('booklendings', JSON.stringify(BOOKLENDINGS));
       }
-      if(localStorage.getItem('bookreservations') === null){
+      if(localStorage.getItem('bookreservations') == null){
         localStorage.setItem('bookreservations', JSON.stringify(BOOKRESERVATIONS));
       }
-      if(localStorage.getItem('books') === null){
+      if(localStorage.getItem('books') == null){
         localStorage.setItem('books', JSON.stringify(BOOKS));
       }
     }
@@ -95,14 +95,14 @@ export class DataService {
     var br: BookReservation;
 
     bl = this.localGet('booklendings').find(bl => bl.book.id == id);
-    if(bl !== null){
+    if(bl != null){
       var index2 = this.indexOfLending(this.localGet('booklendings'),bl);
 
       this.localSplice('booklendings', index2);
     }
 
     br = this.localGet('bookreservations').find(bl => bl.book.id == id);
-    if(br !== null){
+    if(br != null){
       var index2 = this.indexOfReservation(this.localGet('bookreservations'),br);
       console.log('index2 ' + index2);
 
@@ -122,7 +122,7 @@ export class DataService {
     book = this.getBookByIdSync(bookObj.id);
     bookreservations = this.localGet('bookreservations');
 
-    if(book.status === true || bookreservations.find(bl => bl.book.id == bookObj.id && bl.student.id == studentId) !== null)
+    if(book.status === true || bookreservations.find(bl => bl.book.id == bookObj.id && bl.student.id == studentId) != null)
     {
       tempArr = this.localGet('booklendings');
       student = this.getStudentByIdSync(studentId);
@@ -130,7 +130,7 @@ export class DataService {
       this.localSet('booklendings', tempArr);
 
       br = bookreservations.find(bl => bl.book.id == bookObj.id && bl.student.id == studentId);
-      if(br !== null){
+      if(br != null){
         var index2 = this.indexOfReservation(bookreservations,br);
         console.log('index2 ' + index2);
 
