@@ -5,7 +5,7 @@ export class PlatformProfile {
     {};
 
     // set platform type to 'mobile' or 'desktop'
-    public setPlatformType = function(type){
+    public setPlatformType(type: string){
         this.type = type;
     };
 

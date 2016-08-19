@@ -10,18 +10,55 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var profile_1 = require('../helper/profile');
+var displayProperties_1 = require('../helper/displayProperties');
+var platform_profile_1 = require('../helper/platform.profile');
+var user_profile_1 = require('../helper/user.profile');
+var environment_profile_1 = require('../helper/environment.profile');
 var ProfileService = (function () {
     function ProfileService() {
-        this.profile = new profile_1.Profile();
-        this.profile.setUserProfile('student');
-        this.md = new MobileDetect(window.navigator.userAgent);
-        if (this.md.mobile() == null) {
-            this.profile.setPlatformType("desktop");
+        // check if profile configuration ist already saved in local storage
+        if (localStorage.getItem('profile') != null) {
+            // parse profile configuration string to profile object
+            var temp;
+            temp = JSON.parse(localStorage.getItem('profile'));
+            temp.user.__proto__ = user_profile_1.UserProfile.prototype;
+            temp.environment.__proto__ = environment_profile_1.EnvironmentProfile.prototype;
+            temp.platform.__proto__ = platform_profile_1.PlatformProfile.prototype;
+            temp.displayProperties.__proto__ = displayProperties_1.DisplayProperties.prototype;
+            temp.__proto__ = profile_1.Profile.prototype;
+            this.profile = temp;
         }
         else {
-            this.profile.setPlatformType("mobile");
+            // initialize new profile configuration
+            this.profile = new profile_1.Profile();
+            this.profile.setUserRole('student');
+            this.md = new MobileDetect(window.navigator.userAgent);
+            if (this.md.mobile() == null) {
+                this.profile.setPlatformType("desktop");
+            }
+            else {
+                this.profile.setPlatformType("mobile");
+            }
+            // save profile configuration string to local storage
+            localStorage.setItem('profile', JSON.stringify(this.profile));
         }
     }
+    ProfileService.prototype.setBrightnessLevel = function (v) {
+        this.profile.getEnvironment().setBrightnessLevel(v);
+        localStorage.setItem('profile', JSON.stringify(this.profile));
+    };
+    ProfileService.prototype.setComputerSelfEfficiacy = function (v) {
+        this.profile.getUser().setComputerSelfEfficiacy(v);
+        localStorage.setItem('profile', JSON.stringify(this.profile));
+    };
+    ProfileService.prototype.setWeakVision = function (v) {
+        this.profile.getUser().setWeakVision(v);
+        localStorage.setItem('profile', JSON.stringify(this.profile));
+    };
+    ProfileService.prototype.setPlatformType = function (v) {
+        this.profile.getPlatform().setPlatformType(v);
+        localStorage.setItem('profile', JSON.stringify(this.profile));
+    };
     ProfileService.prototype.getProfile = function () {
         return this.profile;
     };

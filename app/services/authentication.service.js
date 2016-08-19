@@ -48,17 +48,17 @@ var AuthenticationService = (function () {
         return false;
     };
     AuthenticationService.prototype.getName = function () {
-        if (localStorage.getItem('user') !== null) {
+        if (localStorage.getItem('user') != null) {
             return JSON.parse(localStorage.getItem("user")).firstname + " " + JSON.parse(localStorage.getItem('user')).lastname;
         }
     };
     AuthenticationService.prototype.getId = function () {
-        if (localStorage.getItem('user') !== null) {
+        if (localStorage.getItem('user') != null) {
             return JSON.parse(localStorage.getItem("user")).id;
         }
     };
     AuthenticationService.prototype.checkCredentials = function () {
-        if (localStorage.getItem('user') === null) {
+        if (localStorage.getItem('user') == null) {
             this._router.navigate(['login']);
         }
     };
@@ -75,7 +75,7 @@ var AuthenticationService = (function () {
         }
     };
     AuthenticationService.prototype.isStaff = function () {
-        if (localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem("user")).role === 'staff') {
+        if (localStorage.getItem('user') != null && JSON.parse(localStorage.getItem("user")).role === 'staff') {
             return true;
         }
         else {
@@ -83,7 +83,7 @@ var AuthenticationService = (function () {
         }
     };
     AuthenticationService.prototype.isStudent = function () {
-        if (localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem('user')).role === 'student') {
+        if (localStorage.getItem('user') != null && JSON.parse(localStorage.getItem('user')).role === 'student') {
             return true;
         }
         else {

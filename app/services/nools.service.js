@@ -13,7 +13,7 @@ var profile_1 = require('../helper/profile');
 var NoolsService = (function () {
     function NoolsService() {
         this.flow = nools.flow("ProfileEvaluation", function (flow) {
-            flow.rule("Platform Desktop", [profile_1.Profile, "m", "m.getPlatformType() =~ /desktop/"], function (facts) {
+            flow.rule("Platform Desktop", [profile_1.Profile, "m", "m.getPlatform().getPlatformType() =~ /desktop/"], function (facts) {
                 console.log(facts.m);
                 facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
                 facts.m.displayProperties.headerBarClass = 'row divLine';
@@ -27,9 +27,8 @@ var NoolsService = (function () {
                 facts.m.displayProperties.searchInputGroupClass = 'input-group col-md-6 col-md-offset-6';
                 facts.m.displayProperties.isMobile = false;
                 this.modify(facts.m);
-                this.halt();
             });
-            flow.rule("Platform Mobile", [profile_1.Profile, "m", "m.getPlatformType() =~ /mobile/"], function (facts) {
+            flow.rule("Platform Mobile", [profile_1.Profile, "m", "m.getPlatform().getPlatformType() =~ /mobile/"], function (facts) {
                 console.log(facts.m);
                 facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
                 facts.m.displayProperties.headerBarClass = 'hideElement';
@@ -43,7 +42,6 @@ var NoolsService = (function () {
                 facts.m.displayProperties.searchInputGroupClass = 'input-group';
                 facts.m.displayProperties.isMobile = true;
                 this.modify(facts.m);
-                this.halt();
             });
         });
     }

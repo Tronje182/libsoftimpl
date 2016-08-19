@@ -5,7 +5,7 @@ export class EnvironmentProfile {
     {};
 
     // set brightness on a scale from 0 to 100;
-    public setBrightnessLevel = function(brightness: number){
+    public setBrightnessLevel(brightness: number){
         if(brightness > 100){
             this.brightnessLevel = 100;
         }else if(brightness < 0){

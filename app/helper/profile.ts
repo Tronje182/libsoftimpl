@@ -2,11 +2,15 @@ import { PlatformProfile } from '../helper/platform.profile';
 import { UserProfile } from '../helper/user.profile';
 import { EnvironmentProfile } from '../helper/environment.profile';
 
+import { DisplayProperties } from '../helper/displayProperties'
+
 // instance of context model
 export class Profile {
-    private user: UserProfile;
-    private platform: PlatformProfile;
-    private environment: EnvironmentProfile;
+    public user: UserProfile;
+    public platform: PlatformProfile;
+    public environment: EnvironmentProfile;
+
+    public displayProperties: DisplayProperties;
 
     constructor()
     {
@@ -14,6 +18,8 @@ export class Profile {
         this.user = new UserProfile('',false,false);
         this.platform = new PlatformProfile ('');
         this.environment = new EnvironmentProfile(50);
+
+        this.displayProperties = new DisplayProperties();
     };
  
     // set the user role

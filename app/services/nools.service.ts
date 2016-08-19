@@ -13,7 +13,7 @@ export class NoolsService {
 
   constructor(){
       this.flow = nools.flow("ProfileEvaluation", function (flow) {
-            flow.rule("Platform Desktop", [Profile, "m", "m.getPlatformType() =~ /desktop/"], function (facts) {
+            flow.rule("Platform Desktop", [Profile, "m", "m.getPlatform().getPlatformType() =~ /desktop/"], function (facts) {
                 console.log(facts.m);
                 facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
 
@@ -32,10 +32,9 @@ export class NoolsService {
                 facts.m.displayProperties.isMobile = false;
 
                 this.modify(facts.m);
-                this.halt();
             });
 
-            flow.rule("Platform Mobile", [Profile, "m", "m.getPlatformType() =~ /mobile/"], function (facts) {
+            flow.rule("Platform Mobile", [Profile, "m", "m.getPlatform().getPlatformType() =~ /mobile/"], function (facts) {
                 console.log(facts.m);
                 facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
 
@@ -54,7 +53,6 @@ export class NoolsService {
                 facts.m.displayProperties.isMobile = true;
 
                 this.modify(facts.m);
-                this.halt();
             });
         });
     }

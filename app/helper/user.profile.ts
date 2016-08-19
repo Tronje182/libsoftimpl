@@ -7,17 +7,17 @@ export class UserProfile {
     {};
 
     // Set role of user
-    public setUserRole = function(role: string){
+    public setUserRole(role: string){
         this.role = role;
     };
 
     // True if user has weak eyesight, false otherwise
-    public setWeakVision = function(hasWeakVision: boolean){
+    public setWeakVision(hasWeakVision: boolean){
         this.weakVision = hasWeakVision;
     };
 
     // True if user has high computer self-efficiacy, false otherwise
-    public setComputerSelfEfficiacy = function(computerSelfEfficiacy: boolean){
+    public setComputerSelfEfficiacy(computerSelfEfficiacy: boolean){
         this.computerSelfEfficiacy = computerSelfEfficiacy;
     };
 

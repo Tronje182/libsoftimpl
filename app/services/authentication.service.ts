@@ -46,19 +46,19 @@ export class AuthenticationService {
   }
 
   getName(){
-    if (localStorage.getItem('user') !== null){
+    if (localStorage.getItem('user') != null){
         return JSON.parse(localStorage.getItem("user")).firstname + " " + JSON.parse(localStorage.getItem('user')).lastname;
     }
   }
 
   getId(){
-    if (localStorage.getItem('user') !== null){
+    if (localStorage.getItem('user') != null){
         return JSON.parse(localStorage.getItem("user")).id;
     }
   }
 
   checkCredentials(){
-    if (localStorage.getItem('user') === null){
+    if (localStorage.getItem('user') == null){
         this._router.navigate(['login']);
     }
   }
@@ -77,7 +77,7 @@ export class AuthenticationService {
   }
 
   isStaff(){
-    if (localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem("user")).role === 'staff'){
+    if (localStorage.getItem('user') != null && JSON.parse(localStorage.getItem("user")).role === 'staff'){
       return true;
     }else{
       return false;
@@ -85,7 +85,7 @@ export class AuthenticationService {
   }
 
   isStudent(){
-    if (localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem('user')).role === 'student'){
+    if (localStorage.getItem('user') != null && JSON.parse(localStorage.getItem('user')).role === 'student'){
       return true;
     }else{
       return false;

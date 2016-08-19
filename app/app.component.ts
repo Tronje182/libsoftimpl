@@ -4,15 +4,17 @@ import { NgClass } from '@angular/common';
 
 import { LoginComponent } from './desktopViews/login.component';
 
-import {AuthenticationService} from './services/authentication.service';
-import {NoolsService} from './services/nools.service';
+import { AuthenticationService } from './services/authentication.service';
+import { NoolsService } from './services/nools.service';
 import { ProfileService } from './services/profile.service';
 
+import { NoolsTestBarComponent } from './tests/noolstestBar'
 
 @Component({
   selector: 'my-app',
   providers: [AuthenticationService],
   template: `
+    <noolstestbar></noolstestbar>
     <div id="desktopViewContainter" class="container"> <!-- headerBarClass: row divLine -->
       <div id="headerBar" [ngClass]="profile.getProfile().displayProperties.headerBarClass" style="margin-right:0px;padding-left:0px;padding-right:0px;">
         <div class="col-md-12" style="width:100%; padding-left:0;padding-right:0px; background-color:lightgray;">
@@ -62,7 +64,7 @@ import { ProfileService } from './services/profile.service';
       </div>
     </div>
   `,
-  directives: [LoginComponent, ROUTER_DIRECTIVES, NgClass]
+  directives: [LoginComponent, ROUTER_DIRECTIVES, NgClass, NoolsTestBarComponent]
 })
 
 export class AppComponent {
