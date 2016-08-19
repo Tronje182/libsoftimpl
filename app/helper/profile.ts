@@ -1,32 +1,58 @@
 import { PlatformProfile } from '../helper/platform.profile';
 import { UserProfile } from '../helper/user.profile';
-import {DisplayProperties} from '../helper/displayProperties'
+import { EnvironmentProfile } from '../helper/environment.profile';
 
+// instance of context model
 export class Profile {
     private user: UserProfile;
     private platform: PlatformProfile;
-    public displayProperties: DisplayProperties;
+    private environment: EnvironmentProfile;
 
     constructor()
     {
-        this.user = new UserProfile('');
+        // initialize context profiles
+        this.user = new UserProfile('',false,false);
         this.platform = new PlatformProfile ('');
-        this.displayProperties = new DisplayProperties();
+        this.environment = new EnvironmentProfile(50);
     };
  
-    public setUserProfile(v : string) {
-        this.user.profile = v;
+    // set the user role
+    public setUserRole(v : string) {
+        this.user.setUserRole(v);
     }
 
+    // set if the user has weak vision
+    public setUserWeakVision(v: boolean){
+        this.user.setWeakVision(v);
+    }
+
+    // set if the user has high computer self-efficiacy
+    public setUserComputerSelfEfficiacy(v: boolean){
+        this.user.setComputerSelfEfficiacy(v);
+    }
+
+    // set platform type
     public setPlatformType(v : string){
-        this.platform.type = v;
+        this.platform.setPlatformType(v);
     }
     
-    public getUserProfile() : string {
-        return this.user.profile;
+    // set environment brightness on a scale of 0 to 100
+    public setEnvironmentBrightness(v: number){
+        this.environment.setBrightnessLevel(v);
+    }
+
+    // get user profile
+    public getUser() : UserProfile {
+        return this.user;
     }
     
-    public getPlatformType() : string {
-        return this.platform.type;
+    // get platform profile
+    public getPlatform() : PlatformProfile {
+        return this.platform;
+    }
+
+    // get environment profile
+    public getEnvironment() : EnvironmentProfile {
+        return this.environment;
     }
 }
