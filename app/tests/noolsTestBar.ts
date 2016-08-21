@@ -66,17 +66,17 @@ export class NoolsTestBarComponent {
 
     // input for device changed
     deviceChanged(){
-        this._profile.getProfile().getPlatform().setPlatformType(this.platformType);
+        this._profile.setPlatformType(this.platformType);
     }
 
     // input for vision changed
     visionChanged(){
-        this._profile.getProfile().getUser().setWeakVision(this.userWeakVision);
+        this._profile.setWeakVision(this.userWeakVision);
     }
     
     // input for self efficiacy changed
     selfEfficiacyChanged(){
-        this._profile.getProfile().getUser().setComputerSelfEfficiacy(this.userSelfEfficiacy);
+        this._profile.setComputerSelfEfficiacy(this.userSelfEfficiacy);
     }
     
     // input for environment brightness changed

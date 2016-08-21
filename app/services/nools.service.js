@@ -13,14 +13,40 @@ var profile_1 = require('../helper/profile');
 var NoolsService = (function () {
     function NoolsService() {
         this.flow = nools.flow("ProfileEvaluation", function (flow) {
+            flow.rule("Evironment Brigthness Over 40", [profile_1.Profile, "m", "m.getEnvironment().getBrightnessLevel() > 40"], function (facts) {
+                // color schemes
+                $('.backgroundPrimary').css('background-color', 'white');
+                $('.backgroundSecondary').css('background-color', 'lightgrey');
+                //$('.backgroundSecondary li:hover').css('background-color', 'rgba(255,255,255,0.5)');
+                //$('.backgroundSecondary li:hover').css('color', '#999999');
+                $('.textPrimary').css('color', 'black');
+                $('.borderPrimary').css('border-color', 'black');
+                $('.borderSecondary').css('border-color', 'white');
+                //adapt bootstrap
+                $('.form-control').css('background-color', '#fff');
+                $('.form-control').css('border-color', '#ccc');
+            });
+            flow.rule("Evironment Brigthness Under 40", [profile_1.Profile, "m", "m.getEnvironment().getBrightnessLevel() <= 40"], function (facts) {
+                //color schemes
+                $('.backgroundPrimary').css('background-color', '#232323');
+                $('.backgroundSecondary').css('background-color', '#323632');
+                //$('.backgroundSecondary li:hover').css('background-color', 'black !important');
+                $('.backgroundSecondary li:hover').css('color', 'white !important');
+                $('.textPrimary').css('color', '#666666');
+                $('.borderPrimary').css('border-color', 'black');
+                $('.borderSecondary').css('border-color', 'black');
+                // adapt bootstrap
+                $('.form-control').css('background-color', '#323232');
+                $('.form-control').css('border-color', '#636363');
+            });
             flow.rule("Platform Desktop", [profile_1.Profile, "m", "m.getPlatform().getPlatformType() =~ /desktop/"], function (facts) {
                 console.log(facts.m);
                 facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
-                facts.m.displayProperties.headerBarClass = 'row divLine';
+                facts.m.displayProperties.headerBarClass = 'row backgroundSecondary divLine borderSecondary';
                 facts.m.displayProperties.routerOutletClass = 'col-md-10';
                 facts.m.displayProperties.hideOnMobile = '';
                 facts.m.displayProperties.navbarContainerClass = 'sidebar-navbar col-md-2';
-                facts.m.displayProperties.navbarWrapperClass = 'sidebar-wrapper';
+                facts.m.displayProperties.navbarWrapperClass = 'sidebar-wrapper backgroundSecondary';
                 facts.m.displayProperties.navbarHeaderClass = 'hideElement';
                 facts.m.displayProperties.navbarCollapseClass = '';
                 facts.m.displayProperties.navbarItemListClass = 'sidebar-nav';

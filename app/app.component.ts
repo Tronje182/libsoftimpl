@@ -15,9 +15,9 @@ import { NoolsTestBarComponent } from './tests/noolstestBar'
   providers: [AuthenticationService],
   template: `
     <noolstestbar></noolstestbar>
-    <div id="desktopViewContainter" class="container"> <!-- headerBarClass: row divLine -->
+    <div id="desktopViewContainter" class="container"> 
       <div id="headerBar" [ngClass]="profile.getProfile().displayProperties.headerBarClass" style="margin-right:0px;padding-left:0px;padding-right:0px;">
-        <div class="col-md-12" style="width:100%; padding-left:0;padding-right:0px; background-color:lightgray;">
+        <div class="col-md-12" style="width:100%; padding-left:0;padding-right:0px;">
           <a href="\" class="btn btn-link"><img src="./app/ressources/images/logo_transparent.png" alt="LibSoft" height="115" width="175"></a>
         </div>
         <div>
@@ -37,20 +37,20 @@ import { NoolsTestBarComponent } from './tests/noolstestBar'
 
             <div [ngClass]="profile.getProfile().displayProperties.navbarCollapseClass" id="bs-nav">
               <ul [ngClass]="profile.getProfile().displayProperties.navbarItemListClass">
-                <li class="divLine" *ngIf="authService.isStudent()">
-                  <a href="\lentBooks">Lent Books</a>
+                <li class="divLine borderSecondary" *ngIf="authService.isStudent()">
+                  <a href="\lentBooks" class="textPrimary">Lent Books</a>
                 </li>
-                <li class="divLine" *ngIf="authService.isStudent() || authService.isStaff()">
-                  <a href="\searchBooks">Search Books</a>
+                <li class="divLine borderSecondary" *ngIf="authService.isStudent() || authService.isStaff()">
+                  <a href="\searchBooks" class="textPrimary">Search Books</a>
                 </li>
-                <li class="divLine" *ngIf="authService.isStaff()">
-                  <a href="\students">Search Students</a>
+                <li class="divLine borderSecondary" *ngIf="authService.isStaff()">
+                  <a href="\students" class="textPrimary">Search Students</a>
                 </li>
-                <li class="divLine" *ngIf="authService.isStaff()">
-                  <a href="\\reservations">View Reservations</a>
+                <li class="divLine borderSecondary" *ngIf="authService.isStaff()">
+                  <a href="\\reservations" class="textPrimary">View Reservations</a>
                 </li>
-                <li class="divLine" *ngIf="authService.isStaff()">
-                  <a href="\lendingForm">View Lending Form</a>
+                <li class="divLine borderSecondary" *ngIf="authService.isStaff()">
+                  <a href="\lendingForm" class="textPrimary">View Lending Form</a>
                 </li>
               </ul>              
             </div>

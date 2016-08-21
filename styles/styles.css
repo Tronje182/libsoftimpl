@@ -7,6 +7,31 @@ body {
   margin: 2em;
 }
 
+.backgroundPrimary{
+  background-color: white;
+}
+
+.backgroundSecondary{
+  background-color: lightgrey; 
+}
+
+.backgroundSecondary li:hover{
+  color: #999999;
+  background-color: rgba(255,255,255,0.2); 
+}
+
+.textPrimary{
+  color: black;
+}
+
+.borderPrimary{
+  border-color: black;
+}
+
+.borderSecondary{
+  border-color: white;
+}
+
  /*
   * See https://github.com/angular/angular.io/blob/master/public/docs/_examples/styles.css
   * for the full set of master styles used by the documentation samples
@@ -23,7 +48,8 @@ body {
     margin:0px;  
     padding: 0px 2px 2px 3px;    
     border-width: 2px;
-    border-bottom: 2px white solid;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
     width: 100%;
   }
 
@@ -33,7 +59,8 @@ body {
     margin:0px;  
     padding: 0px 2px 2px 3px;    
     border-width: 2px;
-    border-top: 2px black solid;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
     width: 100%;
   }
 

@@ -20,15 +20,15 @@ var NoolsTestBarComponent = (function () {
     }
     // input for device changed
     NoolsTestBarComponent.prototype.deviceChanged = function () {
-        this._profile.getProfile().getPlatform().setPlatformType(this.platformType);
+        this._profile.setPlatformType(this.platformType);
     };
     // input for vision changed
     NoolsTestBarComponent.prototype.visionChanged = function () {
-        this._profile.getProfile().getUser().setWeakVision(this.userWeakVision);
+        this._profile.setWeakVision(this.userWeakVision);
     };
     // input for self efficiacy changed
     NoolsTestBarComponent.prototype.selfEfficiacyChanged = function () {
-        this._profile.getProfile().getUser().setComputerSelfEfficiacy(this.userSelfEfficiacy);
+        this._profile.setComputerSelfEfficiacy(this.userSelfEfficiacy);
     };
     // input for environment brightness changed
     NoolsTestBarComponent.prototype.brightnessChanged = function () {
