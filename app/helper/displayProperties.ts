@@ -37,7 +37,7 @@ export class DisplayProperties {
         this.hideOnDesktop = '';
 
         //tables
-        this.tableClass = ''
+        this.tableClass = 'table table-striped table-hover table-condensed'
 
         //navigation
         this.navbarContainerClass = '';

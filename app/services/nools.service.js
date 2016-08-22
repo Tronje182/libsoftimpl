@@ -25,6 +25,7 @@ var NoolsService = (function () {
                 //adapt bootstrap
                 $('.form-control').css('background-color', '#fff');
                 $('.form-control').css('border-color', '#ccc');
+                facts.m.displayProperties.setTableClass('table table-striped table-hover table-condensed');
             });
             flow.rule("Evironment Brigthness Under 40", [profile_1.Profile, "m", "m.getEnvironment().getBrightnessLevel() <= 40"], function (facts) {
                 //color schemes
@@ -38,10 +39,10 @@ var NoolsService = (function () {
                 // adapt bootstrap
                 $('.form-control').css('background-color', '#323232');
                 $('.form-control').css('border-color', '#636363');
+                facts.m.displayProperties.setTableClass('table table-striped table-striped-dark table-hover table-condensed');
             });
             flow.rule("Platform Desktop", [profile_1.Profile, "m", "m.getPlatform().getPlatformType() =~ /desktop/"], function (facts) {
                 console.log(facts.m);
-                facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
                 facts.m.displayProperties.headerBarClass = 'row backgroundSecondary divLine borderSecondary';
                 facts.m.displayProperties.routerOutletClass = 'col-md-10';
                 facts.m.displayProperties.hideOnMobile = '';
@@ -56,7 +57,6 @@ var NoolsService = (function () {
             });
             flow.rule("Platform Mobile", [profile_1.Profile, "m", "m.getPlatform().getPlatformType() =~ /mobile/"], function (facts) {
                 console.log(facts.m);
-                facts.m.displayProperties.setTableClass('table table-inverse table-bordered table-hover');
                 facts.m.displayProperties.headerBarClass = 'hideElement';
                 facts.m.displayProperties.routerOutletClass = 'col-md-12';
                 facts.m.displayProperties.hideOnMobile = 'hideElement';
