@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,9 +15,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var authentication_service_1 = require('../services/authentication.service');
-var DefaultComponent = (function () {
-    function DefaultComponent(_service) {
+var base_component_1 = require('./base.component');
+var profile_service_1 = require('../services/profile.service');
+var DefaultComponent = (function (_super) {
+    __extends(DefaultComponent, _super);
+    function DefaultComponent(_service, _profile) {
+        _super.call(this, _profile);
         this._service = _service;
+        this._profile = _profile;
     }
     DefaultComponent.prototype.ngOnInit = function () {
         this._service.checkCredentials();
@@ -28,11 +38,11 @@ var DefaultComponent = (function () {
         core_1.Component({
             selector: 'login-form',
             providers: [authentication_service_1.AuthenticationService],
-            template: "\n        <div class=\"row\">\n          <div class=\"col-md-12\">\n            <div name=\"content\">\n                <div>\n                    <h3>Welcome to Libsoft, {{getName()}}!</h3>\n                <div>\n                <div>\n                    LibSoft is a software application for students and staff members of the library of the Paderborn University.\n                </div>\n                \n                <a (click)=\"logout()\" href=\"\">Click Here to logout</a>\n            </div>\n          </div>\n        </div>\n  "
+            template: "\n        <div class=\"row\">\n          <div class=\"col-md-12\">\n            <div>\n                <div id=\"content\">\n                </div>\n                <div>\n                    <h3>Welcome to Libsoft, {{getName()}}!</h3>\n                <div>\n                <div>\n                    LibSoft is a software application for students and staff members of the library of the Paderborn University.\n                </div>\n                \n                <a (click)=\"logout()\" href=\"\">Click Here to logout</a>\n            </div>\n          </div>\n        </div>\n  "
         }), 
-        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, profile_service_1.ProfileService])
     ], DefaultComponent);
     return DefaultComponent;
-}());
+}(base_component_1.BaseComponent));
 exports.DefaultComponent = DefaultComponent;
 //# sourceMappingURL=default.component.js.map

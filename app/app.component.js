@@ -33,7 +33,6 @@ var AppComponent = (function () {
             }
             else {
                 console.log("done");
-                console.log(this.profile);
             }
         });
     };

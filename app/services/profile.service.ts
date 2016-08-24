@@ -5,6 +5,7 @@ import { DisplayProperties } from '../helper/displayProperties'
 
 import { PlatformProfile } from '../helper/platform.profile';
 import { UserProfile } from '../helper/user.profile';
+import { StateProfile } from '../helper/state.profile';
 import { EnvironmentProfile } from '../helper/environment.profile';
 
 declare var MobileDetect: any;
@@ -24,9 +25,11 @@ export class ProfileService {
       temp.user.__proto__ = UserProfile.prototype;
       temp.environment.__proto__ = EnvironmentProfile.prototype;
       temp.platform.__proto__ = PlatformProfile.prototype;
+      //temp.state.__proto__ = StateProfile.prototype;
       temp.displayProperties.__proto__ = DisplayProperties.prototype;
       temp.__proto__ = Profile.prototype;
       this.profile = temp;
+      this.profile.state = new StateProfile();
     }else{
       // initialize new profile configuration
       this.profile = new Profile();
@@ -46,22 +49,23 @@ export class ProfileService {
 
   public setBrightnessLevel(v:number){
     this.profile.getEnvironment().setBrightnessLevel(v);
-    localStorage.setItem('profile', JSON.stringify(this.profile));
+    localStorage.setItem('profile', this.profile.toJSON());
   }
 
-  public setComputerSelfEfficiacy(v: boolean){
+  public setComputerSelfEfficiacy(v: string){
     this.profile.getUser().setComputerSelfEfficiacy(v);
-    localStorage.setItem('profile', JSON.stringify(this.profile));
+    localStorage.setItem('profile', this.profile.toJSON());
   }
 
   public setWeakVision(v: boolean){
     this.profile.getUser().setWeakVision(v);
-    localStorage.setItem('profile', JSON.stringify(this.profile));
+    localStorage.setItem('profile', this.profile.toJSON());
   }
 
   public setPlatformType(v: string){
     this.profile.getPlatform().setPlatformType(v);
-    localStorage.setItem('profile', JSON.stringify(this.profile));
+    var test = JSON.stringify(this.profile);
+    localStorage.setItem('profile', this.profile.toJSON());
   }
 
   public getProfile(){

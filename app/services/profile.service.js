@@ -13,6 +13,7 @@ var profile_1 = require('../helper/profile');
 var displayProperties_1 = require('../helper/displayProperties');
 var platform_profile_1 = require('../helper/platform.profile');
 var user_profile_1 = require('../helper/user.profile');
+var state_profile_1 = require('../helper/state.profile');
 var environment_profile_1 = require('../helper/environment.profile');
 var ProfileService = (function () {
     function ProfileService() {
@@ -24,9 +25,11 @@ var ProfileService = (function () {
             temp.user.__proto__ = user_profile_1.UserProfile.prototype;
             temp.environment.__proto__ = environment_profile_1.EnvironmentProfile.prototype;
             temp.platform.__proto__ = platform_profile_1.PlatformProfile.prototype;
+            //temp.state.__proto__ = StateProfile.prototype;
             temp.displayProperties.__proto__ = displayProperties_1.DisplayProperties.prototype;
             temp.__proto__ = profile_1.Profile.prototype;
             this.profile = temp;
+            this.profile.state = new state_profile_1.StateProfile();
         }
         else {
             // initialize new profile configuration
@@ -45,19 +48,20 @@ var ProfileService = (function () {
     }
     ProfileService.prototype.setBrightnessLevel = function (v) {
         this.profile.getEnvironment().setBrightnessLevel(v);
-        localStorage.setItem('profile', JSON.stringify(this.profile));
+        localStorage.setItem('profile', this.profile.toJSON());
     };
     ProfileService.prototype.setComputerSelfEfficiacy = function (v) {
         this.profile.getUser().setComputerSelfEfficiacy(v);
-        localStorage.setItem('profile', JSON.stringify(this.profile));
+        localStorage.setItem('profile', this.profile.toJSON());
     };
     ProfileService.prototype.setWeakVision = function (v) {
         this.profile.getUser().setWeakVision(v);
-        localStorage.setItem('profile', JSON.stringify(this.profile));
+        localStorage.setItem('profile', this.profile.toJSON());
     };
     ProfileService.prototype.setPlatformType = function (v) {
         this.profile.getPlatform().setPlatformType(v);
-        localStorage.setItem('profile', JSON.stringify(this.profile));
+        var test = JSON.stringify(this.profile);
+        localStorage.setItem('profile', this.profile.toJSON());
     };
     ProfileService.prototype.getProfile = function () {
         return this.profile;

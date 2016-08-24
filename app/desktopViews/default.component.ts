@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 
+import { BaseComponent } from './base.component'
+
+import { ProfileService } from '../services/profile.service';
+
 @Component({
   selector: 'login-form',
   providers: [AuthenticationService],
   template: `
         <div class="row">
           <div class="col-md-12">
-            <div name="content">
+            <div>
+                <div id="content">
+                </div>
                 <div>
                     <h3>Welcome to Libsoft, {{getName()}}!</h3>
                 <div>
@@ -22,9 +28,11 @@ import { AuthenticationService } from '../services/authentication.service';
   `
 })
 
-export class DefaultComponent {
+export class DefaultComponent extends BaseComponent {
 
-    constructor(private _service : AuthenticationService){}
+    constructor(private _service : AuthenticationService, private _profile: ProfileService){
+        super(_profile);
+    }
 
     ngOnInit(){
         this._service.checkCredentials();

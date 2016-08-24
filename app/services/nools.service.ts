@@ -1,8 +1,13 @@
-import {Injectable} from '@angular/core';
+import {Injectable, DynamicComponentLoader, Injector} from '@angular/core';
 
 import { Profile } from '../helper/profile'
 import { DisplayProperties } from '../helper/displayProperties'
 
+import { BaseComponent } from '../DesktopViews/base.component'
+import { DefaultComponent } from '../DesktopViews/default.component'
+
+import { WelcomeHighComponent } from '../DynamicComponents/welcomeHigh.component'
+import { WelcomeLowComponent } from '../DynamicComponents/welcomeLow.component'
 
 declare var nools: any;
 declare var $: any;
@@ -11,9 +16,40 @@ declare var $: any;
 export class NoolsService {
 
     public flow;
+    public baseComp;
 
-  constructor(){
+  constructor(private dcl: DynamicComponentLoader, public _injector: Injector){
       this.flow = nools.flow("ProfileEvaluation", function (flow) {
+            flow.rule("Low Self-Efficiacy", [Profile, "m", "m.user.computerSelfEfficiacy =~ /false/"], function(facts){
+                var tempLoc = facts.m.state.getLocation();
+                if(tempLoc != undefined && $("#content").length != 0){  
+                    if(tempLoc.__proto__.constructor.name == "DefaultComponent"){
+                        dcl.loadAsRoot(WelcomeLowComponent, "#content",_injector);
+                    }else if(tempLoc.__proto__.constructor.name == "BaseComponent"){
+                        console.log("Is Base :(");
+                    }else{
+                        console.log("what is this???");
+                    } 
+                }
+
+                facts.m.displayProperties.isAdvancedUser = false;
+            });
+
+            flow.rule("High Self-Efficiacy", [Profile, "m", "m.user.computerSelfEfficiacy =~ /true/"], function(facts){
+                var tempLoc = facts.m.state.getLocation();
+                if(tempLoc != undefined && $("#content").length != 0){  
+                    if(tempLoc.__proto__.constructor.name == "DefaultComponent"){
+                        dcl.loadAsRoot(WelcomeHighComponent, "#content",_injector);
+                    }else if(tempLoc.__proto__.constructor.name == "BaseComponent"){
+                        console.log("Is Base :(");
+                    }else{
+                        console.log("what is this???");
+                    } 
+                }
+                
+                facts.m.displayProperties.isAdvancedUser = true;
+            });
+
             flow.rule("Evironment Brigthness Over 40", [Profile, "m", "m.getEnvironment().getBrightnessLevel() > 40"], function(facts){
                 // color schemes
                 $('.backgroundPrimary').css('background-color', 'white');
@@ -53,8 +89,6 @@ export class NoolsService {
             });
 
             flow.rule("Platform Desktop", [Profile, "m", "m.getPlatform().getPlatformType() =~ /desktop/"], function (facts) {
-                console.log(facts.m);
-
                 facts.m.displayProperties.headerBarClass = 'row backgroundSecondary divLine borderSecondary';
                 facts.m.displayProperties.routerOutletClass = 'col-md-10';
                 facts.m.displayProperties.hideOnMobile = '';
@@ -65,7 +99,7 @@ export class NoolsService {
                 facts.m.displayProperties.navbarCollapseClass = '';
                 facts.m.displayProperties.navbarItemListClass = 'sidebar-nav';
 
-                facts.m.displayProperties.searchInputGroupClass = 'input-group col-md-6 col-md-offset-6'
+                facts.m.displayProperties.searchInputGroupClass = 'input-group col-md-6 col-md-offset-4'
 
                 facts.m.displayProperties.isMobile = false;
 
@@ -74,8 +108,6 @@ export class NoolsService {
             });
 
             flow.rule("Platform Mobile", [Profile, "m", "m.getPlatform().getPlatformType() =~ /mobile/"], function (facts) {
-                console.log(facts.m);
-
                 facts.m.displayProperties.headerBarClass = 'hideElement';
                 facts.m.displayProperties.routerOutletClass = 'col-md-12';
                 facts.m.displayProperties.hideOnMobile = 'hideElement';
@@ -97,5 +129,9 @@ export class NoolsService {
 
     public getSession(){
         return this.flow.getSession();
+    }
+
+    public test(test: BaseComponent){
+        console.log(test);
     }
 }

@@ -45,18 +45,5 @@ export class StudentDetailsComponent {
       this.dataService.getStudentById(this.studentId).then(s => this.student = s);
       this.dataService.getLendings(this.studentId).then(l => this.bookLendings = l);
     })
-
-    var session = this.flow.getSession();
-    session.assert(this.profile.getProfile());
-
-    //now fire the rules
-    session.match(function(err){
-        if(err){
-            console.error(err.stack);
-        }else{
-            console.log("done");
-            
-        }
-    }) 
   }
 }

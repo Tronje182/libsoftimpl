@@ -40,20 +40,7 @@ export class ReservationsComponent {
     this._service.checkStaffPrivileges();
 
     this.isDisabled = true;
-    this.getReservations();
-
-    var session = this.flow.getSession();
-    session.assert(this.profile.getProfile());
-
-    //now fire the rules
-    session.match(function(err){
-        if(err){
-            console.error(err.stack);
-        }else{
-            console.log("done");
-            
-        }
-    })      
+    this.getReservations();   
   }
 
   onSelect(book: BookReservation){

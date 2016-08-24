@@ -32,17 +32,6 @@ var StudentsComponent = (function () {
         this._service.checkStaffPrivileges();
         this.isDisabled = true;
         this.getStudents();
-        var session = this.flow.getSession();
-        session.assert(this.profile.getProfile());
-        //now fire the rules
-        session.match(function (err) {
-            if (err) {
-                console.error(err.stack);
-            }
-            else {
-                console.log("done");
-            }
-        });
     };
     StudentsComponent.prototype.onSelect = function (student) {
         if (this.selectedStudent === student) {

@@ -3,26 +3,39 @@ import { NgClass } from '@angular/common';
 
 import { BookLending } from '../data/bookLending';
 
+import { LentBooksPipe } from '../helper/myfilter.pipe';
+
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { NoolsService } from '../services/nools.service';
 import { ProfileService } from '../services/profile.service';
 
+import { BaseComponent } from './base.component'
+import { SearchComponent } from '../dynamicComponents/search.component'
+
 @Component({
   selector: 'lent-books',
   templateUrl: 'app/desktopViews/lentbooks.component.html',
   providers: [DataService,AuthenticationService],
-  directives: [NgClass]
+  pipes: [LentBooksPipe],
+  directives: [NgClass, SearchComponent]
 })
 
-export class LentBooksComponent {
+export class LentBooksComponent extends BaseComponent {
   bookLendings: BookLending[];
   selectedLending: BookLending;
+  advancedSearchSpace: Object;
+  filterBy: string;
 
   constructor(private dataService: DataService,
   private _service:AuthenticationService,
   private flow: NoolsService,
-  private profile: ProfileService) {}
+  private profile: ProfileService) {
+    super(profile);
+    this.advancedSearchSpace = [{key: "book.bookInfo.isbn", title: "Book ISBN"},
+                                {key: "book.bookInfo.title", title: "Book Title"},
+                                {key: "student.id", title: "Student ID"}]
+  }
 
   getLendings(){
     this.dataService.getLendings(this._service.getId()).then(bookLendings => this.bookLendings = bookLendings);
@@ -31,19 +44,6 @@ export class LentBooksComponent {
   ngOnInit(){
     this._service.checkCredentials();
     this.getLendings();
-
-    var session = this.flow.getSession();
-    session.assert(this.profile.getProfile());
-
-    //now fire the rules
-    session.match(function(err){
-        if(err){
-            console.error(err.stack);
-        }else{
-            console.log("done");
-            
-        }
-    })  
   }
 
   onSelect(bookLending: BookLending){
@@ -56,5 +56,9 @@ export class LentBooksComponent {
 
   unselectLending(){
     this.selectedLending = undefined;
+  }
+
+  filterUpdated(val: Object){
+    this.filterBy = JSON.stringify(val);
   }
 }

@@ -2,15 +2,18 @@
 var platform_profile_1 = require('../helper/platform.profile');
 var user_profile_1 = require('../helper/user.profile');
 var environment_profile_1 = require('../helper/environment.profile');
+var state_profile_1 = require('../helper/state.profile');
 var displayProperties_1 = require('../helper/displayProperties');
 // instance of context model
 var Profile = (function () {
     function Profile() {
         // initialize context profiles
-        this.user = new user_profile_1.UserProfile('', false, false);
+        this.user = new user_profile_1.UserProfile('', false, 'false');
         this.platform = new platform_profile_1.PlatformProfile('');
         this.environment = new environment_profile_1.EnvironmentProfile(50);
+        this.state = new state_profile_1.StateProfile();
         this.displayProperties = new displayProperties_1.DisplayProperties();
+        console.log(this.user.toString());
     }
     ;
     // set the user role
@@ -33,6 +36,10 @@ var Profile = (function () {
     Profile.prototype.setEnvironmentBrightness = function (v) {
         this.environment.setBrightnessLevel(v);
     };
+    // set location
+    Profile.prototype.setLocation = function (v) {
+        this.state.setLocation(v);
+    };
     // get user profile
     Profile.prototype.getUser = function () {
         return this.user;
@@ -44,6 +51,24 @@ var Profile = (function () {
     // get environment profile
     Profile.prototype.getEnvironment = function () {
         return this.environment;
+    };
+    // get application state profile
+    Profile.prototype.getState = function () {
+        return this.state;
+    };
+    // to JSON
+    Profile.prototype.toJSON = function () {
+        var json = '';
+        json += "{";
+        // serialize user
+        json += '"user":' + JSON.stringify(this.user) + ",";
+        // serialize platform
+        json += '"platform":' + JSON.stringify(this.platform) + ",";
+        //serialize environment
+        json += '"environment":' + JSON.stringify(this.environment) + ",";
+        // serialize displayProperties
+        json += '"displayProperties":' + JSON.stringify(this.displayProperties) + "}";
+        return json;
     };
     return Profile;
 }());

@@ -3,7 +3,7 @@ export class UserProfile {
     constructor(
     private role: string,
     private weakVision: boolean,
-    private computerSelfEfficiacy: boolean)
+    private computerSelfEfficiacy: string)
     {};
 
     // Set role of user
@@ -17,7 +17,7 @@ export class UserProfile {
     };
 
     // True if user has high computer self-efficiacy, false otherwise
-    public setComputerSelfEfficiacy(computerSelfEfficiacy: boolean){
+    public setComputerSelfEfficiacy(computerSelfEfficiacy: string){
         this.computerSelfEfficiacy = computerSelfEfficiacy;
     };
 
@@ -32,7 +32,7 @@ export class UserProfile {
     };
 
     // Get if user has high computer self-efficiacy
-    public hasHighComputerSelfEfficiacy(): boolean{
+    public hasHighComputerSelfEfficiacy(): string{
         return this.computerSelfEfficiacy;
     };
 }

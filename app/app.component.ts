@@ -87,8 +87,6 @@ export class AppComponent {
               console.error(err.stack);
           }else{
               console.log("done");
-              console.log(this.profile);
-              
           }
       })  
     }

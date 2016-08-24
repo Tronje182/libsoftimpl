@@ -48,7 +48,7 @@ export class NoolsTestBarComponent {
     private profile: Profile;
 
     private userWeakVision: boolean;
-    private userSelfEfficiacy: boolean;
+    private userSelfEfficiacy: string;
 
     private platformType: string;
 

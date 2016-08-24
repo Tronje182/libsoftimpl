@@ -124,7 +124,7 @@ export class DataService {
     book = this.getBookByIdSync(bookObj.id);
     bookreservations = this.localGet('bookreservations');
 
-    if(book.status === true || bookreservations.find(bl => bl.book.id == bookObj.id && bl.student.id == studentId) !== null)
+    if(book.status === true || bookreservations.find(bl => bl.book.id == bookObj.id && bl.student.id == studentId) != null)
     {
       tempArr = this.localGet('booklendings');
       student = this.getStudentByIdSync(studentId);

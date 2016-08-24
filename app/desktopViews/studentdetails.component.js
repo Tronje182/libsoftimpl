@@ -33,17 +33,6 @@ var StudentDetailsComponent = (function () {
             _this.dataService.getStudentById(_this.studentId).then(function (s) { return _this.student = s; });
             _this.dataService.getLendings(_this.studentId).then(function (l) { return _this.bookLendings = l; });
         });
-        var session = this.flow.getSession();
-        session.assert(this.profile.getProfile());
-        //now fire the rules
-        session.match(function (err) {
-            if (err) {
-                console.error(err.stack);
-            }
-            else {
-                console.log("done");
-            }
-        });
     };
     StudentDetailsComponent = __decorate([
         core_1.Component({

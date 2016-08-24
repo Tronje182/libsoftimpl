@@ -18,6 +18,9 @@ var DisplayProperties = (function () {
         this.navbarItemListClass = '';
         //search
         this.searchInputGroupClass = '';
+        //boolean
+        this.isMobile = false;
+        this.isAdvancedUser = false;
     }
     ;
     DisplayProperties.prototype.setType = function (v) {

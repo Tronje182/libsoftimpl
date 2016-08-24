@@ -10,9 +10,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var profile_1 = require('../helper/profile');
+var welcomeHigh_component_1 = require('../DynamicComponents/welcomeHigh.component');
+var welcomeLow_component_1 = require('../DynamicComponents/welcomeLow.component');
 var NoolsService = (function () {
-    function NoolsService() {
+    function NoolsService(dcl, _injector) {
+        this.dcl = dcl;
+        this._injector = _injector;
         this.flow = nools.flow("ProfileEvaluation", function (flow) {
+            flow.rule("Low Self-Efficiacy", [profile_1.Profile, "m", "m.user.computerSelfEfficiacy =~ /false/"], function (facts) {
+                var tempLoc = facts.m.state.getLocation();
+                if (tempLoc != undefined && $("#content").length != 0) {
+                    if (tempLoc.__proto__.constructor.name == "DefaultComponent") {
+                        dcl.loadAsRoot(welcomeLow_component_1.WelcomeLowComponent, "#content", _injector);
+                    }
+                    else if (tempLoc.__proto__.constructor.name == "BaseComponent") {
+                        console.log("Is Base :(");
+                    }
+                    else {
+                        console.log("what is this???");
+                    }
+                }
+                facts.m.displayProperties.isAdvancedUser = false;
+            });
+            flow.rule("High Self-Efficiacy", [profile_1.Profile, "m", "m.user.computerSelfEfficiacy =~ /true/"], function (facts) {
+                var tempLoc = facts.m.state.getLocation();
+                if (tempLoc != undefined && $("#content").length != 0) {
+                    if (tempLoc.__proto__.constructor.name == "DefaultComponent") {
+                        dcl.loadAsRoot(welcomeHigh_component_1.WelcomeHighComponent, "#content", _injector);
+                    }
+                    else if (tempLoc.__proto__.constructor.name == "BaseComponent") {
+                        console.log("Is Base :(");
+                    }
+                    else {
+                        console.log("what is this???");
+                    }
+                }
+                facts.m.displayProperties.isAdvancedUser = true;
+            });
             flow.rule("Evironment Brigthness Over 40", [profile_1.Profile, "m", "m.getEnvironment().getBrightnessLevel() > 40"], function (facts) {
                 // color schemes
                 $('.backgroundPrimary').css('background-color', 'white');
@@ -42,7 +76,6 @@ var NoolsService = (function () {
                 facts.m.displayProperties.setTableClass('table table-striped table-striped-dark table-hover table-condensed');
             });
             flow.rule("Platform Desktop", [profile_1.Profile, "m", "m.getPlatform().getPlatformType() =~ /desktop/"], function (facts) {
-                console.log(facts.m);
                 facts.m.displayProperties.headerBarClass = 'row backgroundSecondary divLine borderSecondary';
                 facts.m.displayProperties.routerOutletClass = 'col-md-10';
                 facts.m.displayProperties.hideOnMobile = '';
@@ -51,12 +84,11 @@ var NoolsService = (function () {
                 facts.m.displayProperties.navbarHeaderClass = 'hideElement';
                 facts.m.displayProperties.navbarCollapseClass = '';
                 facts.m.displayProperties.navbarItemListClass = 'sidebar-nav';
-                facts.m.displayProperties.searchInputGroupClass = 'input-group col-md-6 col-md-offset-6';
+                facts.m.displayProperties.searchInputGroupClass = 'input-group col-md-6 col-md-offset-4';
                 facts.m.displayProperties.isMobile = false;
                 this.modify(facts.m);
             });
             flow.rule("Platform Mobile", [profile_1.Profile, "m", "m.getPlatform().getPlatformType() =~ /mobile/"], function (facts) {
-                console.log(facts.m);
                 facts.m.displayProperties.headerBarClass = 'hideElement';
                 facts.m.displayProperties.routerOutletClass = 'col-md-12';
                 facts.m.displayProperties.hideOnMobile = 'hideElement';
@@ -74,9 +106,12 @@ var NoolsService = (function () {
     NoolsService.prototype.getSession = function () {
         return this.flow.getSession();
     };
+    NoolsService.prototype.test = function (test) {
+        console.log(test);
+    };
     NoolsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.DynamicComponentLoader, core_1.Injector])
     ], NoolsService);
     return NoolsService;
 }());

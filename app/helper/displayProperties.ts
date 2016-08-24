@@ -24,6 +24,7 @@ export class DisplayProperties {
 
     //boolean
     public isMobile: boolean;
+    public isAdvancedUser: boolean;
 
     constructor()
     {
@@ -48,6 +49,11 @@ export class DisplayProperties {
 
         //search
         this.searchInputGroupClass = '';
+
+        //boolean
+        this.isMobile = false;
+        this.isAdvancedUser = false;
+
     };
 
     public setType(v: string){
