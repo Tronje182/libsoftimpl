@@ -11,26 +11,33 @@ import { AuthenticationService } from '../services/authentication.service';
 import { NoolsService } from '../services/nools.service';
 import { ProfileService } from '../services/profile.service';
 
+import { SearchComponent } from '../dynamicComponents/search.component'
+
 @Component({
   selector: 'book-reservations',
   templateUrl: 'app/desktopViews/reservations.component.html',
   providers: [DataService,AuthenticationService],
   pipes:[ReservationsPipe],
-  directives: [NgClass]
+  directives: [NgClass, SearchComponent]
 })
 
 export class ReservationsComponent {
   books: BookReservation[];
   selectedBook: BookReservation;
   isDisabled: boolean;
+  advancedSearchSpace: Object;
   filterBy: string;
 
   constructor(
     private dataService: DataService,
     private _service:AuthenticationService,
     private router: Router,
-    private profile: ProfileService,
-    private flow: NoolsService) {}
+    private profile: ProfileService) {
+      this.advancedSearchSpace = [{key:"book.bookInfo.isbn", title:"ISBN"},
+                                  {key:"book.bookInfo.title", title:"Title"},
+                                  {key:"book.bookInfo.title", title:"Author"},
+                                  {key:"student.id",title:"Student ID"}];
+    }
 
   getReservations(){
     this.dataService.getBookReservations().then(books => this.books = books);
@@ -60,5 +67,9 @@ export class ReservationsComponent {
 
   issueBook(){
     this.router.navigate(['/lendingForm', {studentid: this.selectedBook.student.id, bookid:this.selectedBook.book.id}]);
+  }
+
+  filterUpdated(val: Object){
+    this.filterBy = JSON.stringify(val);
   }
 }

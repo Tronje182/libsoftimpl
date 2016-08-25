@@ -14,15 +14,18 @@ var common_1 = require('@angular/common');
 var myfilter_pipe_1 = require('../helper/myfilter.pipe');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
-var nools_service_1 = require('../services/nools.service');
 var profile_service_1 = require('../services/profile.service');
+var search_component_1 = require('../dynamicComponents/search.component');
 var ReservationsComponent = (function () {
-    function ReservationsComponent(dataService, _service, router, profile, flow) {
+    function ReservationsComponent(dataService, _service, router, profile) {
         this.dataService = dataService;
         this._service = _service;
         this.router = router;
         this.profile = profile;
-        this.flow = flow;
+        this.advancedSearchSpace = [{ key: "book.bookInfo.isbn", title: "ISBN" },
+            { key: "book.bookInfo.title", title: "Title" },
+            { key: "book.bookInfo.title", title: "Author" },
+            { key: "student.id", title: "Student ID" }];
     }
     ReservationsComponent.prototype.getReservations = function () {
         var _this = this;
@@ -50,15 +53,18 @@ var ReservationsComponent = (function () {
     ReservationsComponent.prototype.issueBook = function () {
         this.router.navigate(['/lendingForm', { studentid: this.selectedBook.student.id, bookid: this.selectedBook.book.id }]);
     };
+    ReservationsComponent.prototype.filterUpdated = function (val) {
+        this.filterBy = JSON.stringify(val);
+    };
     ReservationsComponent = __decorate([
         core_1.Component({
             selector: 'book-reservations',
             templateUrl: 'app/desktopViews/reservations.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService],
             pipes: [myfilter_pipe_1.ReservationsPipe],
-            directives: [common_1.NgClass]
+            directives: [common_1.NgClass, search_component_1.SearchComponent]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService, nools_service_1.NoolsService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService])
     ], ReservationsComponent);
     return ReservationsComponent;
 }());

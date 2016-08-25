@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
 
+import { SearchComponent } from '../dynamicComponents/search.component'
+
 import { Book } from '../data/book';
 
 import { BooksPipe } from '../helper/myfilter.pipe';
@@ -16,7 +18,7 @@ import { ProfileService } from '../services/profile.service';
   templateUrl: 'app/desktopViews/searchBooks.component.html',
   providers: [DataService,AuthenticationService],
   pipes: [BooksPipe],
-  directives: [NgClass]
+  directives: [NgClass, SearchComponent]
 })
 
 export class SearchBooksComponent {
@@ -24,15 +26,18 @@ export class SearchBooksComponent {
   selectedBook: Book;
   isDisabledIssueBook: boolean;
   isDisabledReturnBook: boolean;
+  advancedSearchSpace: Object;
   filterBy: string;
 
   public authService: AuthenticationService;
 
   constructor(private dataService: DataService,private _service:AuthenticationService,
     private router: Router,
-    private profile: ProfileService,
-    private flow: NoolsService) {
+    private profile: ProfileService) {
     this.authService = _service;
+    this.advancedSearchSpace = [{key: "bookInfo.isbn", title: "ISBN"},
+                                {key: "bookInfo.title", title: "Title"},
+                                {key: "bookInfo.author", title: "Author"}];
   }
 
   getLendings(){
@@ -96,5 +101,9 @@ export class SearchBooksComponent {
   reserveBook(){
     this.dataService.reserveBook(this.selectedBook.id, this.authService.getId());
     this.getLendings();
+  }
+
+  filterUpdated(val: Object){
+    this.filterBy = JSON.stringify(val);
   }
 }

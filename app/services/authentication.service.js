@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var profile_service_1 = require('../services/profile.service');
 var User = (function () {
     function User(email, password, role, id, firstname, lastname) {
         this.email = email;
@@ -28,8 +29,9 @@ var users = [
     new User('rich', 'rich', 'student', '1231233', 'Richard', 'Roe')
 ];
 var AuthenticationService = (function () {
-    function AuthenticationService(_router) {
+    function AuthenticationService(_router, profile) {
         this._router = _router;
+        this.profile = profile;
         this.isLoggedIn = false;
     }
     AuthenticationService.prototype.logout = function () {
@@ -43,6 +45,7 @@ var AuthenticationService = (function () {
             localStorage.setItem('user', JSON.stringify(authenticatedUser));
             this._router.navigate(['default']);
             this.isLoggedIn = true;
+            this.profile.getProfile().setUserRole(authenticatedUser.role);
             return true;
         }
         return false;
@@ -92,7 +95,7 @@ var AuthenticationService = (function () {
     };
     AuthenticationService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, profile_service_1.ProfileService])
     ], AuthenticationService);
     return AuthenticationService;
 }());

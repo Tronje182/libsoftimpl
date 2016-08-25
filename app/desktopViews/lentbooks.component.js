@@ -18,17 +18,15 @@ var common_1 = require('@angular/common');
 var myfilter_pipe_1 = require('../helper/myfilter.pipe');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
-var nools_service_1 = require('../services/nools.service');
 var profile_service_1 = require('../services/profile.service');
 var base_component_1 = require('./base.component');
 var search_component_1 = require('../dynamicComponents/search.component');
 var LentBooksComponent = (function (_super) {
     __extends(LentBooksComponent, _super);
-    function LentBooksComponent(dataService, _service, flow, profile) {
+    function LentBooksComponent(dataService, _service, profile) {
         _super.call(this, profile);
         this.dataService = dataService;
         this._service = _service;
-        this.flow = flow;
         this.profile = profile;
         this.advancedSearchSpace = [{ key: "book.bookInfo.isbn", title: "Book ISBN" },
             { key: "book.bookInfo.title", title: "Book Title" },
@@ -64,7 +62,7 @@ var LentBooksComponent = (function (_super) {
             pipes: [myfilter_pipe_1.LentBooksPipe],
             directives: [common_1.NgClass, search_component_1.SearchComponent]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, nools_service_1.NoolsService, profile_service_1.ProfileService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, profile_service_1.ProfileService])
     ], LentBooksComponent);
     return LentBooksComponent;
 }(base_component_1.BaseComponent));

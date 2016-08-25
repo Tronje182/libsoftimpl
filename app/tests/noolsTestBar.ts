@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import { ProfileService } from '../services/profile.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { Profile } from '../helper/profile'
 
 @Component({
@@ -40,6 +41,8 @@ import { Profile } from '../helper/profile'
                 </div>
             </div>
         </div>
+        
+        <a (click)="logout()" href="">Click Here to logout</a>
     	`
 })
 
@@ -55,6 +58,7 @@ export class NoolsTestBarComponent {
     private environmentBrightness: number;
 
     constructor(
+        private _service : AuthenticationService,
         private _profile:ProfileService) {
             this.userWeakVision = _profile.getProfile().getUser().hasWeakVision();
             this.userSelfEfficiacy = _profile.getProfile().getUser().hasHighComputerSelfEfficiacy();
@@ -82,5 +86,9 @@ export class NoolsTestBarComponent {
     // input for environment brightness changed
     brightnessChanged(){
         this._profile.setBrightnessLevel(this.environmentBrightness);
+    }
+    
+    logout() {
+        this._service.logout();
     }
 }

@@ -1,1 +1,0 @@
-{"version":3,"file":"welcomeHigh.component.js","sourceRoot":"","sources":["welcomeHigh.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAAwB,eAAe,CAAC,CAAA;AACxC,uCAA0C,oCAAoC,CAAC,CAAA;AAY/E;IACI;IACI,CAAC;IAZT;QAAC,gBAAS,CAAC;YACP,QAAQ,EAAE,cAAc;YACxB,SAAS,EAAE,CAAC,8CAAqB,CAAC;YAClC,QAAQ,EAAE,8FAIR;SACL,CAAC;;4BAAA;IAMF,2BAAC;AAAD,CAAC,AAJD,IAIC;AAJY,4BAAoB,uBAIhC,CAAA"}

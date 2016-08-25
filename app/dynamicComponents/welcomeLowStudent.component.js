@@ -10,18 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var authentication_service_1 = require('../services/authentication.service');
-var WelcomeHighComponent = (function () {
-    function WelcomeHighComponent() {
+var WelcomeLowStudentComponent = (function () {
+    function WelcomeLowStudentComponent() {
     }
-    WelcomeHighComponent = __decorate([
+    WelcomeLowStudentComponent = __decorate([
         core_1.Component({
-            selector: 'welcome-high',
+            selector: 'welcome-low-student',
             providers: [authentication_service_1.AuthenticationService],
-            template: "\n        <div class=\"container\" >\n            Welcome User! <br>\n        </div>\n    \t"
+            template: "\n        <div class=\"col-md-12\">\n            This application allows you to reserve books at the library for later pickup. \n            It is also possible to get an overview of your currently lent books.<br><br>\n            To get an overview of all books available select <b>Search Books</b>.<br>\n            To see your lent books select <b>Lent Books</b>.\n        </div>\n    \t"
         }), 
         __metadata('design:paramtypes', [])
-    ], WelcomeHighComponent);
-    return WelcomeHighComponent;
+    ], WelcomeLowStudentComponent);
+    return WelcomeLowStudentComponent;
 }());
-exports.WelcomeHighComponent = WelcomeHighComponent;
-//# sourceMappingURL=welcomeHigh.component.js.map
+exports.WelcomeLowStudentComponent = WelcomeLowStudentComponent;
+//# sourceMappingURL=welcomeLowStudent.component.js.map

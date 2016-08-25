@@ -10,18 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var authentication_service_1 = require('../services/authentication.service');
-var WelcomeLowComponent = (function () {
-    function WelcomeLowComponent() {
+var WelcomeHighStudentComponent = (function () {
+    function WelcomeHighStudentComponent() {
     }
-    WelcomeLowComponent = __decorate([
+    WelcomeHighStudentComponent = __decorate([
         core_1.Component({
-            selector: 'welcome-low',
+            selector: 'welcome-high-student',
             providers: [authentication_service_1.AuthenticationService],
-            template: "\n        <div class=\"container\" >\n            Welcome to LibSoft. <br>\n            This application allows you to reserve books at the library for later pickup. It is also possible to get an overview of your currently lent books.\n        </div>\n    \t"
+            template: "\n        <div class=\"container\" >\n            Welcome User! <br>\n        </div>\n    \t"
         }), 
         __metadata('design:paramtypes', [])
-    ], WelcomeLowComponent);
-    return WelcomeLowComponent;
+    ], WelcomeHighStudentComponent);
+    return WelcomeHighStudentComponent;
 }());
-exports.WelcomeLowComponent = WelcomeLowComponent;
-//# sourceMappingURL=welcomeLow.component.js.map
+exports.WelcomeHighStudentComponent = WelcomeHighStudentComponent;
+//# sourceMappingURL=welcomeHighStudent.component.js.map

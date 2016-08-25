@@ -38,7 +38,7 @@ var DefaultComponent = (function (_super) {
         core_1.Component({
             selector: 'login-form',
             providers: [authentication_service_1.AuthenticationService],
-            template: "\n        <div class=\"row\">\n          <div class=\"col-md-12\">\n            <div>\n                <div id=\"content\">\n                </div>\n                <div>\n                    <h3>Welcome to Libsoft, {{getName()}}!</h3>\n                <div>\n                <div>\n                    LibSoft is a software application for students and staff members of the library of the Paderborn University.\n                </div>\n                \n                <a (click)=\"logout()\" href=\"\">Click Here to logout</a>\n            </div>\n          </div>\n        </div>\n  "
+            template: "\n        <div class=\"row\">\n          <div class=\"col-md-12\">\n            <div>\n                <div>\n                    <h3>Welcome to Libsoft, {{getName()}}!</h3>\n                <div>\n                <div id=\"content\" class=\"col-md-12\">\n                </div>\n            </div>\n          </div>\n        </div>\n  "
         }), 
         __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, profile_service_1.ProfileService])
     ], DefaultComponent);

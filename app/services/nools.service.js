@@ -9,19 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var profile_1 = require('../helper/profile');
-var welcomeHigh_component_1 = require('../DynamicComponents/welcomeHigh.component');
-var welcomeLow_component_1 = require('../DynamicComponents/welcomeLow.component');
+var welcomeLowStudent_component_1 = require('../DynamicComponents/welcomeLowStudent.component');
+var welcomeLowStaff_component_1 = require('../DynamicComponents/welcomeLowStaff.component');
 var NoolsService = (function () {
-    function NoolsService(dcl, _injector) {
+    function NoolsService(dcl, _injector, _router) {
         this.dcl = dcl;
         this._injector = _injector;
+        this._router = _router;
         this.flow = nools.flow("ProfileEvaluation", function (flow) {
             flow.rule("Low Self-Efficiacy", [profile_1.Profile, "m", "m.user.computerSelfEfficiacy =~ /false/"], function (facts) {
                 var tempLoc = facts.m.state.getLocation();
                 if (tempLoc != undefined && $("#content").length != 0) {
                     if (tempLoc.__proto__.constructor.name == "DefaultComponent") {
-                        dcl.loadAsRoot(welcomeLow_component_1.WelcomeLowComponent, "#content", _injector);
+                        if (facts.m.user.getUserRole() == "student") {
+                            dcl.loadAsRoot(welcomeLowStudent_component_1.WelcomeLowStudentComponent, "#content", _injector);
+                        }
+                        else {
+                            dcl.loadAsRoot(welcomeLowStaff_component_1.WelcomeLowStaffComponent, "#content", _injector);
+                        }
                     }
                     else if (tempLoc.__proto__.constructor.name == "BaseComponent") {
                         console.log("Is Base :(");
@@ -36,7 +43,14 @@ var NoolsService = (function () {
                 var tempLoc = facts.m.state.getLocation();
                 if (tempLoc != undefined && $("#content").length != 0) {
                     if (tempLoc.__proto__.constructor.name == "DefaultComponent") {
-                        dcl.loadAsRoot(welcomeHigh_component_1.WelcomeHighComponent, "#content", _injector);
+                        if (facts.m.user.getUserRole() === "student") {
+                            // advanced students go directly to search books
+                            _router.navigate(['/searchBooks']);
+                        }
+                        else {
+                            // advanced staff members go directly  to reservations
+                            _router.navigate(['/reservations']);
+                        }
                     }
                     else if (tempLoc.__proto__.constructor.name == "BaseComponent") {
                         console.log("Is Base :(");
@@ -111,7 +125,7 @@ var NoolsService = (function () {
     };
     NoolsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [core_1.DynamicComponentLoader, core_1.Injector])
+        __metadata('design:paramtypes', [core_1.DynamicComponentLoader, core_1.Injector, router_1.Router])
     ], NoolsService);
     return NoolsService;
 }());

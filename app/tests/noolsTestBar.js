@@ -10,8 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var profile_service_1 = require('../services/profile.service');
+var authentication_service_1 = require('../services/authentication.service');
 var NoolsTestBarComponent = (function () {
-    function NoolsTestBarComponent(_profile) {
+    function NoolsTestBarComponent(_service, _profile) {
+        this._service = _service;
         this._profile = _profile;
         this.userWeakVision = _profile.getProfile().getUser().hasWeakVision();
         this.userSelfEfficiacy = _profile.getProfile().getUser().hasHighComputerSelfEfficiacy();
@@ -34,12 +36,15 @@ var NoolsTestBarComponent = (function () {
     NoolsTestBarComponent.prototype.brightnessChanged = function () {
         this._profile.setBrightnessLevel(this.environmentBrightness);
     };
+    NoolsTestBarComponent.prototype.logout = function () {
+        this._service.logout();
+    };
     NoolsTestBarComponent = __decorate([
         core_1.Component({
             selector: 'noolstestbar',
-            template: "\n        <div class=\"row container\" >\n            <div class=\"col-sm-3\">\n                <div class=\"form-inline form-group\">\n                    <label for=\"deviceSelect\">Device</label>\n                    <select class=\"form-control\" id=\"deviceSelect\" [(ngModel)]=\"platformType\" (ngModelChange)=\"deviceChanged()\">\n                        <option value=\"desktop\">desktop</option>\n                        <option value=\"mobile\">mobile</option>\n                    </select>\n                </div>\n            </div>\n            <div class=\"col-sm-3\">\n                <div class=\"form-inline form-group\">\n                    <label for=\"visionSelect\">Vision?</label>\n                    <select class=\"form-control\" id=\"visionSelect\" [(ngModel)]=\"userWeakVision\" (ngModelChange)=\"visionChanged()\">\n                        <option value=\"false\">no</option>\n                        <option value=\"true\">yes</option>\n                    </select>\n                </div>\n            </div>\n            <div class=\"col-sm-3\">\n                <div class=\"form-inline form-group\">\n                    <label for=\"seSelect\">Self-efficiacy?</label>\n                    <select class=\"form-control\" id=\"seSelect\" [(ngModel)]=\"userSelfEfficiacy\" (ngModelChange)=\"selfEfficiacyChanged()\">\n                        <option value=\"false\">no</option>\n                        <option value=\"true\">yes</option>\n                    </select>\n                </div>\n            </div>\n            <div class=\"col-sm-3\">\n                <div class=\"form-inline form-group\">\n                    <label for=\"brightnessLevel\">Brightness</label>\n                    <input class=\"form-control\" type=\"range\" id=\"brightnessLevel\" min=\"0\" max=\"100\" [(ngModel)]=\"environmentBrightness\" (ngModelChange)=\"brightnessChanged()\"> {{environmentBrightness}}\n                </div>\n            </div>\n        </div>\n    \t"
+            template: "\n        <div class=\"row container\" >\n            <div class=\"col-sm-3\">\n                <div class=\"form-inline form-group\">\n                    <label for=\"deviceSelect\">Device</label>\n                    <select class=\"form-control\" id=\"deviceSelect\" [(ngModel)]=\"platformType\" (ngModelChange)=\"deviceChanged()\">\n                        <option value=\"desktop\">desktop</option>\n                        <option value=\"mobile\">mobile</option>\n                    </select>\n                </div>\n            </div>\n            <div class=\"col-sm-3\">\n                <div class=\"form-inline form-group\">\n                    <label for=\"visionSelect\">Vision?</label>\n                    <select class=\"form-control\" id=\"visionSelect\" [(ngModel)]=\"userWeakVision\" (ngModelChange)=\"visionChanged()\">\n                        <option value=\"false\">no</option>\n                        <option value=\"true\">yes</option>\n                    </select>\n                </div>\n            </div>\n            <div class=\"col-sm-3\">\n                <div class=\"form-inline form-group\">\n                    <label for=\"seSelect\">Self-efficiacy?</label>\n                    <select class=\"form-control\" id=\"seSelect\" [(ngModel)]=\"userSelfEfficiacy\" (ngModelChange)=\"selfEfficiacyChanged()\">\n                        <option value=\"false\">no</option>\n                        <option value=\"true\">yes</option>\n                    </select>\n                </div>\n            </div>\n            <div class=\"col-sm-3\">\n                <div class=\"form-inline form-group\">\n                    <label for=\"brightnessLevel\">Brightness</label>\n                    <input class=\"form-control\" type=\"range\" id=\"brightnessLevel\" min=\"0\" max=\"100\" [(ngModel)]=\"environmentBrightness\" (ngModelChange)=\"brightnessChanged()\"> {{environmentBrightness}}\n                </div>\n            </div>\n        </div>\n        \n        <a (click)=\"logout()\" href=\"\">Click Here to logout</a>\n    \t"
         }), 
-        __metadata('design:paramtypes', [profile_service_1.ProfileService])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, profile_service_1.ProfileService])
     ], NoolsTestBarComponent);
     return NoolsTestBarComponent;
 }());

@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
 
+import { SearchComponent } from '../dynamicComponents/search.component'
+
 import { Student } from '../data/student';
 
 import { StudentsPipe } from '../helper/myfilter.pipe';
 
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
-import { NoolsService } from '../services/nools.service';
 import { ProfileService } from '../services/profile.service';
 
 @Component({
@@ -16,22 +17,26 @@ import { ProfileService } from '../services/profile.service';
   templateUrl: 'app/desktopViews/students.component.html',
   providers: [DataService,AuthenticationService],
   pipes: [StudentsPipe],
-  directives: [NgClass]
+  directives: [NgClass, SearchComponent]
 })
 
 export class StudentsComponent {
   students: Student[];
   selectedStudent: Student;
   isDisabled: boolean;
+  advancedSearchSpace: Object;
   filterBy: string;
 
   constructor(
     private dataService: DataService,
     private _service:AuthenticationService,
     private router: Router,
-    private profile: ProfileService,
-    private flow: NoolsService
-    ) {}
+    private profile: ProfileService
+    ) {
+      this.advancedSearchSpace = [{key: "id", title: "Student ID"},
+                                  {key: "firstname", title: "Firstname"},
+                                  {key: "lastname", title: "Lastname"}];
+    }
 
   getStudents(){
     this.dataService.getStudents().then(students => this.students = students);
@@ -61,6 +66,9 @@ export class StudentsComponent {
 
   viewDetails(){
       this.router.navigate(['/studentDetails', {studentid: this.selectedStudent.id}]);
-      console.log('issue book');
+  }
+
+  filterUpdated(val: Object){
+    this.filterBy = JSON.stringify(val);
   }
 }
