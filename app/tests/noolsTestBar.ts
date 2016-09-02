@@ -40,6 +40,11 @@ import { Profile } from '../helper/profile'
                     <input class="form-control" type="range" id="brightnessLevel" min="0" max="100" [(ngModel)]="environmentBrightness" (ngModelChange)="brightnessChanged()"> {{environmentBrightness}}
                 </div>
             </div>
+            <div class="col-sm-3">
+                <div class="checkbox">
+                    <label><input type="checkbox" [(ngModel)]="isAdmin" (ngModelChange)="isAdminChanged()">Admin?</label>
+                </div>
+            </div>
         </div>
         
         <a (click)="logout()" href="">Click Here to logout</a>
@@ -48,10 +53,12 @@ import { Profile } from '../helper/profile'
 
 // class for testing nools by setting context attributes in a ui bar
 export class NoolsTestBarComponent {
+
     private profile: Profile;
 
     private userWeakVision: boolean;
     private userSelfEfficiacy: string;
+    private isAdmin: boolean;
 
     private platformType: string;
 
@@ -62,6 +69,7 @@ export class NoolsTestBarComponent {
         private _profile:ProfileService) {
             this.userWeakVision = _profile.getProfile().getUser().hasWeakVision();
             this.userSelfEfficiacy = _profile.getProfile().getUser().hasHighComputerSelfEfficiacy();
+            this.isAdmin = _profile.getProfile().getUser().getIsAdmin();
 
             this.platformType = _profile.getProfile().getPlatform().getPlatformType();
 
@@ -86,6 +94,11 @@ export class NoolsTestBarComponent {
     // input for environment brightness changed
     brightnessChanged(){
         this._profile.setBrightnessLevel(this.environmentBrightness);
+    }
+
+    //input for is admin changed
+    isAdminChanged(){
+        this._profile.setIsAdmin(this.isAdmin);
     }
     
     logout() {

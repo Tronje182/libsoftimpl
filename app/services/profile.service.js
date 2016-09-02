@@ -15,8 +15,10 @@ var platform_profile_1 = require('../helper/platform.profile');
 var user_profile_1 = require('../helper/user.profile');
 var state_profile_1 = require('../helper/state.profile');
 var environment_profile_1 = require('../helper/environment.profile');
+var nools_service_1 = require('../services/nools.service');
 var ProfileService = (function () {
-    function ProfileService() {
+    function ProfileService(flow) {
+        this.flow = flow;
         // check if profile configuration ist already saved in local storage
         if (localStorage.getItem('profile') != null) {
             // parse profile configuration string to profile object
@@ -34,7 +36,6 @@ var ProfileService = (function () {
         else {
             // initialize new profile configuration
             this.profile = new profile_1.Profile();
-            this.profile.setUserRole('student');
             this.md = new MobileDetect(window.navigator.userAgent);
             if (this.md.mobile() == null) {
                 this.profile.setPlatformType("desktop");
@@ -43,32 +44,60 @@ var ProfileService = (function () {
                 this.profile.setPlatformType("mobile");
             }
             // save profile configuration string to local storage
-            localStorage.setItem('profile', JSON.stringify(this.profile));
+            localStorage.setItem('profile', this.profile.toJSON());
         }
+        this.session = this.flow.getSession();
+        this.onModified();
     }
+    ProfileService.prototype.setUserRole = function (v) {
+        this.profile.getUser().setUserRole(v);
+        localStorage.setItem('profile', this.profile.toJSON());
+        this.onModified();
+    };
     ProfileService.prototype.setBrightnessLevel = function (v) {
         this.profile.getEnvironment().setBrightnessLevel(v);
         localStorage.setItem('profile', this.profile.toJSON());
+        this.onModified();
     };
     ProfileService.prototype.setComputerSelfEfficiacy = function (v) {
         this.profile.getUser().setComputerSelfEfficiacy(v);
         localStorage.setItem('profile', this.profile.toJSON());
+        this.onModified();
     };
     ProfileService.prototype.setWeakVision = function (v) {
         this.profile.getUser().setWeakVision(v);
         localStorage.setItem('profile', this.profile.toJSON());
+        this.onModified();
+    };
+    ProfileService.prototype.setIsAdmin = function (v) {
+        this.profile.getUser().setIsAdmin(v);
+        localStorage.setItem('profile', this.profile.toJSON());
+        this.onModified();
     };
     ProfileService.prototype.setPlatformType = function (v) {
         this.profile.getPlatform().setPlatformType(v);
         var test = JSON.stringify(this.profile);
         localStorage.setItem('profile', this.profile.toJSON());
+        this.onModified();
     };
     ProfileService.prototype.getProfile = function () {
         return this.profile;
     };
+    ProfileService.prototype.onModified = function () {
+        //now fire the rules
+        this.session.assert(this.getProfile());
+        this.session.match(function (err) {
+            if (err) {
+                console.error(err.stack);
+            }
+            else {
+                console.log("done");
+            }
+        });
+    };
     ProfileService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [nools_service_1.NoolsService])
     ], ProfileService);
     return ProfileService;
 }());

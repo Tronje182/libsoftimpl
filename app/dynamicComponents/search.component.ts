@@ -6,7 +6,6 @@ import { ProfileService } from '../services/profile.service';
     selector: 'search-component',
     template: `
         <div class="container" >
-            {{title}}
             <div id="advancedSearch" class="row" *ngIf="profile.getProfile().displayProperties.isAdvancedUser">
                 <form action="" class="form-inline" style="margin-bottom:5px;">
                     <div class="form-group col-md-6" *ngFor="#field of searchSpace">

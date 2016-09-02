@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11,13 +16,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
+var base_component_1 = require('./base.component');
 var myfilter_pipe_1 = require('../helper/myfilter.pipe');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
 var profile_service_1 = require('../services/profile.service');
 var search_component_1 = require('../dynamicComponents/search.component');
-var ReservationsComponent = (function () {
+var ReservationsComponent = (function (_super) {
+    __extends(ReservationsComponent, _super);
     function ReservationsComponent(dataService, _service, router, profile) {
+        _super.call(this, profile);
         this.dataService = dataService;
         this._service = _service;
         this.router = router;
@@ -67,6 +75,6 @@ var ReservationsComponent = (function () {
         __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService])
     ], ReservationsComponent);
     return ReservationsComponent;
-}());
+}(base_component_1.BaseComponent));
 exports.ReservationsComponent = ReservationsComponent;
 //# sourceMappingURL=reservations.component.js.map

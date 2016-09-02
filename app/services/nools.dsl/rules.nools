@@ -1,0 +1,45 @@
+rule PlatformMobile(){
+    when {
+        m : Profile m.getPlatform().getPlatformType() =~ /mobile/;
+    }
+    then{
+        modify(m, function(){
+            this.displayProperties.headerBarClass = 'hideElement';
+            this.displayProperties.routerOutletClass = 'col-md-12';
+            this.displayProperties.hideOnMobile = 'hideElement';
+
+            this.displayProperties.navbarContainerClass = 'navbar navbar-default navbar-custom';
+            this.displayProperties.navbarWrapperClass = 'container-fluid';
+            this.displayProperties.navbarHeaderClass = 'navbar-header';
+            this.displayProperties.navbarCollapseClass = 'navbar-collapse collapse';
+            this.displayProperties.navbarItemListClass = 'nav navbar-nav textPrimary';
+
+            this.displayProperties.searchInputGroupClass = 'input-group'
+
+            this.displayProperties.isMobile = true;
+        });
+    }
+}
+
+rule PlatformDesktop(){
+    when {
+        m : Profile m.getPlatform().getPlatformType() =~ /desktop/;
+    }
+    then{
+        modify(m, function(){
+            this.displayProperties.headerBarClass = 'row backgroundSecondary divLine borderSecondary';
+            this.displayProperties.routerOutletClass = 'col-md-10';
+            this.displayProperties.hideOnMobile = '';
+
+            this.displayProperties.navbarContainerClass = 'sidebar-navbar col-md-2';
+            this.displayProperties.navbarWrapperClass = 'sidebar-wrapper backgroundSecondary';
+            this.displayProperties.navbarHeaderClass = 'hideElement';
+            this.displayProperties.navbarCollapseClass = '';
+            this.displayProperties.navbarItemListClass = 'sidebar-nav textPrimary';
+
+            this.displayProperties.searchInputGroupClass = 'input-group col-md-6 col-md-offset-4'
+
+            this.displayProperties.isMobile = false;
+        });
+    }
+}

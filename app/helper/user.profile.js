@@ -1,27 +1,40 @@
 "use strict";
 // user context
 var UserProfile = (function () {
-    function UserProfile(role, weakVision, computerSelfEfficiacy) {
-        this.role = role;
-        this.weakVision = weakVision;
-        this.computerSelfEfficiacy = computerSelfEfficiacy;
+    function UserProfile(r, w, c) {
+        this.role = r;
+        this.weakVision = w;
+        this.computerSelfEfficiacy = c;
+        this.isAdmin = false;
+        this.setAdminChecked(false);
+        this.setRoleChecked(false);
+        this.setWeakVisionChecked(false);
+        this.setComputerSelfEfficiacyChecked(false);
     }
     ;
     // Set role of user
     UserProfile.prototype.setUserRole = function (role) {
         this.role = role;
+        this.setRoleChecked(false);
     };
     ;
     // True if user has weak eyesight, false otherwise
     UserProfile.prototype.setWeakVision = function (hasWeakVision) {
         this.weakVision = hasWeakVision;
+        this.setWeakVisionChecked(false);
     };
     ;
     // True if user has high computer self-efficiacy, false otherwise
     UserProfile.prototype.setComputerSelfEfficiacy = function (computerSelfEfficiacy) {
         this.computerSelfEfficiacy = computerSelfEfficiacy;
+        this.setComputerSelfEfficiacyChecked(false);
     };
     ;
+    // True if user has admin privileges
+    UserProfile.prototype.setIsAdmin = function (v) {
+        this.isAdmin = v;
+        this.setAdminChecked(false);
+    };
     // Get role of user
     UserProfile.prototype.getUserRole = function () {
         return this.role;
@@ -32,9 +45,46 @@ var UserProfile = (function () {
         return this.weakVision;
     };
     ;
+    // Get if user has admin rights
+    UserProfile.prototype.getIsAdmin = function () {
+        return this.isAdmin;
+    };
     // Get if user has high computer self-efficiacy
     UserProfile.prototype.hasHighComputerSelfEfficiacy = function () {
         return this.computerSelfEfficiacy;
+    };
+    ;
+    // Getters and Setters for flags that indicate if rule was already fired once
+    UserProfile.prototype.setRoleChecked = function (v) {
+        this.roleChecked = v;
+    };
+    ;
+    UserProfile.prototype.setWeakVisionChecked = function (v) {
+        this.weakVisionChecked = v;
+    };
+    ;
+    UserProfile.prototype.setAdminChecked = function (v) {
+        this.adminChecked = v;
+    };
+    ;
+    UserProfile.prototype.setComputerSelfEfficiacyChecked = function (v) {
+        this.computerSelfEfficiacyChecked = v;
+    };
+    ;
+    UserProfile.prototype.getRoleChecked = function () {
+        return this.roleChecked;
+    };
+    ;
+    UserProfile.prototype.getWeakVisionChecked = function () {
+        return this.weakVisionChecked;
+    };
+    ;
+    UserProfile.prototype.getAdminChecked = function () {
+        return this.adminChecked;
+    };
+    ;
+    UserProfile.prototype.getComputerSelfEfficiacyChecked = function () {
+        return this.computerSelfEfficiacyChecked;
     };
     ;
     return UserProfile;

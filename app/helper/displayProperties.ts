@@ -2,6 +2,8 @@ export class DisplayProperties {
     private type: string;
     private role: string;
 
+    // [{path:<path>,text:<link text>}]
+    private navigation: any;
 
     //General Layout
     public headerBarClass: string;
@@ -30,6 +32,8 @@ export class DisplayProperties {
     {
         this.type = '';
         this.role = '';
+
+        this.clearNavigation();
         
         //General Layout
         this.headerBarClass = '';
@@ -67,4 +71,34 @@ export class DisplayProperties {
     public setTableClass(v:string){
         this.tableClass = v;
     }
+
+    // set navigation for user
+    public setNavigation(nav: Object[]){
+        this.navigation = nav;
+    }
+
+    // Get navigation for user
+    public getNavigation(){
+        return this.navigation;
+    }
+
+    // clear navigation object
+    public clearNavigation(){
+        this.navigation = [];
+    }
+
+    // push new Navigation item to navigation
+    public pushNavigation(newItem:Object){
+        return this.navigation.push(newItem);
+    }
+
+    // remove Navigation path from navigation
+    public removeNavigationPath(path:String){
+        if(this.navigation != undefined){
+            this.navigation = this.navigation.filter(function(element){
+                return element.path !== path;
+            });
+        };
+    }
+
 }

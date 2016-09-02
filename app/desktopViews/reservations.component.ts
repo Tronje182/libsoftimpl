@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { BaseComponent } from './base.component';
 
 import { BookReservation } from '../data/bookReservation';
 
@@ -21,7 +22,7 @@ import { SearchComponent } from '../dynamicComponents/search.component'
   directives: [NgClass, SearchComponent]
 })
 
-export class ReservationsComponent {
+export class ReservationsComponent extends BaseComponent {
   books: BookReservation[];
   selectedBook: BookReservation;
   isDisabled: boolean;
@@ -33,6 +34,7 @@ export class ReservationsComponent {
     private _service:AuthenticationService,
     private router: Router,
     private profile: ProfileService) {
+      super(profile);
       this.advancedSearchSpace = [{key:"book.bookInfo.isbn", title:"ISBN"},
                                   {key:"book.bookInfo.title", title:"Title"},
                                   {key:"book.bookInfo.title", title:"Author"},

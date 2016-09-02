@@ -21,7 +21,7 @@ export class Profile {
         // initialize context profiles
         this.user = new UserProfile('',false,'false');
         this.platform = new PlatformProfile ('');
-        this.environment = new EnvironmentProfile(50);
+        this.environment = new EnvironmentProfile(51);
         this.state = new StateProfile();
 
         this.displayProperties = new DisplayProperties();

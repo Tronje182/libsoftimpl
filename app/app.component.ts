@@ -5,10 +5,11 @@ import { NgClass } from '@angular/common';
 import { LoginComponent } from './desktopViews/login.component';
 
 import { AuthenticationService } from './services/authentication.service';
-import { NoolsService } from './services/nools.service';
 import { ProfileService } from './services/profile.service';
 
 import { NoolsTestBarComponent } from './tests/noolstestBar'
+
+import { NavigationComponent } from './dynamicComponents/navigation.component'
 
 @Component({
   selector: 'my-app',
@@ -25,37 +26,7 @@ import { NoolsTestBarComponent } from './tests/noolstestBar'
       </div>
       <div class="row">
 
-        <nav [ngClass]="profile.getProfile().displayProperties.navbarContainerClass"> 
-          <div [ngClass]="profile.getProfile().displayProperties.navbarWrapperClass"> 
-            <div [ngClass]="profile.getProfile().displayProperties.navbarHeaderClass"> 
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-nav"> <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a href="\" class="navbar-brand">LibSoft</a>
-            </div>
-
-            <div [ngClass]="profile.getProfile().displayProperties.navbarCollapseClass" id="bs-nav">
-              <ul [ngClass]="profile.getProfile().displayProperties.navbarItemListClass">
-                <li class="divLine borderSecondary" *ngIf="authService.isStudent()">
-                  <a href="\lentBooks" class="textPrimary">Lent Books</a>
-                </li>
-                <li class="divLine borderSecondary" *ngIf="authService.isStudent() || authService.isStaff()">
-                  <a href="\searchBooks" class="textPrimary">Search Books</a>
-                </li>
-                <li class="divLine borderSecondary" *ngIf="authService.isStaff()">
-                  <a href="\students" class="textPrimary">Search Students</a>
-                </li>
-                <li class="divLine borderSecondary" *ngIf="authService.isStaff()">
-                  <a href="\\reservations" class="textPrimary">View Reservations</a>
-                </li>
-                <li class="divLine borderSecondary" *ngIf="authService.isStaff()">
-                  <a href="\lendingForm" class="textPrimary">View Lending Form</a>
-                </li>
-              </ul>              
-            </div>
-          </div>
-        </nav>
+        <navigation-component [navItems]="profile.getProfile().displayProperties.navigation"></navigation-component>
 
         <div [ngClass]="profile.getProfile().displayProperties.routerOutletClass" style="margin-left:0;padding-right:0px;width:83.33332%">
           <router-outlet></router-outlet>
@@ -64,30 +35,14 @@ import { NoolsTestBarComponent } from './tests/noolstestBar'
       </div>
     </div>
   `,
-  directives: [LoginComponent, ROUTER_DIRECTIVES, NgClass, NoolsTestBarComponent]
+  directives: [LoginComponent, ROUTER_DIRECTIVES, NgClass, NoolsTestBarComponent, NavigationComponent]
 })
 
 export class AppComponent {
     public authService: AuthenticationService;
 
-
     constructor( private _service: AuthenticationService, 
-    private flow: NoolsService,
     private profile: ProfileService ){
           this.authService = _service;
-    }
- 
-    ngOnInit() {
-      var session = this.flow.getSession();
-      session.assert(this.profile.getProfile());
-
-      //now fire the rules
-      session.match(function(err){
-          if(err){
-              console.error(err.stack);
-          }else{
-              console.log("done");
-          }
-      })  
     }
 }

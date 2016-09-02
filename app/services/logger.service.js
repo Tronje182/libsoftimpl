@@ -9,17 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var WelcomeLowStudentComponent = (function () {
-    function WelcomeLowStudentComponent() {
+var LoggerService = (function () {
+    function LoggerService() {
     }
-    WelcomeLowStudentComponent = __decorate([
-        core_1.Component({
-            selector: 'welcome-low-student',
-            template: "\n        <div class=\"col-md-12\">\n            This application allows you to reserve books at the library for later pickup. \n            It is also possible to get an overview of your currently lent books.<br><br>\n            To get an overview of all books available select <b>Search Books</b>.<br>\n            To see your lent books select <b>Lent Books</b>.\n        </div>\n    \t"
-        }), 
+    LoggerService.prototype.log = function (entry) {
+        console.log(entry);
+    };
+    LoggerService = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], WelcomeLowStudentComponent);
-    return WelcomeLowStudentComponent;
+    ], LoggerService);
+    return LoggerService;
 }());
-exports.WelcomeLowStudentComponent = WelcomeLowStudentComponent;
-//# sourceMappingURL=welcomeLowStudent.component.js.map
+exports.LoggerService = LoggerService;
+//# sourceMappingURL=logger.service.js.map

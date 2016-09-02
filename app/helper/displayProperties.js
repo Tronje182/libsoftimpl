@@ -3,6 +3,7 @@ var DisplayProperties = (function () {
     function DisplayProperties() {
         this.type = '';
         this.role = '';
+        this.clearNavigation();
         //General Layout
         this.headerBarClass = '';
         this.routerOutletClass = '';
@@ -31,6 +32,31 @@ var DisplayProperties = (function () {
     };
     DisplayProperties.prototype.setTableClass = function (v) {
         this.tableClass = v;
+    };
+    // set navigation for user
+    DisplayProperties.prototype.setNavigation = function (nav) {
+        this.navigation = nav;
+    };
+    // Get navigation for user
+    DisplayProperties.prototype.getNavigation = function () {
+        return this.navigation;
+    };
+    // clear navigation object
+    DisplayProperties.prototype.clearNavigation = function () {
+        this.navigation = [];
+    };
+    // push new Navigation item to navigation
+    DisplayProperties.prototype.pushNavigation = function (newItem) {
+        return this.navigation.push(newItem);
+    };
+    // remove Navigation path from navigation
+    DisplayProperties.prototype.removeNavigationPath = function (path) {
+        if (this.navigation != undefined) {
+            this.navigation = this.navigation.filter(function (element) {
+                return element.path !== path;
+            });
+        }
+        ;
     };
     return DisplayProperties;
 }());

@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
-import {AuthenticationService, User} from '../services/authentication.service';
+import {User} from '../services/authentication.service';
 
 @Component({
     selector: 'welcome-low-student',
-    providers: [AuthenticationService],
     template: `
         <div class="col-md-12">
             This application allows you to reserve books at the library for later pickup. 
@@ -17,5 +16,4 @@ import {AuthenticationService, User} from '../services/authentication.service';
 export class WelcomeLowStudentComponent {
     constructor() {
         }
-
 }

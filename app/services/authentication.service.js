@@ -38,6 +38,7 @@ var AuthenticationService = (function () {
         localStorage.removeItem('user');
         this.isLoggedIn = false;
         this._router.navigate(['login']);
+        this.profile.setUserRole('');
     };
     AuthenticationService.prototype.login = function (user) {
         var authenticatedUser = users.find(function (u) { return u.email === user.email; });
@@ -45,7 +46,7 @@ var AuthenticationService = (function () {
             localStorage.setItem('user', JSON.stringify(authenticatedUser));
             this._router.navigate(['default']);
             this.isLoggedIn = true;
-            this.profile.getProfile().setUserRole(authenticatedUser.role);
+            this.profile.setUserRole(authenticatedUser.role);
             return true;
         }
         return false;
@@ -75,6 +76,11 @@ var AuthenticationService = (function () {
             if (user.role !== "staff") {
                 this._router.navigate(['default']);
             }
+        }
+    };
+    AuthenticationService.prototype.checkAdminPrivileges = function () {
+        if (!this.profile.getProfile().getUser().getIsAdmin()) {
+            this._router.navigate(['default']);
         }
     };
     AuthenticationService.prototype.isStaff = function () {

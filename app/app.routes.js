@@ -8,6 +8,7 @@ var students_component_1 = require('./desktopViews/students.component');
 var reservations_component_1 = require('./desktopViews/reservations.component');
 var lendingform_component_1 = require('./desktopViews/lendingform.component');
 var studentdetails_component_1 = require('./desktopViews/studentdetails.component');
+var administration_component_1 = require('./desktopViews/administration.component');
 exports.routes = [
     {
         path: '',
@@ -45,6 +46,10 @@ exports.routes = [
     {
         path: 'studentDetails',
         component: studentdetails_component_1.StudentDetailsComponent
+    },
+    {
+        path: 'administration',
+        component: administration_component_1.AdministrationComponent
     }
 ];
 exports.APP_ROUTER_PROVIDERS = [

@@ -34,6 +34,7 @@ export class AuthenticationService {
     localStorage.removeItem('user');
     this.isLoggedIn = false;
     this._router.navigate(['login']);
+    this.profile.setUserRole('');
   }
 
   login(user){
@@ -42,7 +43,7 @@ export class AuthenticationService {
       localStorage.setItem('user', JSON.stringify(authenticatedUser));
       this._router.navigate(['default']);
       this.isLoggedIn = true;
-      this.profile.getProfile().setUserRole(authenticatedUser.role);
+      this.profile.setUserRole(authenticatedUser.role);
       return true;
     }
     return false;
@@ -77,6 +78,13 @@ export class AuthenticationService {
       {
         this._router.navigate(['default']);
       }
+    }
+  }
+
+  checkAdminPrivileges(){
+    if(!this.profile.getProfile().getUser().getIsAdmin())
+    {
+      this._router.navigate(['default']);
     }
   }
 

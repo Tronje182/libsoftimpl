@@ -10,7 +10,7 @@ var Profile = (function () {
         // initialize context profiles
         this.user = new user_profile_1.UserProfile('', false, 'false');
         this.platform = new platform_profile_1.PlatformProfile('');
-        this.environment = new environment_profile_1.EnvironmentProfile(50);
+        this.environment = new environment_profile_1.EnvironmentProfile(51);
         this.state = new state_profile_1.StateProfile();
         this.displayProperties = new displayProperties_1.DisplayProperties();
         console.log(this.user.toString());

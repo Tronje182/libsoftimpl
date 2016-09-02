@@ -1,7 +1,7 @@
 // platform context
 export class PlatformProfile {
     constructor(
-    private type: string)
+    public type: string)
     {};
 
     // set platform type to 'mobile' or 'desktop'

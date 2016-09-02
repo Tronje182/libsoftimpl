@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { BaseComponent } from './base.component';
 
 import { SearchComponent } from '../dynamicComponents/search.component'
 
@@ -21,7 +22,7 @@ import { ProfileService } from '../services/profile.service';
   directives: [NgClass, SearchComponent]
 })
 
-export class SearchBooksComponent {
+export class SearchBooksComponent extends BaseComponent{
   books: Book[];
   selectedBook: Book;
   isDisabledIssueBook: boolean;
@@ -34,6 +35,7 @@ export class SearchBooksComponent {
   constructor(private dataService: DataService,private _service:AuthenticationService,
     private router: Router,
     private profile: ProfileService) {
+    super(profile);
     this.authService = _service;
     this.advancedSearchSpace = [{key: "bookInfo.isbn", title: "ISBN"},
                                 {key: "bookInfo.title", title: "Title"},

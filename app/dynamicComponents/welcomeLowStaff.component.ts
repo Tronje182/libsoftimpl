@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
-import {AuthenticationService, User} from '../services/authentication.service';
+import {User} from '../services/authentication.service';
 
 @Component({
     selector: 'welcome-low-staff',
-    providers: [AuthenticationService],
     template: `
         <div class="container" >
             This application allows you to view reservations and issue books.<br><br>

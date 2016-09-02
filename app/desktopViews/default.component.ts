@@ -13,7 +13,7 @@ import { ProfileService } from '../services/profile.service';
           <div class="col-md-12">
             <div>
                 <div>
-                    <h3>Welcome to Libsoft, {{getName()}}!</h3>
+                    <h3 class="textPrimary">Welcome to Libsoft, {{getName()}}!</h3>
                 <div>
                 <div id="content" class="col-md-12">
                 </div>
