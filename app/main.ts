@@ -9,6 +9,7 @@ import { ResponsiveState, ResponsiveConfig, RESPONSIVE_DIRECTIVES } from 'respon
 
 import { NoolsService } from './services/nools.service';
 import { ProfileService } from './services/profile.service';
+import { ResourceService } from './services/resource.service';
 import { LoggerService } from './services/logger.service';
 
 bootstrap(AppComponent,[
@@ -17,6 +18,7 @@ bootstrap(AppComponent,[
     ResponsiveState,
     NoolsService,
     ProfileService,
+    ResourceService,
     LoggerService,
     provide(PLATFORM_DIRECTIVES, { useValue: [RESPONSIVE_DIRECTIVES], multi: true})
 ]);

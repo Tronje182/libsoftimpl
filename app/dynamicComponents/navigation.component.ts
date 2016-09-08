@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter, OnChanges, SimpleChange} from '@
 import { RouterLink} from '@angular/router';
 
 import { ProfileService } from '../services/profile.service';
+import { ResourceService } from '../services/resource.service';
 
 @Component({
     selector: 'navigation-component',
@@ -19,7 +20,7 @@ import { ProfileService } from '../services/profile.service';
             <div [ngClass]="profile.getProfile().displayProperties.navbarCollapseClass" id="bs-nav">
               <ul [ngClass]="profile.getProfile().displayProperties.navbarItemListClass">
                 <li class="divLine borderSecondary" *ngFor="#entry of navItems">
-                  <a href="{{entry.path}}" class="textPrimary">{{entry.text}}</a>
+                  <a href="{{entry.path}}" class="textPrimary">{{resources.getLangString(entry.key)}}</a>
                 </li>
               </ul>              
             </div>
@@ -32,7 +33,7 @@ import { ProfileService } from '../services/profile.service';
 export class NavigationComponent implements OnChanges{
     @Input() navItems: Object[] = [];
 
-    constructor(private profile: ProfileService) {
+    constructor(private profile: ProfileService, private resources: ResourceService) {
     }
 
     ngOnChanges(changes: {[propKey: string]: SimpleChange}) {

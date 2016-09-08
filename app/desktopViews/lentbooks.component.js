@@ -19,18 +19,20 @@ var myfilter_pipe_1 = require('../helper/myfilter.pipe');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
 var profile_service_1 = require('../services/profile.service');
+var resource_service_1 = require('../services/resource.service');
 var base_component_1 = require('./base.component');
 var search_component_1 = require('../dynamicComponents/search.component');
 var LentBooksComponent = (function (_super) {
     __extends(LentBooksComponent, _super);
-    function LentBooksComponent(dataService, _service, profile) {
+    function LentBooksComponent(dataService, _service, profile, _resources) {
         _super.call(this, profile);
         this.dataService = dataService;
         this._service = _service;
         this.profile = profile;
-        this.advancedSearchSpace = [{ key: "book.bookInfo.isbn", title: "Book ISBN" },
-            { key: "book.bookInfo.title", title: "Book Title" },
-            { key: "student.id", title: "Student ID" }];
+        this._resources = _resources;
+        this.advancedSearchSpace = [{ key: "book.bookInfo.isbn", title: "bookIsbn" },
+            { key: "book.bookInfo.title", title: "bookTitle" },
+            { key: "student.id", title: "studentId" }];
     }
     LentBooksComponent.prototype.getLendings = function () {
         var _this = this;
@@ -62,7 +64,7 @@ var LentBooksComponent = (function (_super) {
             pipes: [myfilter_pipe_1.LentBooksPipe],
             directives: [common_1.NgClass, search_component_1.SearchComponent]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, profile_service_1.ProfileService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, profile_service_1.ProfileService, resource_service_1.ResourceService])
     ], LentBooksComponent);
     return LentBooksComponent;
 }(base_component_1.BaseComponent));

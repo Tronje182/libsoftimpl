@@ -54,6 +54,11 @@ var ProfileService = (function () {
         localStorage.setItem('profile', this.profile.toJSON());
         this.onModified();
     };
+    ProfileService.prototype.setLanguage = function (v) {
+        this.profile.getUser().setLanguage(v);
+        localStorage.setItem('profile', this.profile.toJSON());
+        this.onModified();
+    };
     ProfileService.prototype.setBrightnessLevel = function (v) {
         this.profile.getEnvironment().setBrightnessLevel(v);
         localStorage.setItem('profile', this.profile.toJSON());

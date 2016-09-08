@@ -9,13 +9,13 @@
                         ID
                     </th>
                     <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
-                        Firstname
+                        {{_resources.getLangString('firstname')}}
                     </th>
                     <th>
-                        Lastname
+                        {{_resources.getLangString('lastname')}}
                     </th>
                     <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
-                        Status
+                        {{_resources.getLangString('status')}}
                     </th>
                 </tr>
             </thead>
@@ -42,7 +42,7 @@
 <div class="row bottomBar" style="height:10%;">
   <div name="action" class="divLineTop borderPrimary" style="padding-top:10px">
       <div [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
-        <a class="btn btn-default" [ngClass]="{disabled: isDisabled}" (click)="viewDetails()" >View Details</a>
+        <a class="btn btn-default" [ngClass]="{disabled: isDisabled}" (click)="viewDetails()" >{{_resources.getLangString('viewDetails')}}</a>
       </div>
   </div>
 </div>

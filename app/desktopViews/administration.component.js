@@ -12,11 +12,13 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
+var resource_service_1 = require('../services/resource.service');
 var AdministrationComponent = (function () {
-    function AdministrationComponent(dataService, _service, route) {
+    function AdministrationComponent(dataService, _service, route, _resources) {
         this.dataService = dataService;
         this._service = _service;
         this.route = route;
+        this._resources = _resources;
     }
     AdministrationComponent.prototype.ngOnInit = function () {
         this._service.checkStaffPrivileges();
@@ -28,7 +30,7 @@ var AdministrationComponent = (function () {
             templateUrl: 'app/desktopViews/administration.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.ActivatedRoute, resource_service_1.ResourceService])
     ], AdministrationComponent);
     return AdministrationComponent;
 }());

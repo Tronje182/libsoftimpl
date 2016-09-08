@@ -12,11 +12,13 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
+var resource_service_1 = require('../services/resource.service');
 var LendingFormComponent = (function () {
-    function LendingFormComponent(dataService, _service, route) {
+    function LendingFormComponent(dataService, _service, route, _resources) {
         this.dataService = dataService;
         this._service = _service;
         this.route = route;
+        this._resources = _resources;
         this.untilDate = new Date();
         this.untilDate.setDate(this.untilDate.getDate() + 30);
         this.until = this.untilDate.getDate() + '.' + (this.untilDate.getMonth() + 1) + '.' + this.untilDate.getFullYear();
@@ -40,7 +42,7 @@ var LendingFormComponent = (function () {
             templateUrl: 'app/desktopViews/lendingform.component.html',
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.ActivatedRoute, resource_service_1.ResourceService])
     ], LendingFormComponent);
     return LendingFormComponent;
 }());

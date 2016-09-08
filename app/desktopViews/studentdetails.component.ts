@@ -9,6 +9,7 @@ import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { NoolsService } from '../services/nools.service';
 import { ProfileService } from '../services/profile.service';
+import { ResourceService } from '../services/resource.service';
 
 @Component({
   selector: 'student-details',
@@ -32,7 +33,8 @@ export class StudentDetailsComponent {
     private _service:AuthenticationService,
     private route: ActivatedRoute,
     private profile: ProfileService,
-    private flow: NoolsService
+    private flow: NoolsService, 
+    private _resources: ResourceService
   ) {
       this.student = new Student('','','',false);
   }

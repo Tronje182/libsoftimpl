@@ -12,7 +12,7 @@
             </tr>
             <tr>
                 <th style="background-color:#EEE">
-                    Firstname
+                    {{_resources.getLangString('firstname')}}
                 </th>
                 <td>
                     {{student.firstname}}
@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <th style="background-color:#EEE">
-                    Lastname
+                    {{_resources.getLangString('lastname')}}
                 </th>
                 <td>
                     {{student.lastname}}
@@ -28,14 +28,14 @@
             </tr>
             <tr>
                 <th style="background-color:#EEE">
-                    Status
+                    {{_resources.getLangString('status')}}
                 </th>
                 <td>
                     {{student.status}}
                 </td>
             </tr>
         </table>
-        <h3>Lent Books:</h3>
+        <h3>{{_resources.getLangString('lent')}}:</h3>
         <table [ngClass]="profile.getProfile().displayProperties.tableClass">
             <thead>
                 <tr>
@@ -43,13 +43,13 @@
                         ISBN
                     </th>
                     <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
-                        Author
+                        {{_resources.getLangString('author')}}
                     </th>
                     <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
-                        Title
+                        {{_resources.getLangString('title')}}
                     </th>
                     <th>
-                        Until
+                        {{_resources.getLangString('until')}}
                     </th>
                 </tr>
             </thead>
@@ -71,9 +71,5 @@
             </tbody>
         </table>
     </div>
-  </div>
-</div>
-<div class="row bottomBar" style="height:10%;">
-  <div name="action" class="divLineTop borderPrimary" style="padding-top:10px">
   </div>
 </div>

@@ -16,13 +16,15 @@ var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
 var nools_service_1 = require('../services/nools.service');
 var profile_service_1 = require('../services/profile.service');
+var resource_service_1 = require('../services/resource.service');
 var StudentDetailsComponent = (function () {
-    function StudentDetailsComponent(dataService, _service, route, profile, flow) {
+    function StudentDetailsComponent(dataService, _service, route, profile, flow, _resources) {
         this.dataService = dataService;
         this._service = _service;
         this.route = route;
         this.profile = profile;
         this.flow = flow;
+        this._resources = _resources;
         this.student = new student_1.Student('', '', '', false);
     }
     StudentDetailsComponent.prototype.ngOnInit = function () {
@@ -41,7 +43,7 @@ var StudentDetailsComponent = (function () {
             providers: [data_service_1.DataService, authentication_service_1.AuthenticationService],
             directives: [common_1.NgClass]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.ActivatedRoute, profile_service_1.ProfileService, nools_service_1.NoolsService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.ActivatedRoute, profile_service_1.ProfileService, nools_service_1.NoolsService, resource_service_1.ResourceService])
     ], StudentDetailsComponent);
     return StudentDetailsComponent;
 }());

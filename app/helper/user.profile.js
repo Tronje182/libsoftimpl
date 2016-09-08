@@ -6,7 +6,9 @@ var UserProfile = (function () {
         this.weakVision = w;
         this.computerSelfEfficiacy = c;
         this.isAdmin = false;
+        this.language = 'enus';
         this.setAdminChecked(false);
+        this.setLangChecked(false);
         this.setRoleChecked(false);
         this.setWeakVisionChecked(false);
         this.setComputerSelfEfficiacyChecked(false);
@@ -35,6 +37,11 @@ var UserProfile = (function () {
         this.isAdmin = v;
         this.setAdminChecked(false);
     };
+    // Set key of user language
+    UserProfile.prototype.setLanguage = function (v) {
+        this.language = v;
+        this.setAdminChecked(false);
+    };
     // Get role of user
     UserProfile.prototype.getUserRole = function () {
         return this.role;
@@ -54,6 +61,10 @@ var UserProfile = (function () {
         return this.computerSelfEfficiacy;
     };
     ;
+    // Get language key
+    UserProfile.prototype.getLanguage = function () {
+        return this.language;
+    };
     // Getters and Setters for flags that indicate if rule was already fired once
     UserProfile.prototype.setRoleChecked = function (v) {
         this.roleChecked = v;
@@ -71,6 +82,10 @@ var UserProfile = (function () {
         this.computerSelfEfficiacyChecked = v;
     };
     ;
+    UserProfile.prototype.setLangChecked = function (v) {
+        this.adminChecked = v;
+    };
+    ;
     UserProfile.prototype.getRoleChecked = function () {
         return this.roleChecked;
     };
@@ -85,6 +100,10 @@ var UserProfile = (function () {
     ;
     UserProfile.prototype.getComputerSelfEfficiacyChecked = function () {
         return this.computerSelfEfficiacyChecked;
+    };
+    ;
+    UserProfile.prototype.getLangChecked = function () {
+        return this.adminChecked;
     };
     ;
     return UserProfile;

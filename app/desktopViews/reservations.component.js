@@ -21,19 +21,21 @@ var myfilter_pipe_1 = require('../helper/myfilter.pipe');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
 var profile_service_1 = require('../services/profile.service');
+var resource_service_1 = require('../services/resource.service');
 var search_component_1 = require('../dynamicComponents/search.component');
 var ReservationsComponent = (function (_super) {
     __extends(ReservationsComponent, _super);
-    function ReservationsComponent(dataService, _service, router, profile) {
+    function ReservationsComponent(dataService, _service, router, profile, resources) {
         _super.call(this, profile);
         this.dataService = dataService;
         this._service = _service;
         this.router = router;
         this.profile = profile;
-        this.advancedSearchSpace = [{ key: "book.bookInfo.isbn", title: "ISBN" },
-            { key: "book.bookInfo.title", title: "Title" },
-            { key: "book.bookInfo.title", title: "Author" },
-            { key: "student.id", title: "Student ID" }];
+        this.resources = resources;
+        this.advancedSearchSpace = [{ key: "book.bookInfo.isbn", title: "isbn" },
+            { key: "book.bookInfo.title", title: "title" },
+            { key: "book.bookInfo.title", title: "author" },
+            { key: "student.id", title: "studentID" }];
     }
     ReservationsComponent.prototype.getReservations = function () {
         var _this = this;
@@ -72,7 +74,7 @@ var ReservationsComponent = (function (_super) {
             pipes: [myfilter_pipe_1.ReservationsPipe],
             directives: [common_1.NgClass, search_component_1.SearchComponent]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService, resource_service_1.ResourceService])
     ], ReservationsComponent);
     return ReservationsComponent;
 }(base_component_1.BaseComponent));

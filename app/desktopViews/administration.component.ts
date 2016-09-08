@@ -6,6 +6,7 @@ import { BookLending } from '../data/bookLending';
 
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { ResourceService } from '../services/resource.service';
 
 @Component({
   selector: 'administration',
@@ -18,7 +19,8 @@ export class AdministrationComponent {
   constructor(
     private dataService: DataService,
     private _service:AuthenticationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute, 
+    private _resources: ResourceService
   ) {
   }
 

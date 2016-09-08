@@ -7,13 +7,13 @@
             <thead>
                 <tr>
                     <th>
-                        Student
+                        {{_resources.getLangString('student')}}
                     </th>
                     <th>
-                        Book
+                        {{_resources.getLangString('book')}}
                     </th>
                     <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
-                        Until
+                        {{_resources.getLangString('until')}}
                     </th>
                 </tr>
             </thead>
@@ -35,7 +35,7 @@
     <div *ngIf="profile.getProfile().displayProperties.isMobile && selectedLending" [ngClass]="profile.getProfile().displayProperties.hideOnDesktop">
         <div style="margin-bottom:5px">
             <button type="button" class="btn btn-default" (click)="unselectLending()"> 
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> {{_resources.getLangString('back')}}
             </button>          
         </div>
         <div>
@@ -50,7 +50,7 @@
                 </tr>
                 <tr>
                     <th style="background-color:#EEE">
-                        Title
+                        {{_resources.getLangString('title')}}
                     </th>
                     <td>
                         {{selectedLending.book.bookInfo.title}} 
@@ -58,7 +58,7 @@
                 </tr>
                 <tr>
                     <th style="background-color:#EEE">
-                        Author
+                        {{_resources.getLangString('author')}}
                     </th>
                     <td>
                         {{selectedLending.book.bookInfo.author}} 
@@ -66,7 +66,7 @@
                 </tr>
                 <tr>
                     <th style="background-color:#EEE">
-                        Until
+                        {{_resources.getLangString('until')}}
                     </th>
                     <td>
                         {{selectedLending.until}}
@@ -75,10 +75,5 @@
             </table>
         </div>
     </div>
-  </div>
-</div>
-<div class="row bottomBar" style="height:10%">
-  <div name="action" class="divLineTop borderPrimary">
-    <my-actions></my-actions>
   </div>
 </div>

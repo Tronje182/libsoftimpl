@@ -22,18 +22,20 @@ var myfilter_pipe_1 = require('../helper/myfilter.pipe');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
 var profile_service_1 = require('../services/profile.service');
+var resource_service_1 = require('../services/resource.service');
 var SearchBooksComponent = (function (_super) {
     __extends(SearchBooksComponent, _super);
-    function SearchBooksComponent(dataService, _service, router, profile) {
+    function SearchBooksComponent(dataService, _service, router, profile, _resources) {
         _super.call(this, profile);
         this.dataService = dataService;
         this._service = _service;
         this.router = router;
         this.profile = profile;
+        this._resources = _resources;
         this.authService = _service;
-        this.advancedSearchSpace = [{ key: "bookInfo.isbn", title: "ISBN" },
-            { key: "bookInfo.title", title: "Title" },
-            { key: "bookInfo.author", title: "Author" }];
+        this.advancedSearchSpace = [{ key: "bookInfo.isbn", title: "isbn" },
+            { key: "bookInfo.title", title: "title" },
+            { key: "bookInfo.author", title: "author" }];
     }
     SearchBooksComponent.prototype.getLendings = function () {
         var _this = this;
@@ -104,7 +106,7 @@ var SearchBooksComponent = (function (_super) {
             pipes: [myfilter_pipe_1.BooksPipe],
             directives: [common_1.NgClass, search_component_1.SearchComponent]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService, resource_service_1.ResourceService])
     ], SearchBooksComponent);
     return SearchBooksComponent;
 }(base_component_1.BaseComponent));

@@ -45,6 +45,15 @@ import { Profile } from '../helper/profile'
                     <label><input type="checkbox" [(ngModel)]="isAdmin" (ngModelChange)="isAdminChanged()">Admin?</label>
                 </div>
             </div>
+            <div class="col-sm-3">
+                <div class="form-inline form-group">
+                    <label for="langSelect">Language</label>
+                    <select class="form-control" id="langSelect" [(ngModel)]="language" (ngModelChange)="isLanguageChanged()">
+                        <option value="enus">English</option>
+                        <option value="dede">Deutsch</option>
+                    </select>
+                </div>
+            </div>
         </div>
         
         <a (click)="logout()" href="">Click Here to logout</a>
@@ -59,6 +68,7 @@ export class NoolsTestBarComponent {
     private userWeakVision: boolean;
     private userSelfEfficiacy: string;
     private isAdmin: boolean;
+    private language: string;
 
     private platformType: string;
 
@@ -70,6 +80,7 @@ export class NoolsTestBarComponent {
             this.userWeakVision = _profile.getProfile().getUser().hasWeakVision();
             this.userSelfEfficiacy = _profile.getProfile().getUser().hasHighComputerSelfEfficiacy();
             this.isAdmin = _profile.getProfile().getUser().getIsAdmin();
+            this.language = _profile.getProfile().getUser().getLanguage();
 
             this.platformType = _profile.getProfile().getPlatform().getPlatformType();
 
@@ -99,6 +110,11 @@ export class NoolsTestBarComponent {
     //input for is admin changed
     isAdminChanged(){
         this._profile.setIsAdmin(this.isAdmin);
+    }
+
+    //input for is language changed
+    isLanguageChanged(){
+        this._profile.setLanguage(this.language);
     }
     
     logout() {

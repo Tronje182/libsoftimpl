@@ -13,6 +13,7 @@ import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { NoolsService } from '../services/nools.service';
 import { ProfileService } from '../services/profile.service';
+import { ResourceService } from '../services/resource.service';
 
 @Component({
   selector: 'my-search-books',
@@ -34,12 +35,13 @@ export class SearchBooksComponent extends BaseComponent{
 
   constructor(private dataService: DataService,private _service:AuthenticationService,
     private router: Router,
-    private profile: ProfileService) {
+    private profile: ProfileService, 
+    private _resources: ResourceService) {
     super(profile);
     this.authService = _service;
-    this.advancedSearchSpace = [{key: "bookInfo.isbn", title: "ISBN"},
-                                {key: "bookInfo.title", title: "Title"},
-                                {key: "bookInfo.author", title: "Author"}];
+    this.advancedSearchSpace = [{key: "bookInfo.isbn", title: "isbn"},
+                                {key: "bookInfo.title", title: "title"},
+                                {key: "bookInfo.author", title: "author"}];
   }
 
   getLendings(){

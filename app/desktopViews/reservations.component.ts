@@ -11,6 +11,7 @@ import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { NoolsService } from '../services/nools.service';
 import { ProfileService } from '../services/profile.service';
+import { ResourceService } from '../services/resource.service';
 
 import { SearchComponent } from '../dynamicComponents/search.component'
 
@@ -33,12 +34,13 @@ export class ReservationsComponent extends BaseComponent {
     private dataService: DataService,
     private _service:AuthenticationService,
     private router: Router,
-    private profile: ProfileService) {
+    private profile: ProfileService, 
+    private resources: ResourceService) {
       super(profile);
-      this.advancedSearchSpace = [{key:"book.bookInfo.isbn", title:"ISBN"},
-                                  {key:"book.bookInfo.title", title:"Title"},
-                                  {key:"book.bookInfo.title", title:"Author"},
-                                  {key:"student.id",title:"Student ID"}];
+      this.advancedSearchSpace = [{key:"book.bookInfo.isbn", title:"isbn"},
+                                  {key:"book.bookInfo.title", title:"title"},
+                                  {key:"book.bookInfo.title", title:"author"},
+                                  {key:"student.id",title:"studentID"}];
     }
 
   getReservations(){

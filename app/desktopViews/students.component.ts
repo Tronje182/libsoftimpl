@@ -11,6 +11,7 @@ import { StudentsPipe } from '../helper/myfilter.pipe';
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { ProfileService } from '../services/profile.service';
+import { ResourceService } from '../services/resource.service';
 
 @Component({
   selector: 'students',
@@ -31,11 +32,12 @@ export class StudentsComponent {
     private dataService: DataService,
     private _service:AuthenticationService,
     private router: Router,
-    private profile: ProfileService
+    private profile: ProfileService, 
+    private _resources: ResourceService
     ) {
-      this.advancedSearchSpace = [{key: "id", title: "Student ID"},
-                                  {key: "firstname", title: "Firstname"},
-                                  {key: "lastname", title: "Lastname"}];
+      this.advancedSearchSpace = [{key: "id", title: "studentID"},
+                                  {key: "firstname", title: "firstname"},
+                                  {key: "lastname", title: "lastname"}];
     }
 
   getStudents(){

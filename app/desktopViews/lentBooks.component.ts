@@ -8,6 +8,7 @@ import { LentBooksPipe } from '../helper/myfilter.pipe';
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { ProfileService } from '../services/profile.service';
+import { ResourceService } from '../services/resource.service';
 
 import { BaseComponent } from './base.component'
 import { SearchComponent } from '../dynamicComponents/search.component'
@@ -28,11 +29,12 @@ export class LentBooksComponent extends BaseComponent {
 
   constructor(private dataService: DataService,
   private _service:AuthenticationService,
-  private profile: ProfileService) {
+  private profile: ProfileService,
+  private _resources: ResourceService) {
     super(profile);
-    this.advancedSearchSpace = [{key: "book.bookInfo.isbn", title: "Book ISBN"},
-                                {key: "book.bookInfo.title", title: "Book Title"},
-                                {key: "student.id", title: "Student ID"}];
+    this.advancedSearchSpace = [{key: "book.bookInfo.isbn", title: "bookIsbn"},
+                                {key: "book.bookInfo.title", title: "bookTitle"},
+                                {key: "student.id", title: "studentId"}];
   }
 
   getLendings(){

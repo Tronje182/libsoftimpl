@@ -10,6 +10,7 @@ import { DefaultComponent } from '../DesktopViews/default.component'
 import { WelcomeLowStudentComponent } from '../DynamicComponents/welcomeLowStudent.component'
 import { WelcomeLowStaffComponent } from '../DynamicComponents/welcomeLowStaff.component'
 
+import { ResourceService } from './resource.service';
 import { LoggerService } from './logger.service';
 
 declare var nools: any;
@@ -21,32 +22,51 @@ export class NoolsService {
     public flow;
     public baseComp;
 
-  constructor(private dcl: DynamicComponentLoader, public _injector: Injector, public _router: Router, public logger: LoggerService){
+  constructor(private dcl: DynamicComponentLoader, public _injector: Injector, public _router: Router, public logger: LoggerService, public _resources: ResourceService){
       this.flow = nools.flow("ProfileEvaluation", function (flow) {
+            flow.rule("Lang ENUS",{salience:4},[Profile, "m", "m.getUser().getLanguage() =~ /enus/ && m.getUser().getLangChecked() === false"],function(facts){
+                facts.m.getUser().setLangChecked(true);
+                _resources.setLangFile('enus');
+            });
+
+            flow.rule("Lang DEDE",{salience:4},[Profile, "m", "m.getUser().getLanguage() =~ /dede/  && m.getUser().getLangChecked() === false"],function(facts){
+                facts.m.getUser().setLangChecked(true);
+                _resources.setLangFile('dede');
+            });
+
+            flow.rule("Images Low Res",{salience:6},[Profile, "m", "m.getEnvironment().getBrightnessLevel() <= 40"],function(facts){
+                //change image on brightness change
+                _resources.setImageFile('low');
+            });
+
+            flow.rule("Images High Res",{salience:6},[Profile, "m", "m.getEnvironment().getBrightnessLevel() > 40"],function(facts){
+                _resources.setImageFile('high');
+            });
+
             flow.rule("Admin Option Unselected",{salience:10}, [Profile, "m", "m.getUser().getIsAdmin() === false && m.getUser().getAdminChecked() === false"], function(facts){
                 facts.m.getUser().setAdminChecked(true);
                 facts.m.displayProperties.removeNavigationPath('\administration');
             });
 
-            flow.rule("Admin Option Selected",{salience:10}, [Profile, "m", "m.getUser().getIsAdmin() === true && m.getUser().getAdminChecked() === false"], function(facts){
+            flow.rule("Admin Option Selected",{salience:10}, [Profile, "m", "m.getUser().getUserRole() == 'staff'  && m.getUser().getIsAdmin() === true && m.getUser().getAdminChecked() === false"], function(facts){
                 facts.m.getUser().setAdminChecked(true);
-                facts.m.displayProperties.pushNavigation({path:'\administration', text:'Administration'});
+                facts.m.displayProperties.pushNavigation({path:'\administration', key:'administration'});
             });
 
             flow.rule("Navigation Student",{salience:11}, [Profile, "m", "m.getUser().getUserRole() == 'student' && m.getUser().getRoleChecked() === false"], function(facts){
                 facts.m.getUser().setRoleChecked(true);
                 facts.m.displayProperties.clearNavigation();
-                facts.m.displayProperties.pushNavigation({path:'\lentBooks', text:'Lent Books'});
-                facts.m.displayProperties.pushNavigation({path:'\searchBooks', text:'Search Books'});
+                facts.m.displayProperties.pushNavigation({path:'\lentBooks', key:'lent'});
+                facts.m.displayProperties.pushNavigation({path:'\searchBooks', key:'books'});
             });
 
             flow.rule("Navigation Staff",{salience:11}, [Profile, "m", "m.getUser().getUserRole() == 'staff'  && m.getUser().getRoleChecked() === false"], function(facts){
                 facts.m.getUser().setRoleChecked(true);
                 facts.m.displayProperties.clearNavigation();
-                facts.m.displayProperties.pushNavigation({path:'\searchBooks', text:'Search Books'});
-                facts.m.displayProperties.pushNavigation({path:'\students', text:'Search Students'});
-                facts.m.displayProperties.pushNavigation({path:'\\reservations', text:'View Reservations'});
-                facts.m.displayProperties.pushNavigation({path:'\lendingForm', text:'View Lending Form'});
+                facts.m.displayProperties.pushNavigation({path:'\searchBooks', key:'books'});
+                facts.m.displayProperties.pushNavigation({path:'\students', key:'students'});
+                facts.m.displayProperties.pushNavigation({path:'\\reservations', key:'reservations'});
+                facts.m.displayProperties.pushNavigation({path:'\lendingForm', key:'lendingForm'});
             });
 
             flow.rule("Navigation Unregistered",{salience:12}, [Profile, "m", "m.getUser().getUserRole() != 'student' && m.getUser().getUserRole() != 'staff'"], function(facts){

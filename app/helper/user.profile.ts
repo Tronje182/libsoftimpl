@@ -4,8 +4,10 @@ export class UserProfile{
     private isAdmin: boolean;
     private weakVision: boolean;
     private computerSelfEfficiacy: string;
+    private language: string;
 
     private roleChecked: boolean;
+    private langChecked: boolean;
     private adminChecked: boolean;
     private weakVisionChecked: boolean;
     private computerSelfEfficiacyChecked: boolean;
@@ -16,8 +18,11 @@ export class UserProfile{
         this.weakVision = w;
         this.computerSelfEfficiacy = c;
         this.isAdmin = false;
+        
+        this.language = 'enus';
 
         this.setAdminChecked(false);
+        this.setLangChecked(false);
         this.setRoleChecked(false);
         this.setWeakVisionChecked(false);
         this.setComputerSelfEfficiacyChecked(false);
@@ -47,6 +52,12 @@ export class UserProfile{
         this.setAdminChecked(false);
     }
 
+    // Set key of user language
+    public setLanguage(v: string){
+        this.language = v;
+        this.setAdminChecked(false);
+    }
+
     // Get role of user
     public getUserRole(): string{
         return this.role;
@@ -66,6 +77,11 @@ export class UserProfile{
     public hasHighComputerSelfEfficiacy(): string{
         return this.computerSelfEfficiacy;
     };
+    
+    // Get language key
+    public getLanguage(): string{
+        return this.language;
+    }
 
     // Getters and Setters for flags that indicate if rule was already fired once
     public setRoleChecked(v: boolean){
@@ -80,6 +96,9 @@ export class UserProfile{
     public setComputerSelfEfficiacyChecked(v: boolean){
         this.computerSelfEfficiacyChecked = v;
     };
+    public setLangChecked(v: boolean){
+        this.adminChecked = v;
+    };
     public getRoleChecked(){
         return this.roleChecked;
     };
@@ -91,6 +110,9 @@ export class UserProfile{
     };
     public getComputerSelfEfficiacyChecked(){
         return this.computerSelfEfficiacyChecked;
+    };
+    public getLangChecked(){
+        return this.adminChecked;
     };
 
 }

@@ -9,13 +9,13 @@
                         ISBN
                     </th>
                     <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
-                        Title
+                        {{_resources.getLangString('title')}}
                     </th>
                     <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
-                        Author
+                        {{_resources.getLangString('author')}}
                     </th>
                     <th>
-                        Student
+                        {{_resources.getLangString('student')}}
                     </th>
                 </tr>
             </thead>
@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <th style="background-color:#EEE">
-                        Title
+                        {{_resources.getLangString('title')}}
                     </th>
                     <td>
                         {{selectedBook.book.bookInfo.title}} 
@@ -63,7 +63,7 @@
                 </tr>
                 <tr>
                     <th style="background-color:#EEE">
-                        Author
+                        {{_resources.getLangString('author')}}
                     </th>
                     <td>
                         {{selectedBook.book.bookInfo.author}} 
@@ -71,7 +71,7 @@
                 </tr>
                 <tr>
                     <th style="background-color:#EEE">
-                        Student ID
+                        {{_resources.getLangString('studentID')}}
                     </th>
                     <td>
                         {{selectedBook.student.id}}
@@ -79,7 +79,7 @@
                 </tr>
                 <tr>
                     <th style="background-color:#EEE">
-                        Student
+                        {{_resources.getLangString('student')}}
                     </th>
                     <td>
                         {{selectedBook.student.firstname}} {{selectedBook.student.lastname}} 
@@ -92,6 +92,6 @@
 </div>
 <div class="row bottomBar" style="height:10%">
   <div name="action" class="divLineTop borderPrimary" style="padding-top:10px">
-    <a class="btn btn-default" [ngClass]="{disabled: isDisabled}" (click)="issueBook()" >Issue Book</a>
+    <a class="btn btn-default" [ngClass]="{disabled: isDisabled}" (click)="issueBook()" >{{_resources.getLangString('issueBook')}}</a>
   </div>
 </div>

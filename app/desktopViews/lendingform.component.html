@@ -3,15 +3,15 @@
     <div name="content">
       <form>
         <div class="form-group">
-          <label for="bookInput">Book</label>
+          <label for="bookInput">{{_ressources.getLangString('book')}}</label>
           <input type="text" class="form-control" id="bookInput" [(ngModel)]="book" placeholder="ISBN">
         </div>
         <div class="form-group">
-          <label for="studentInput">Student</label>
+          <label for="studentInput">{{_ressources.getLangString('student')}}</label>
           <input type="text" class="form-control" id="studentInput" [(ngModel)]="student" placeholder="Student">
         </div>
         <div class="form-group">
-          <label for="untilInput">Until</label>
+          <label for="untilInput">{{_ressources.getLangString('until')}}</label>
           <input type="text" class="form-control" id="untilInput" [(ngModel)]="until">
         </div>
       </form>
@@ -20,6 +20,6 @@
 </div>
 <div class="row bottomBar" style="height:10%">
   <div name="action" class="divLineTop borderPrimary" style="padding-top:10px">
-    <a class="btn btn-default" [ngClass]="{disabled: isDisabledLendBook}" (click)="lendBook()">Lend Book</a>
+    <a class="btn btn-default" [ngClass]="{disabled: isDisabledLendBook}" (click)="lendBook()">{{_ressources.getLangString('lendBook')}}</a>
   </div>
 </div>

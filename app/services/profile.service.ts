@@ -59,6 +59,12 @@ export class ProfileService {
     this.onModified();
   }
 
+  public setLanguage(v: string){
+    this.profile.getUser().setLanguage(v);
+    localStorage.setItem('profile', this.profile.toJSON());
+    this.onModified();
+  }
+
   public setBrightnessLevel(v:number){
     this.profile.getEnvironment().setBrightnessLevel(v);
     localStorage.setItem('profile', this.profile.toJSON());

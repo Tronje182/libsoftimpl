@@ -9,13 +9,13 @@
                         ISBN
                     </th>
                     <th>
-                        Title
+                        {{_resources.getLangString('title')}}
                     </th>
                     <th>
-                        Author
+                        {{_resources.getLangString('author')}}
                     </th>
                     <th [ngClass]="profile.getProfile().displayProperties.hideOnMobile">
-                        Status
+                        {{_resources.getLangString('status')}}
                     </th>
                 </tr>
             </thead>
@@ -40,7 +40,7 @@
     <div *ngIf="profile.getProfile().displayProperties.isMobile && selectedBook" [ngClass]="profile.getProfile().displayProperties.hideOnDesktop">
         <div style="margin-bottom:5px">
             <button type="button" class="btn btn-default" (click)="unselectBook()"> 
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> {{_resources.getLangString('back')}}
             </button>          
         </div>
         <div>
@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <th>
-                        Title
+                        {{_resources.getLangString('title')}}
                     </th>
                     <td>
                         {{selectedBook.bookInfo.title}} 
@@ -63,7 +63,7 @@
                 </tr>
                 <tr>
                     <th>
-                        Author
+                        {{_resources.getLangString('author')}}
                     </th>
                     <td>
                         {{selectedBook.bookInfo.author}} 
@@ -71,7 +71,7 @@
                 </tr>
                 <tr>
                     <th>
-                        Status
+                        {{_resources.getLangString('status')}}
                     </th>
                     <td>
                         {{selectedBook.status}} 
@@ -84,8 +84,8 @@
 </div>
 <div class="row bottomBar" style="height:10%">
   <div name="action" class="divLineTop borderPrimary" style="padding-top:10px">
-    <a class="btn btn-default" [ngClass]="{disabled: isDisabledIssueBook}" *ngIf="authService.isStudent()" (click)="reserveBook()">Reserve Book</a>
-    <a class="btn btn-default" [ngClass]="{disabled: isDisabledIssueBook}" *ngIf="authService.isStaff()" (click)="issueBook()">Issue Book</a>
-    <a class="btn btn-default" [ngClass]="{disabled: isDisabledReturnBook}" *ngIf="authService.isStaff()" (click)="returnBook()">Return Book</a>
+    <a class="btn btn-default" [ngClass]="{disabled: isDisabledIssueBook}" *ngIf="authService.isStudent()" (click)="reserveBook()">{{_resources.getLangString('reserveBook')}}</a>
+    <a class="btn btn-default" [ngClass]="{disabled: isDisabledIssueBook}" *ngIf="authService.isStaff()" (click)="issueBook()">{{_resources.getLangString('issueBook')}}</a>
+    <a class="btn btn-default" [ngClass]="{disabled: isDisabledReturnBook}" *ngIf="authService.isStaff()" (click)="returnBook()">{{_resources.getLangString('returnBook')}}</a>
   </div>
 </div>

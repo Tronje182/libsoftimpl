@@ -6,6 +6,7 @@ import { BookLending } from '../data/bookLending';
 
 import { DataService } from '../services/data.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { ResourceService } from '../services/resource.service';
 
 @Component({
   selector: 'lending-form',
@@ -26,7 +27,8 @@ export class LendingFormComponent {
   constructor(
     private dataService: DataService,
     private _service:AuthenticationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _resources: ResourceService
   ) {
     this.untilDate = new Date();
     this.untilDate.setDate( this.untilDate.getDate() + 30 );

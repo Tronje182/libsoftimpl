@@ -4,6 +4,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { BaseComponent } from './base.component'
 
 import { ProfileService } from '../services/profile.service';
+import { ResourceService } from '../services/resource.service';
 
 @Component({
   selector: 'login-form',
@@ -13,7 +14,7 @@ import { ProfileService } from '../services/profile.service';
           <div class="col-md-12">
             <div>
                 <div>
-                    <h3 class="textPrimary">Welcome to Libsoft, {{getName()}}!</h3>
+                    <h3 class="textPrimary"> {{_resources.getLangString('welcomeLibsoft')}}, {{getName()}}!</h3>
                 <div>
                 <div id="content" class="col-md-12">
                 </div>
@@ -25,7 +26,7 @@ import { ProfileService } from '../services/profile.service';
 
 export class DefaultComponent extends BaseComponent {
 
-    constructor(private _service : AuthenticationService, private _profile: ProfileService){
+    constructor(private _service : AuthenticationService, private _profile: ProfileService, private _resources: ResourceService){
         super(_profile);
     }
 

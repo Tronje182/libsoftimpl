@@ -17,12 +17,14 @@ var core_1 = require('@angular/core');
 var authentication_service_1 = require('../services/authentication.service');
 var base_component_1 = require('./base.component');
 var profile_service_1 = require('../services/profile.service');
+var resource_service_1 = require('../services/resource.service');
 var DefaultComponent = (function (_super) {
     __extends(DefaultComponent, _super);
-    function DefaultComponent(_service, _profile) {
+    function DefaultComponent(_service, _profile, _resources) {
         _super.call(this, _profile);
         this._service = _service;
         this._profile = _profile;
+        this._resources = _resources;
     }
     DefaultComponent.prototype.ngOnInit = function () {
         this._service.checkCredentials();
@@ -38,9 +40,9 @@ var DefaultComponent = (function (_super) {
         core_1.Component({
             selector: 'login-form',
             providers: [authentication_service_1.AuthenticationService],
-            template: "\n        <div class=\"row\">\n          <div class=\"col-md-12\">\n            <div>\n                <div>\n                    <h3 class=\"textPrimary\">Welcome to Libsoft, {{getName()}}!</h3>\n                <div>\n                <div id=\"content\" class=\"col-md-12\">\n                </div>\n            </div>\n          </div>\n        </div>\n  "
+            template: "\n        <div class=\"row\">\n          <div class=\"col-md-12\">\n            <div>\n                <div>\n                    <h3 class=\"textPrimary\"> {{_resources.getLangString('welcomeLibsoft')}}, {{getName()}}!</h3>\n                <div>\n                <div id=\"content\" class=\"col-md-12\">\n                </div>\n            </div>\n          </div>\n        </div>\n  "
         }), 
-        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, profile_service_1.ProfileService])
+        __metadata('design:paramtypes', [authentication_service_1.AuthenticationService, profile_service_1.ProfileService, resource_service_1.ResourceService])
     ], DefaultComponent);
     return DefaultComponent;
 }(base_component_1.BaseComponent));

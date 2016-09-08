@@ -16,15 +16,17 @@ var myfilter_pipe_1 = require('../helper/myfilter.pipe');
 var data_service_1 = require('../services/data.service');
 var authentication_service_1 = require('../services/authentication.service');
 var profile_service_1 = require('../services/profile.service');
+var resource_service_1 = require('../services/resource.service');
 var StudentsComponent = (function () {
-    function StudentsComponent(dataService, _service, router, profile) {
+    function StudentsComponent(dataService, _service, router, profile, _resources) {
         this.dataService = dataService;
         this._service = _service;
         this.router = router;
         this.profile = profile;
-        this.advancedSearchSpace = [{ key: "id", title: "Student ID" },
-            { key: "firstname", title: "Firstname" },
-            { key: "lastname", title: "Lastname" }];
+        this._resources = _resources;
+        this.advancedSearchSpace = [{ key: "id", title: "studentID" },
+            { key: "firstname", title: "firstname" },
+            { key: "lastname", title: "lastname" }];
     }
     StudentsComponent.prototype.getStudents = function () {
         var _this = this;
@@ -62,7 +64,7 @@ var StudentsComponent = (function () {
             pipes: [myfilter_pipe_1.StudentsPipe],
             directives: [common_1.NgClass, search_component_1.SearchComponent]
         }), 
-        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService])
+        __metadata('design:paramtypes', [data_service_1.DataService, authentication_service_1.AuthenticationService, router_1.Router, profile_service_1.ProfileService, resource_service_1.ResourceService])
     ], StudentsComponent);
     return StudentsComponent;
 }());
